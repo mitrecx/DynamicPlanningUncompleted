@@ -1,0 +1,242 @@
+[
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/main.cc.o -c /home/mitre/qt-ut/main.cc",
+  "file": "/home/mitre/qt-ut/main.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/behaviors/behavior.cc.o -c /home/mitre/qt-ut/behaviors/behavior.cc",
+  "file": "/home/mitre/qt-ut/behaviors/behavior.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/behaviors/naobehavior.cc.o -c /home/mitre/qt-ut/behaviors/naobehavior.cc",
+  "file": "/home/mitre/qt-ut/behaviors/naobehavior.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/behaviors/checkfall.cc.o -c /home/mitre/qt-ut/behaviors/checkfall.cc",
+  "file": "/home/mitre/qt-ut/behaviors/checkfall.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/behaviors/kicking.cc.o -c /home/mitre/qt-ut/behaviors/kicking.cc",
+  "file": "/home/mitre/qt-ut/behaviors/kicking.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/behaviors/strategy.cc.o -c /home/mitre/qt-ut/behaviors/strategy.cc",
+  "file": "/home/mitre/qt-ut/behaviors/strategy.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/behaviors/pkbehaviors.cc.o -c /home/mitre/qt-ut/behaviors/pkbehaviors.cc",
+  "file": "/home/mitre/qt-ut/behaviors/pkbehaviors.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/behaviors/gazebobehavior.cc.o -c /home/mitre/qt-ut/behaviors/gazebobehavior.cc",
+  "file": "/home/mitre/qt-ut/behaviors/gazebobehavior.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/servercomm/primitives.cc.o -c /home/mitre/qt-ut/servercomm/primitives.cc",
+  "file": "/home/mitre/qt-ut/servercomm/primitives.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/parser/parser.cc.o -c /home/mitre/qt-ut/parser/parser.cc",
+  "file": "/home/mitre/qt-ut/parser/parser.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/math/hctmatrix.cc.o -c /home/mitre/qt-ut/math/hctmatrix.cc",
+  "file": "/home/mitre/qt-ut/math/hctmatrix.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/math/vecposition.cc.o -c /home/mitre/qt-ut/math/vecposition.cc",
+  "file": "/home/mitre/qt-ut/math/vecposition.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/math/Geometry.cc.o -c /home/mitre/qt-ut/math/Geometry.cc",
+  "file": "/home/mitre/qt-ut/math/Geometry.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/worldmodel/worldmodel.cc.o -c /home/mitre/qt-ut/worldmodel/worldmodel.cc",
+  "file": "/home/mitre/qt-ut/worldmodel/worldmodel.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/bodymodel/bodymodel.cc.o -c /home/mitre/qt-ut/bodymodel/bodymodel.cc",
+  "file": "/home/mitre/qt-ut/bodymodel/bodymodel.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/particlefilter/PFLocalization.cc.o -c /home/mitre/qt-ut/particlefilter/PFLocalization.cc",
+  "file": "/home/mitre/qt-ut/particlefilter/PFLocalization.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/particlefilter/Particle.cc.o -c /home/mitre/qt-ut/particlefilter/Particle.cc",
+  "file": "/home/mitre/qt-ut/particlefilter/Particle.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/skills/skill.cc.o -c /home/mitre/qt-ut/skills/skill.cc",
+  "file": "/home/mitre/qt-ut/skills/skill.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/skills/curve3d.cc.o -c /home/mitre/qt-ut/skills/curve3d.cc",
+  "file": "/home/mitre/qt-ut/skills/curve3d.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/ikfast/ikfast.cpp.o -c /home/mitre/qt-ut/ikfast/ikfast.cpp",
+  "file": "/home/mitre/qt-ut/ikfast/ikfast.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/headers/headers.cc.o -c /home/mitre/qt-ut/headers/headers.cc",
+  "file": "/home/mitre/qt-ut/headers/headers.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/audio/audio.cc.o -c /home/mitre/qt-ut/audio/audio.cc",
+  "file": "/home/mitre/qt-ut/audio/audio.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/rvdraw/rvdraw.cc.o -c /home/mitre/qt-ut/rvdraw/rvdraw.cc",
+  "file": "/home/mitre/qt-ut/rvdraw/rvdraw.cc"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/MotionCore.cpp.o -c /home/mitre/qt-ut/utwalk/MotionCore.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/MotionCore.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/Module.cpp.o -c /home/mitre/qt-ut/utwalk/Module.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/Module.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/common/NMatrix.cpp.o -c /home/mitre/qt-ut/utwalk/common/NMatrix.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/common/NMatrix.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/math/MVTools.cpp.o -c /home/mitre/qt-ut/utwalk/math/MVTools.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/math/MVTools.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/math/RotationMatrix.cpp.o -c /home/mitre/qt-ut/utwalk/math/RotationMatrix.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/math/RotationMatrix.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/memory/Lock.cpp.o -c /home/mitre/qt-ut/utwalk/memory/Lock.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/memory/Lock.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/memory/Logger.cpp.o -c /home/mitre/qt-ut/utwalk/memory/Logger.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/memory/Logger.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/memory/Memory.cpp.o -c /home/mitre/qt-ut/utwalk/memory/Memory.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/memory/Memory.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/memory/MemoryBlock.cpp.o -c /home/mitre/qt-ut/utwalk/memory/MemoryBlock.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/memory/MemoryBlock.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/memory/PrivateMemory.cpp.o -c /home/mitre/qt-ut/utwalk/memory/PrivateMemory.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/memory/PrivateMemory.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/memory/SharedMemory.cpp.o -c /home/mitre/qt-ut/utwalk/memory/SharedMemory.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/memory/SharedMemory.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/motion/MotionModule.cpp.o -c /home/mitre/qt-ut/utwalk/motion/MotionModule.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/motion/MotionModule.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/motion/UTWalkEngine.cpp.o -c /home/mitre/qt-ut/utwalk/motion/UTWalkEngine.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/motion/UTWalkEngine.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/sensor/SensorModule.cpp.o -c /home/mitre/qt-ut/utwalk/sensor/SensorModule.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/sensor/SensorModule.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/sensor/InertialFilter.cpp.o -c /home/mitre/qt-ut/utwalk/sensor/InertialFilter.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/sensor/InertialFilter.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/kinematics/InverseKinematics.cpp.o -c /home/mitre/qt-ut/utwalk/kinematics/InverseKinematics.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/kinematics/InverseKinematics.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/kinematics/ForwardKinematics.cpp.o -c /home/mitre/qt-ut/utwalk/kinematics/ForwardKinematics.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/kinematics/ForwardKinematics.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/kinematics/KinematicsModule.cpp.o -c /home/mitre/qt-ut/utwalk/kinematics/KinematicsModule.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/kinematics/KinematicsModule.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/math/Geometry.cpp.o -c /home/mitre/qt-ut/utwalk/math/Geometry.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/math/Geometry.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/common/PIDController.cpp.o -c /home/mitre/qt-ut/utwalk/common/PIDController.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/common/PIDController.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/utwalk/motion/WalkEngineParameters.cpp.o -c /home/mitre/qt-ut/utwalk/motion/WalkEngineParameters.cpp",
+  "file": "/home/mitre/qt-ut/utwalk/motion/WalkEngineParameters.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/kalman/BallKF.cpp.o -c /home/mitre/qt-ut/kalman/BallKF.cpp",
+  "file": "/home/mitre/qt-ut/kalman/BallKF.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/kalman/PlayerKF.cpp.o -c /home/mitre/qt-ut/kalman/PlayerKF.cpp",
+  "file": "/home/mitre/qt-ut/kalman/PlayerKF.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/kalman/OrigKalmanFilter.cpp.o -c /home/mitre/qt-ut/kalman/OrigKalmanFilter.cpp",
+  "file": "/home/mitre/qt-ut/kalman/OrigKalmanFilter.cpp"
+},
+{
+  "directory": "/home/mitre/qt-ut/build",
+  "command": "/usr/bin/c++    -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark  -Wall -Wextra -Wno-unused -g   -o CMakeFiles/agentspark.dir/optimization/optimizationbehaviors.cc.o -c /home/mitre/qt-ut/optimization/optimizationbehaviors.cc",
+  "file": "/home/mitre/qt-ut/optimization/optimizationbehaviors.cc"
+}
+]

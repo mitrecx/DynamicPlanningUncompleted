@@ -1,0 +1,3 @@
+/home/mitre/qt-ut/CMakeFiles/rebuild_cache.dir
+/home/mitre/qt-ut/CMakeFiles/edit_cache.dir
+/home/mitre/qt-ut/CMakeFiles/agentspark.dir
