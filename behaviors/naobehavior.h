@@ -237,7 +237,7 @@ protected:
     vector<vector<int> >  comb_result(int i, int j,vector<int> &r,  int num, vector<vector<int> > &result);
     
     double sumDistance(std::map<int,VecPosition> miv);
-    SkillType goToTargetAllPlayer(std::map<std::vector<int>, std::map<int,VecPosition> > roleMap,unsigned int num);
+    SkillType goToTargetAllPlayer(std::map<std::vector<int>, std::map<int,VecPosition> > roleMap,unsigned int num, bool collisionAvoid=false);
     void print_goToTargetAllPlayer(map<vector<int>, map<int,VecPosition> > roleMap, unsigned int num);
     void printD(map<vector<int>, map<int,VecPosition> > roleMap);
     
@@ -246,6 +246,10 @@ protected:
     vector<VecPosition> printPoints();
     vector<VecPosition> printPoints_4();
     vector<VecPosition> printPoints_5();
+    vector<VecPosition> printPoints_5_goalKickOpponent();
+    vector<VecPosition> printPoints_5_cornerKickLeft();
+    vector<VecPosition> printPoints_5_goalKickLeft();
+    vector<VecPosition> printPoints_5_cornerKickRight();
     vector<int> printPlayerNum();
     //bool startFlag=true;
     //double clo1=0;  
@@ -253,6 +257,8 @@ protected:
     VecPosition DefenceRight();
     VecPosition BackMidfieldLeft();
     VecPosition BackMidfieldRight();
+    VecPosition target_FreeKickLeft();
+    VecPosition target_KickInLeft();
     
     double opponentVelocity();
     vector<VecPosition> preVecPosition;

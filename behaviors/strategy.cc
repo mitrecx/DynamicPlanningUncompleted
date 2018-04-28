@@ -254,33 +254,41 @@ SkillType NaoBehavior::demoDynamicPlanning(){
 // 	cout<<opponentVelocity()<<endl;
     VecPosition localCenter = worldModel->g2l(ball);
     SIM::AngDeg localCenterAngle = atan2Deg(localCenter.getY(), localCenter.getX());
+    map<vector<int>, map<int,VecPosition> >roleMap;
+    vector<int> agents_4;
+    agents_4.push_back(11);
+    agents_4.push_back(10);
+    agents_4.push_back(9);
+    agents_4.push_back(8);
+    vector<int> agents_5(agents_4);
+    agents_5.push_back(7);
     
     if(worldModel->getPlayMode()==PM_KICK_OFF_RIGHT)
         return SKILL_STAND;
     
     int mynum;
     closestDistanceTeammateToBall(mynum);
-    if(worldModel->getUNum()==mynum ){
-        if(worldModel->getPlayMode()==PM_KICK_OFF_LEFT){
+    if(worldModel->getPlayMode()==PM_KICK_OFF_LEFT){
+        if(worldModel->getUNum()==mynum ){
             return kickBall(KICK_FORWARD,VecPosition(0,15,0));
-        }
-        return kickBall(KICK_IK,center);
-    }else {
-        if(worldModel->getPlayMode()==PM_KICK_OFF_LEFT)
+        }else {
             return SKILL_STAND;
+        }
+    }
+    if(worldModel->getPlayMode()==PM_PLAY_ON || worldModel->getPlayMode()== PM_FREE_KICK_LEFT || worldModel->getPlayMode()==PM_KICK_IN_LEFT){
+        if(worldModel->getUNum()==mynum ){
+            if(worldModel->getPlayMode()==PM_PLAY_ON)
+                return kickBall(KICK_IK,center);
+            if(worldModel->getPlayMode()==PM_PLAY_ON)
+                return kickBall(KICK_FORWARD,target_FreeKickLeft());
+            if(worldModel->getPlayMode()==PM_KICK_IN_LEFT)
+                return kickBall(KICK_FORWARD,target_KickInLeft());
+        }
         if(worldModel->getUNum() ==11 || worldModel->getUNum()==10 || worldModel->getUNum()==9 ||           worldModel->getUNum()==8 ||worldModel->getUNum()==7 ){
-//         //printD(roleMap);
-            map<vector<int>, map<int,VecPosition> >roleMap;
-            vector<int> agents_4;
-            agents_4.push_back(11);
-            agents_4.push_back(10);
-            agents_4.push_back(9);
-            agents_4.push_back(8);
-            vector<int> agents_5(agents_4);
-            agents_5.push_back(7);
-            roleMap=dynamicPlanningFunction(agents_5,printPoints_5()); 
-            print_goToTargetAllPlayer(roleMap,5); //TODO:optimizition
-            return goToTargetAllPlayer(roleMap,5);
+        //printD(roleMap);
+        roleMap=dynamicPlanningFunction(agents_5,printPoints_5());
+        print_goToTargetAllPlayer(roleMap,5); //TODO:optimizition
+        return goToTargetAllPlayer(roleMap,5);
         }else if(worldModel->getUNum()==6){
             VecPosition vp6(closestDistanceOpponentToMyGoal_InDefenceArea2());
             if(vp6==VecPosition(0,0,0)){
@@ -313,19 +321,175 @@ SkillType NaoBehavior::demoDynamicPlanning(){
                 return goToTarget(targetBMR);
         }
     }
-//     if(worldModel->getPlayMode()==PM_PLAY_ON){
-//         
-//     }
-    //printPlayerNum returns 2-11 ,,,,,,,,,no error
-    //vector<int> testvi=printPlayerNum();
+        
+    if(worldModel->getPlayMode()==PM_GOAL_KICK_RIGHT){        
+        if(worldModel->getUNum() ==11 || worldModel->getUNum()==10 || worldModel->getUNum()==9 ||           worldModel->getUNum()==8 ||worldModel->getUNum()==7 ){
+        //printD(roleMap);
+        roleMap=dynamicPlanningFunction(agents_5,printPoints_5_goalKickOpponent());
+        print_goToTargetAllPlayer(roleMap,5); //TODO:optimizition
+        return goToTargetAllPlayer(roleMap,5);
+        }else if(worldModel->getUNum()==6){
+            VecPosition vp6(closestDistanceOpponentToMyGoal_InDefenceArea2());
+            if(vp6==VecPosition(0,0,0)){
+                return goToTarget(VecPosition(-3,-5,0));
+            }
+            else{
+                worldModel->getRVSender()->drawLine("1",worldModel->getMyPosition().getX(),worldModel->getMyPosition().getY(),vp6.getX()-1,vp6.getY(),RVSender::ORANGE);
+                worldModel->getRVSender()->drawLine("1",vp6.getX(),vp6.getY(),vp6.getX()-1,vp6.getY(),RVSender::DARKBLUE);
+                return goToTarget(VecPosition(vp6.getX()-1,vp6.getY(),0));
+            }
+        }else if(worldModel->getUNum()==2){
+            return goToTarget(DefenceLeft());
+        }else if(worldModel->getUNum()==3){
+            VecPosition targetDR=DefenceRight();
+            if(me.getDistanceTo(targetDR)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetDR),localCenterAngle);
+            else
+                return goToTarget(DefenceRight());
+        }else if(worldModel->getUNum()==4){
+            VecPosition targetBML=BackMidfieldLeft();
+            if(me.getDistanceTo(targetBML)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetBML),localCenterAngle);
+            else
+                return goToTarget(BackMidfieldLeft());
+        }else if(worldModel->getUNum()==5){
+            VecPosition targetBMR=BackMidfieldRight();
+            if(me.getDistanceTo(targetBMR)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetBMR),localCenterAngle);
+            else
+                return goToTarget(targetBMR);
+        }
+    }
     
-    //printPoints return ten points,,,,,,,,no error
-    //vector<VecPosition> vvp=printPoints();
-
+    if(worldModel->getPlayMode()==PM_CORNER_KICK_LEFT){
+        if(worldModel->getUNum()==mynum ){
+            return kickBall(KICK_IK,VecPosition(14,0,0));
+        }
+        if(worldModel->getUNum() ==11 || worldModel->getUNum()==10 || worldModel->getUNum()==9 ||           worldModel->getUNum()==8 ||worldModel->getUNum()==7 ){
+        //printD(roleMap);
+        roleMap=dynamicPlanningFunction(agents_5,printPoints_5_cornerKickLeft());
+        print_goToTargetAllPlayer(roleMap,5); //TODO:optimizition
+        return goToTargetAllPlayer(roleMap,5);
+        }else if(worldModel->getUNum()==6){
+            VecPosition vp6(closestDistanceOpponentToMyGoal_InDefenceArea2());
+            if(vp6==VecPosition(0,0,0)){
+                return goToTarget(VecPosition(-3,-5,0));
+            }
+            else{
+                worldModel->getRVSender()->drawLine("1",worldModel->getMyPosition().getX(),worldModel->getMyPosition().getY(),vp6.getX()-1,vp6.getY(),RVSender::ORANGE);
+                worldModel->getRVSender()->drawLine("1",vp6.getX(),vp6.getY(),vp6.getX()-1,vp6.getY(),RVSender::DARKBLUE);
+                return goToTarget(VecPosition(vp6.getX()-1,vp6.getY(),0));
+            }
+        }else if(worldModel->getUNum()==2){
+            return goToTarget(DefenceLeft());
+        }else if(worldModel->getUNum()==3){
+            VecPosition targetDR=DefenceRight();
+            if(me.getDistanceTo(targetDR)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetDR),localCenterAngle);
+            else
+                return goToTarget(DefenceRight());
+        }else if(worldModel->getUNum()==4){
+            VecPosition targetBML=BackMidfieldLeft();
+            if(me.getDistanceTo(targetBML)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetBML),localCenterAngle);
+            else
+                return goToTarget(BackMidfieldLeft());
+        }else if(worldModel->getUNum()==5){
+            VecPosition targetBMR=BackMidfieldRight();
+            if(me.getDistanceTo(targetBMR)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetBMR),localCenterAngle);
+            else
+                return goToTarget(targetBMR);
+        }
+    }
     
-
+    if(worldModel->getPlayMode()==PM_GOAL_KICK_LEFT){
+        if(worldModel->getUNum()==mynum ){
+            return kickBall(KICK_FORWARD,VecPosition(-14,10,0));
+        }
+        if(worldModel->getUNum() ==11 || worldModel->getUNum()==10 || worldModel->getUNum()==9 ||           worldModel->getUNum()==8 ||worldModel->getUNum()==7 ){
+        //printD(roleMap);
+        roleMap=dynamicPlanningFunction(agents_5,printPoints_5_goalKickLeft());
+        print_goToTargetAllPlayer(roleMap,5); //TODO:optimizition
+        return goToTargetAllPlayer(roleMap,5,true);
+        }else if(worldModel->getUNum()==6){
+            VecPosition vp6(closestDistanceOpponentToMyGoal_InDefenceArea2());
+            if(vp6==VecPosition(0,0,0)){
+                return goToTarget(VecPosition(-3,-5,0));
+            }
+            else{
+                worldModel->getRVSender()->drawLine("1",worldModel->getMyPosition().getX(),worldModel->getMyPosition().getY(),vp6.getX()-1,vp6.getY(),RVSender::ORANGE);
+                worldModel->getRVSender()->drawLine("1",vp6.getX(),vp6.getY(),vp6.getX()-1,vp6.getY(),RVSender::DARKBLUE);
+                return goToTarget(VecPosition(vp6.getX()-1,vp6.getY(),0));
+            }
+        }else if(worldModel->getUNum()==2){
+            return goToTarget(DefenceLeft());
+        }else if(worldModel->getUNum()==3){
+            VecPosition targetDR=DefenceRight();
+            if(me.getDistanceTo(targetDR)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetDR),localCenterAngle);
+            else
+                return goToTarget(DefenceRight());
+        }else if(worldModel->getUNum()==4){
+            VecPosition targetBML=BackMidfieldLeft();
+            if(me.getDistanceTo(targetBML)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetBML),localCenterAngle);
+            else
+                return goToTarget(BackMidfieldLeft());
+        }else if(worldModel->getUNum()==5){
+            VecPosition targetBMR=BackMidfieldRight();
+            if(me.getDistanceTo(targetBMR)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetBMR),localCenterAngle);
+            else
+                return goToTarget(targetBMR);
+        }
+    }
     
-//     three agents dPF3---------------------------
+    if(worldModel->getPlayMode()==PM_CORNER_KICK_RIGHT || worldModel->getPlayMode()== PM_FREE_KICK_RIGHT || worldModel->getPlayMode()== PM_KICK_IN_RIGHT){        
+        if(worldModel->getUNum() ==11 || worldModel->getUNum()==10 || worldModel->getUNum()==9 ||           worldModel->getUNum()==8 ||worldModel->getUNum()==7 ){
+        if(worldModel->getPlayMode()==PM_CORNER_KICK_RIGHT)
+            roleMap=dynamicPlanningFunction(agents_5,printPoints_5_cornerKickRight());
+        if(worldModel->getPlayMode()== PM_FREE_KICK_RIGHT || worldModel->getPlayMode()== PM_KICK_IN_RIGHT)
+            roleMap=dynamicPlanningFunction(agents_5,printPoints_5());
+        print_goToTargetAllPlayer(roleMap,5); //TODO:optimizition
+        return goToTargetAllPlayer(roleMap,5);
+        }else if(worldModel->getUNum()==6){
+            VecPosition vp6(closestDistanceOpponentToMyGoal_InDefenceArea2());
+            if(vp6==VecPosition(0,0,0)){
+                return goToTarget(VecPosition(-3,-5,0));
+            }
+            else{
+                worldModel->getRVSender()->drawLine("1",worldModel->getMyPosition().getX(),worldModel->getMyPosition().getY(),vp6.getX()-1,vp6.getY(),RVSender::ORANGE);
+                worldModel->getRVSender()->drawLine("1",vp6.getX(),vp6.getY(),vp6.getX()-1,vp6.getY(),RVSender::DARKBLUE);
+                return goToTarget(VecPosition(vp6.getX()-1,vp6.getY(),0));
+            }
+        }else if(worldModel->getUNum()==2){
+            return goToTarget(DefenceLeft());
+        }else if(worldModel->getUNum()==3){
+            VecPosition targetDR=DefenceRight();
+            if(me.getDistanceTo(targetDR)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetDR),localCenterAngle);
+            else
+                return goToTarget(DefenceRight());
+        }else if(worldModel->getUNum()==4){
+            VecPosition targetBML=BackMidfieldLeft();
+            if(me.getDistanceTo(targetBML)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetBML),localCenterAngle);
+            else
+                return goToTarget(BackMidfieldLeft());
+        }else if(worldModel->getUNum()==5){
+            VecPosition targetBMR=BackMidfieldRight();
+            if(me.getDistanceTo(targetBMR)<0.5)
+                return goToTargetRelative(worldModel->g2l(targetBMR),localCenterAngle);
+            else
+                return goToTarget(targetBMR);
+        }
+    }
+    
+    
+    
+    
+    //     three agents dPF3---------------------------
 //     vector<VecPosition> vecPostions;
 //     VecPosition vp1=VecPosition(ball.getX()+2,ball.getY(),0);
 //     VecPosition vp2up=VecPosition(ball.getX()-2,ball.getY(),0);
@@ -533,43 +697,204 @@ vector<VecPosition> NaoBehavior::printPoints_5(){
                 FF.setY(y);
             }
   }
+    //2 Wing Forward Left
+    VecPosition WFL=VecPosition(ball.getX()-0.5,ball.getY()+3,0);
+    if(ball.getY()>6.5){
+        double y;
+        y=9.6;
+        WFL.setY(y);
+    }
+    //3 Wing Forward Right
+    VecPosition WFR=VecPosition(ball.getX()-0.5,ball.getY()-3,0);
+    if(ball.getY()<-6.5){
+        WFR.setY(-9.6);
+    }
+
+        
+    //4 Center Forward Back
+    VecPosition CFB=VecPosition(ball.getX()-1,ball.getY()-0.1,0);
+    
+    //5 Feild Center Offence
+    VecPosition FCO=VecPosition(ball.getX()-2,ball.getY()+0.3,0);
+    if(ball.getX()<-6 && ball.getY()>=-1 && ball.getY()<=1){
+        FCO.setY(3);
+        FCO.setX(ball.getX());
+    }
+    
+    if(ball.getX()<-10 && ball.getY()>0){
+        FF.setX(-9);
+        FF.setY(9);
+        WFL.setX(-9);
+        WFL.setY(5);
+        WFR.setX(-9);
+        WFR.setY(0);
+        CFB.setX(-11);
+        CFB.setY(-3);
+        FCO.setX(-11);
+        FCO.setY(-5);
+    }
+    if(ball.getX()<-10 && ball.getY()<0){
+        FF.setX(-9);
+        FF.setY(-9);
+        WFL.setX(-9);
+        WFL.setY(-5);
+        WFR.setX(-9);
+        WFR.setY(0);
+        CFB.setX(-11);
+        CFB.setY(3);
+        FCO.setX(-11);
+        FCO.setY(5);
+    }
+    worldModel->getRVSender()->drawPoint("1",FF.getX(),FF.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(FF);
+    worldModel->getRVSender()->drawPoint("1",WFL.getX(),WFL.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(WFL);
+    worldModel->getRVSender()->drawPoint("1",WFR.getX(),WFR.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(WFR);
+    worldModel->getRVSender()->drawPoint("1",CFB.getX(),CFB.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(CFB);
+    worldModel->getRVSender()->drawPoint("1",FCO.getX(),FCO.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(FCO);
+    return positions;
+}
+vector<VecPosition> NaoBehavior::printPoints_5_goalKickOpponent(){
+    vector<VecPosition> positions;
+    //1 Front Forward
+    VecPosition FF=VecPosition(ball.getX()-4,ball.getY(),0);
   worldModel->getRVSender()->drawPoint("1",FF.getX(),FF.getY(),10.0f,RVSender::ORANGE);
   positions.push_back(FF);
   
   //2 Wing Forward Left
-  VecPosition WFL=VecPosition(ball.getX()-0.5,ball.getY()+3,0);
-  if(ball.getY()>6.5){
-    double y;
-    y=9.6;
-    WFL.setY(y);
-  }
+  VecPosition WFL=VecPosition(11.9,5,0);
   worldModel->getRVSender()->drawPoint("1",WFL.getX(),WFL.getY(),10.0f,RVSender::ORANGE);
   positions.push_back(WFL);
   
   //3 Wing Forward Right
-  VecPosition WFR=VecPosition(ball.getX()-0.5,ball.getY()-3,0);
-  if(ball.getY()<-6.5){
-    WFR.setY(-9.6);
-  }
+  VecPosition WFR=VecPosition(11.9,-5,0);
   worldModel->getRVSender()->drawPoint("1",WFR.getX(),WFR.getY(),10.0f,RVSender::ORANGE);
   positions.push_back(WFR);
     
   //4 Center Forward Back
-  VecPosition CFB=VecPosition(ball.getX()-4,ball.getY(),0);
-  if(ball.getX()<-11){
-    CFB.setX(-11);
-    //worldModel->getRVSender()->drawLine("1",oppoPos1.getX(),oppoPos1.getY(),ball.getX(),ball.getY(),RVSender::YELLOW);
-  }
+  VecPosition CFB=VecPosition(ball.getX()-3.5,2,0);
   worldModel->getRVSender()->drawPoint("1",CFB.getX(),CFB.getY(),10.0f,RVSender::ORANGE);
   positions.push_back(CFB);
   
   //5 Feild Center Offence
-  VecPosition FCO=VecPosition(ball.getX()-2,ball.getY(),0);
+  VecPosition FCO=VecPosition(ball.getX()-3.5,-2,0);
   worldModel->getRVSender()->drawPoint("1",FCO.getX(),FCO.getY(),10.0f,RVSender::ORANGE);
   positions.push_back(FCO);
 
   return positions;
 }
+vector<VecPosition> NaoBehavior::printPoints_5_cornerKickLeft(){
+    vector<VecPosition> positions;
+    //1 Front Forward
+    VecPosition FF=VecPosition(13,3,0);
+  worldModel->getRVSender()->drawPoint("1",FF.getX(),FF.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(FF);
+  
+  //2 Wing Forward Left
+  VecPosition WFL=VecPosition(13,-3,0);
+  worldModel->getRVSender()->drawPoint("1",WFL.getX(),WFL.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(WFL);
+  
+  //3 Wing Forward Right
+  VecPosition WFR=VecPosition(12.5,ball.getY(),0);
+  worldModel->getRVSender()->drawPoint("1",WFR.getX(),WFR.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(WFR);
+    
+  //4 Center Forward Back
+  VecPosition CFB=VecPosition(12.5,-ball.getY(),0);
+  worldModel->getRVSender()->drawPoint("1",CFB.getX(),CFB.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(CFB);
+  
+  //5 Feild Center Offence
+  VecPosition FCO=VecPosition(12,0,0);
+  worldModel->getRVSender()->drawPoint("1",FCO.getX(),FCO.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(FCO);
+
+  return positions;
+}
+vector<VecPosition> NaoBehavior::printPoints_5_goalKickLeft(){
+     vector<VecPosition> positions;
+    //1 Front Forward
+    VecPosition FF=VecPosition(-15,5,0);
+  worldModel->getRVSender()->drawPoint("1",FF.getX(),FF.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(FF);
+  
+  //2 Wing Forward Left
+  VecPosition WFL=VecPosition(-13,3,0);
+  worldModel->getRVSender()->drawPoint("1",WFL.getX(),WFL.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(WFL);
+  
+  //3 Wing Forward Right
+  VecPosition WFR=VecPosition(-13,-3,0);
+  worldModel->getRVSender()->drawPoint("1",WFR.getX(),WFR.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(WFR);
+    
+  //4 Center Forward Back
+  VecPosition CFB=VecPosition(-12,6,0);
+  worldModel->getRVSender()->drawPoint("1",CFB.getX(),CFB.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(CFB);
+  
+  //5 Feild Center Offence
+  VecPosition FCO=VecPosition(-10,7,0);
+  worldModel->getRVSender()->drawPoint("1",FCO.getX(),FCO.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(FCO);
+
+  return positions;
+}
+vector<VecPosition> NaoBehavior::printPoints_5_cornerKickRight(){
+    vector<VecPosition> positions;
+    //1 Front Forward
+    VecPosition FF=VecPosition(-11,0,0);
+  worldModel->getRVSender()->drawPoint("1",FF.getX(),FF.getY(),10.0f,RVSender::ORANGE);
+  positions.push_back(FF);
+  
+  if(ball.getY()<0){
+    //2 Wing Forward Left
+    VecPosition WFL=VecPosition(-12,ball.getY()+1,0);
+    worldModel->getRVSender()->drawPoint("1",WFL.getX(),WFL.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(WFL);
+    
+    //3 Wing Forward Right
+    VecPosition WFR=VecPosition(-11.5,-3,0);
+    worldModel->getRVSender()->drawPoint("1",WFR.getX(),WFR.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(WFR);
+        
+    //4 Center Forward Back
+    VecPosition CFB=VecPosition(-12,3,0);
+    worldModel->getRVSender()->drawPoint("1",CFB.getX(),CFB.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(CFB);
+    
+    //5 Feild Center Offence
+    VecPosition FCO=VecPosition(-13,-9,0);
+    worldModel->getRVSender()->drawPoint("1",FCO.getX(),FCO.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(FCO);
+  }else{
+    //2 Wing Forward Left
+    VecPosition WFL=VecPosition(-12,ball.getY()-1,0);
+    worldModel->getRVSender()->drawPoint("1",WFL.getX(),WFL.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(WFL);
+    
+    //3 Wing Forward Right
+    VecPosition WFR=VecPosition(-11.5,3,0);
+    worldModel->getRVSender()->drawPoint("1",WFR.getX(),WFR.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(WFR);
+        
+    //4 Center Forward Back
+    VecPosition CFB=VecPosition(-12,-3,0);
+    worldModel->getRVSender()->drawPoint("1",CFB.getX(),CFB.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(CFB);
+    
+    //5 Feild Center Offence
+    VecPosition FCO=VecPosition(-13,9,0);
+    worldModel->getRVSender()->drawPoint("1",FCO.getX(),FCO.getY(),10.0f,RVSender::ORANGE);
+    positions.push_back(FCO);
+  }
+  return positions;
+}
+
 vector<VecPosition> NaoBehavior::printPoints(){
     vector<VecPosition> positions;
     //1 Front Forward
@@ -776,15 +1101,13 @@ VecPosition NaoBehavior::DefenceLeft(){
     int r=2;
     //Defence Left
     VecPosition DL;
-    if(ball.getY()==0.5){
-        DL.setX(-13);
-        DL.setY(0.5);
-    }else{
-        double xDL,yDL;
-        xDL=r*(ball.getX()-myGoalUp.getX())/myGoalUp.getDistanceTo(ball)+myGoalUp.getX();
-        yDL=r*(ball.getY()-myGoalUp.getY())/myGoalUp.getDistanceTo(ball)+myGoalUp.getY();
-        DL.setX(xDL);
-        DL.setY(yDL);
+    double xDL,yDL;
+    xDL=r*(ball.getX()-myGoalUp.getX())/myGoalUp.getDistanceTo(ball)+myGoalUp.getX();
+    yDL=r*(ball.getY()-myGoalUp.getY())/myGoalUp.getDistanceTo(ball)+myGoalUp.getY();
+    DL.setX(xDL);
+    DL.setY(yDL);
+    if(ball.getX()<-14){
+        DL.setX(-14.2);
     }
     worldModel->getRVSender()->drawPoint("1",DL.getX(),DL.getY(),10.0f,RVSender::YELLOW);
     return DL;
@@ -799,6 +1122,9 @@ VecPosition NaoBehavior::DefenceRight(){
     yDR=r*(ball.getY()-myGoalDown.getY())/myGoalDown.getDistanceTo(ball)+myGoalDown.getY();
     DR.setX(xDR);
     DR.setY(yDR);
+    if(ball.getX()<-14){
+        DR.setX(-14.7);
+    }
     worldModel->getRVSender()->drawPoint("1",DR.getX(),DR.getY(),10.0f,RVSender::YELLOW);
     return DR;
 }
@@ -807,15 +1133,20 @@ VecPosition NaoBehavior::BackMidfieldLeft(){
     int r=5;
     //Defence Left
     VecPosition BML;
-    if(ball.getY()==0.5){
-        BML.setX(-13);
-        BML.setY(0.5);
-    }else{
-        double xDL,yDL;
-        xDL=r*(ball.getX()-myGoalCenter.getX())/myGoalCenter.getDistanceTo(ball)+myGoalCenter.getX();
-        yDL=r*(ball.getY()-myGoalCenter.getY())/myGoalCenter.getDistanceTo(ball)+myGoalCenter.getY();
-        BML.setX(xDL);
-        BML.setY(yDL);
+    double xDL,yDL;
+    xDL=r*(ball.getX()-myGoalCenter.getX())/myGoalCenter.getDistanceTo(ball)+myGoalCenter.getX();
+    yDL=r*(ball.getY()-myGoalCenter.getY())/myGoalCenter.getDistanceTo(ball)+myGoalCenter.getY();
+    BML.setX(xDL);
+    BML.setY(yDL);
+    if(worldModel->getPlayMode()==PM_CORNER_KICK_RIGHT){
+        if(ball.getY()>0)
+            BML.setY(3);
+        else
+            BML.setY(-1);
+        BML.setX(-12.5);
+    }
+    if(ball.getX()<-14 && worldModel->getPlayMode()!=PM_CORNER_KICK_RIGHT){
+        BML.setX(-14.5);
     }
     worldModel->getRVSender()->drawPoint("1",BML.getX(),BML.getY(),10.0f,RVSender::YELLOW);
     return BML;
@@ -830,10 +1161,27 @@ VecPosition NaoBehavior::BackMidfieldRight(){
     yDR=r*(ball.getY()-myGoalDown.getY())/myGoalDown.getDistanceTo(ball)+myGoalDown.getY();
     DR.setX(xDR);
     DR.setY(yDR);
+    if(worldModel->getPlayMode()==PM_CORNER_KICK_RIGHT){
+        if(ball.getY()>0)
+            DR.setY(1);
+        else
+            DR.setY(-3);
+        DR.setX(-12.5);
+    }
+    if(ball.getX()<-14 && worldModel->getPlayMode()!=PM_CORNER_KICK_RIGHT){
+        DR.setX(-14.5);
+    }
     worldModel->getRVSender()->drawPoint("1",DR.getX(),DR.getY(),10.0f,RVSender::YELLOW);
     return DR;
 }
-
+VecPosition NaoBehavior::target_FreeKickLeft(){
+    VecPosition target(15,0,0);
+    return target;
+}
+VecPosition NaoBehavior::target_KickInLeft(){
+    VecPosition target(14,0,0);
+    return target;
+}
 
 double NaoBehavior::opponentVelocity(){
     if(worldModel->getGameTime()/12.0==1||worldModel->getGameTime()/14.0==1){
@@ -981,8 +1329,10 @@ double NaoBehavior::sumDistance(map<int,VecPosition> miv){
     
 }
 
-SkillType NaoBehavior::goToTargetAllPlayer(map<vector<int>, map<int,VecPosition> > roleMap, unsigned int num){
+SkillType NaoBehavior::goToTargetAllPlayer(map<vector<int>, map<int,VecPosition> > roleMap, unsigned int num, bool collisionAvoid){
     map<int, VecPosition> rolePlanning;
+    VecPosition localCenter = worldModel->g2l(ball);
+    SIM::AngDeg localCenterAngle = atan2Deg(localCenter.getY(), localCenter.getX());
     for(map<vector<int>, map<int,VecPosition> >::iterator i=roleMap.begin();i!=roleMap.end();i++){
         if((i->first).size()==num){ ////////10
             rolePlanning=roleMap[i->first];
@@ -990,7 +1340,13 @@ SkillType NaoBehavior::goToTargetAllPlayer(map<vector<int>, map<int,VecPosition>
     }
     for(map<int,VecPosition>::iterator it=rolePlanning.begin();it!=rolePlanning.end();++it){
         if(worldModel->getUNum() ==it->first){
-            return goToTarget(it->second);
+            VecPosition target=it->second;
+            if(collisionAvoid)
+                target = collisionAvoidance(true /*teammate*/, false/*opponent*/, true/*ball*/, 1/*proximity thresh*/, .5/*collision thresh*/, target, true/*keepDistance*/);
+            if(me.getDistanceTo(target)<0.5)
+                return goToTargetRelative(worldModel->g2l(target),localCenterAngle);
+            else
+                return goToTarget(target);
         }
     }
     return SKILL_STAND;
