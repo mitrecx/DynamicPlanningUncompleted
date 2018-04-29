@@ -127,7 +127,7 @@ NaoBehavior::~NaoBehavior() {
 }
 
 string NaoBehavior::Init() {
-    cout << "Loading rsg: " << "(scene " << rsg << ")" << endl;
+    //cout << "Loading rsg: " << "(scene " << rsg << ")" << endl;
     return "(scene " + rsg + ")";
 }
 
@@ -137,7 +137,7 @@ string NaoBehavior::Init() {
 
 string NaoBehavior::Think(const std::string& message) {
 
-    //  cout << "(NaoBehavior) received message " << message << endl;
+    //cout << "(NaoBehavior) received message " << message << endl;
 
     fParsedVision = false;
     bool parseSuccess = parser->parse(message, fParsedVision);
@@ -147,13 +147,14 @@ string NaoBehavior::Think(const std::string& message) {
 //    cout << "****************************************\n";
     }
 
-    //  cout << "\nparseSuccess: " << parseSuccess << "\n";
-    //  worldModel->display();
+    //cout << "\nparseSuccess: " << parseSuccess << "\n";
+    // worldModel->display();
     bodyModel->refresh();
     if(fParsedVision) {
         if (!worldModel->isFallen()) {
             parser->processVision();
         } else {
+            //cout<<"wo dao le "<<endl;
             parser->processSightings(true /*fIgnoreVision*/);
         }
     }

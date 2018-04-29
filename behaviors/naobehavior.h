@@ -223,7 +223,8 @@ protected:
     SkillType demoKickingCircle();
     SkillType demoDynamicPlanning();
 
-    double closestDistanceTeammateToBall(int &pNum);
+    bool ifFall(int num);
+    double closestDistanceTeammateToBall(int &pNum /*,bool relative=true*/);
     double closestDistanceOpponentToBall(int *pNum);
     VecPosition closestDistanceOpponentToMyGoal();
     VecPosition closestDistanceOpponentToMyGoal_InDefenceArea1();

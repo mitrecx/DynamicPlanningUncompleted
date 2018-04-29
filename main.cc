@@ -248,7 +248,7 @@ void ReadOptions(int argc, char* argv[])
 
 bool Init()
 {
-    cout << "connecting to TCP " << gHost << ":" << gPort << "\n";
+    //cout << "connecting to TCP " << gHost << ":" << gPort << "\n";
     //cout << "connecting to UDP " << gHost << ":" << gPort << "\n";
 
     try
@@ -319,7 +319,7 @@ bool Init()
 void Done()
 {
     gSocket.close();
-    cout << "closed connection to " << gHost << ":" << gPort << "\n";
+    //cout << "closed connection to " << gHost << ":" << gPort << "\n";
     if (mPort != -1) {
         mSocket.close();
     }
@@ -539,7 +539,7 @@ main(int argc, char* argv[])
     // Actually print out the errors that are thrown.
     try
     {
-        PrintGreeting();
+        //PrintGreeting();
         ReadOptions(argc,argv);
 
         if (! Init())

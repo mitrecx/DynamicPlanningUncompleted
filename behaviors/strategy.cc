@@ -137,7 +137,7 @@ SkillType NaoBehavior::selectSkill() {
  * back and forth
  */
 SkillType NaoBehavior::demoKickingCircle() {
-    //worldModel->getRVSender()->drawCircle("zero",0,0,2.0,RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("zero",0,0,2.0,RVSender::MAGENTA);
     worldModel->getRVSender()->drawPoint("ball", ball.getX(), ball.getY(), 10.0f, RVSender::MAGENTA);
     worldModel->getRVSender()->drawAgentText("CF",9, RVSender::RED);
     // Parameters for circle
@@ -200,8 +200,6 @@ SkillType NaoBehavior::demoKickingCircle() {
 }
 
 SkillType NaoBehavior::demoDynamicPlanning(){
-    //cout<<"=========="<<worldModel->getGameTime()<<endl;
-
     //目标点
     VecPosition center = VecPosition(HALF_FIELD_X, 0, 0);
    // worldModel->getRVSender()->drawPoint("target",center.getX(),center.getY(),10.0f, RVSender::VIOLET);
@@ -211,13 +209,10 @@ SkillType NaoBehavior::demoDynamicPlanning(){
     int opponentClosestToBall=-1;
     closestDistanceOpponentToBall(&opponentClosestToBall);
     worldModel->getRVSender()->drawCircle("1",-HALF_FIELD_X,0,2,RVSender::VIOLET);
-//    worldModel->getRVSender()->drawCircle("my",worldModel->getWorldObject( opponentClosestToBall )->pos.getX(),
-//					  worldModel->getWorldObject(opponentClosestToBall)->pos.getY(),0.2f, RVSender::MAGENTA);
+//  worldModel->getRVSender()->drawCircle("my",worldModel->getWorldObject( opponentClosestToBall )->pos.getX(),
+//	worldModel->getWorldObject(opponentClosestToBall)->pos.getY(),0.2f, RVSender::MAGENTA);
     
-//    worldModel->getRVSender()->drawLine("line",-7,15,-7,-15,RVSender::BLUE);
-//    worldModel->getRVSender()->drawLine("line",-15,0,-7,0,RVSender::BLUE);
     // Find closest player to ball
-    
     /////////////////////////////////////////////4-18 00:54
     //int playerClosestToBall = -1;
     //double closestDistanceToBall = closestDistanceTeammateToBall(&playerClosestToBall);
@@ -246,12 +241,73 @@ SkillType NaoBehavior::demoDynamicPlanning(){
 // 	    cout<<myVelocity<<endl;
 // 	    //startFlag=true;
 // 	}
-// 	*/
+// 	
 // // 	if(worldModel->getGameTime()<30){
 // // 	    cout<<opponentVelocity()<<endl;
 // // 	}
 // 	
 // 	cout<<opponentVelocity()<<endl;
+    bodyModel->refresh();
+    if(worldModel->getUNum()==3){
+        cout<<"=====33333333==="<<endl;
+    }
+    //=======================
+    // Update orientations of opponents
+//     worldModel->getRVSender()->clearStaticDrawings();
+//     for (int i = WO_OPPONENT1; i <= WO_OPPONENT11; ++i) {
+//         WorldObject* pObj = worldModel->getWorldObject( i );
+//         pObj->currentlySeenOrien = false;
+//         if (pObj->currentlySeen) {
+//             bool haveLeft = false;
+//             bool haveRight = false;
+//             VecPosition left;
+//             VecPosition right;
+//             WorldObject* bodyObj = worldModel->getWorldObject( i-WO_OPPONENT1+WO_OPPONENT_ARM_L1 );
+//             if (bodyObj->currentlySeen) {
+//                 left = bodyObj->pos;
+//                 haveLeft = true;
+//             }
+//             bodyObj = worldModel->getWorldObject( i-WO_OPPONENT1+WO_OPPONENT_FOOT_L1 );
+//             if (bodyObj->currentlySeen) {
+//                 if (haveLeft) {
+//                     left = (left+bodyObj->pos)*.5;
+//                 } else {
+//                     left = bodyObj->pos;
+//                     haveLeft = true;
+//                 }
+//             }
+//             bodyObj = worldModel->getWorldObject( i-WO_OPPONENT1+WO_OPPONENT_ARM_R1 );
+//             if (bodyObj->currentlySeen) {
+//                 right = bodyObj->pos;
+//                 haveRight = true;
+//             }
+//             bodyObj = worldModel->getWorldObject( i-WO_OPPONENT1+WO_OPPONENT_FOOT_R1 );
+//             if (bodyObj->currentlySeen) {
+//                 if (haveRight) {
+//                     right = (right+bodyObj->pos)*.5;
+//                 } else {
+//                     right = bodyObj->pos;
+//                     haveRight = true;
+//                 }
+//             }
+//             if (haveLeft && haveRight) {
+//                 pObj->orien = -atan2Deg(left.getX()-right.getX(), left.getY()-right.getY());
+//                 pObj->currentlySeenOrien = true;
+//                 pObj->cycleOrienLastSeen = worldModel->getCycle();
+//                 pObj->timeOrienLastSeen = worldModel->getTime();
+//                 if ( worldModel->getUNum() == 1) {
+//                     cout << "Opponent " << i-WO_OPPONENT1+1 << "\t" << pObj->orien << "\n";
+//                     VecPosition pos = pObj->pos;
+//                     VecPosition dir = VecPosition(1,0,0);
+//                     dir = dir.rotateAboutZ(-pObj->orien);
+//                     
+//                     worldModel->getRVSender()->drawPoint(pos.getX(), pos.getY(), 10);
+//                     worldModel->getRVSender()->drawLine(pos.getX(), pos.getY(), pos.getX()+dir.getX(), pos.getY()+dir.getY());
+//                 }
+//             }
+//         }
+//     }
+    //========================
     VecPosition localCenter = worldModel->g2l(ball);
     SIM::AngDeg localCenterAngle = atan2Deg(localCenter.getY(), localCenter.getX());
     map<vector<int>, map<int,VecPosition> >roleMap;
@@ -275,6 +331,7 @@ SkillType NaoBehavior::demoDynamicPlanning(){
             return SKILL_STAND;
         }
     }
+    
     if(worldModel->getPlayMode()==PM_PLAY_ON || worldModel->getPlayMode()== PM_FREE_KICK_LEFT || worldModel->getPlayMode()==PM_KICK_IN_LEFT){
         if(worldModel->getUNum()==mynum ){
             if(worldModel->getPlayMode()==PM_PLAY_ON)
@@ -566,8 +623,14 @@ void NaoBehavior::printD(map<vector<int>, map<int,VecPosition> > roleMap){
     }
 }
 
-
-double NaoBehavior::closestDistanceTeammateToBall(int &pNum){
+bool NaoBehavior::ifFall(int num){
+    if(worldModel->getUNum()==num){
+        if(worldModel->isFallen())
+            return true;
+    }
+    return false;
+}
+double NaoBehavior::closestDistanceTeammateToBall(int &pNum /*,bool relative*/){
     // Find closest player to ball
     int playerClosestToBall = -1;
     double closestDistanceToBall = 10000;
@@ -588,6 +651,7 @@ double NaoBehavior::closestDistanceTeammateToBall(int &pNum){
         temp.setZ(0);
 
         double distanceToBall = temp.getDistanceTo(ball);
+        
         if (distanceToBall < closestDistanceToBall) {
             playerClosestToBall = playerNum;
             closestDistanceToBall = distanceToBall;
