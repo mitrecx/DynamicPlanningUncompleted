@@ -102,14 +102,14 @@ void WorldModel::display() {
     std::cout << "uNumSet: " << uNumSet << ", uNum: " << uNum << "\n";
     std::cout << "sideSet: " << sideSet << ", side: " << side << "\n";
 
-    for (int i = WO_BALL; i < NUM_WORLD_OBJS; ++i) {
-        WorldObject& obj = worldObjects[i];
-        cout << "World Object: " << WorldObjType2Str[i] << ":\n"
-             << obj.pos << '\n'
-             << " currently seen: " << ( obj.currentlySeen ? "YES" : "NO" ) << '\n'
-             << " cycle last seen: " << obj.cycleLastSeen
-             << " time last seen: " << obj.timeLastSeen << endl;
-    }
+//     for (int i = WO_BALL; i < NUM_WORLD_OBJS; ++i) {
+//         WorldObject& obj = worldObjects[i];
+//         cout << "World Object: " << WorldObjType2Str[i] << ":\n"
+//              << obj.pos << '\n'
+//              << " currently seen: " << ( obj.currentlySeen ? "YES" : "NO" ) << '\n'
+//              << " cycle last seen: " << obj.cycleLastSeen
+//              << " time last seen: " << obj.timeLastSeen << endl;
+//     }
 
     cout << "*********************************************************\n";
 }

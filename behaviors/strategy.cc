@@ -248,7 +248,7 @@ SkillType NaoBehavior::demoDynamicPlanning(){
 // 	
 // 	cout<<opponentVelocity()<<endl;
     bodyModel->refresh();
-    if(worldModel->getUNum()==3){
+    if(worldModel->getFallenTeammate(3-1)){
         cout<<"=====33333333==="<<endl;
     }
     //=======================

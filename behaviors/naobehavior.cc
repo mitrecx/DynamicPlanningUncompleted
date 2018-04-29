@@ -290,6 +290,7 @@ string NaoBehavior::Think(const std::string& message) {
     //std::cout << "Sending action: " << action << "\n";
     return action;
 }
+//end. NaoBehavior::Think(const std::string& message)
 
 void NaoBehavior::act() {
     refresh();
@@ -360,8 +361,6 @@ void NaoBehavior::act() {
 
                 SkillType lastSkill = worldModel->getLastSkill();
                 skill = currentSkill;
-
-
             }
         }
     }
@@ -421,6 +420,7 @@ void NaoBehavior::act() {
         }
     }
 }
+//end. NaoBehavior::act()
 
 
 /*
@@ -428,8 +428,6 @@ void NaoBehavior::act() {
  */
 void NaoBehavior::readSkillsFromFile( const std::string& filename) {
 //  cerr << "Loading skills from file " << filename << endl;
-
-
     // Load a skill file to memory. Assuming a file is < 4K
 
     int buffsize = 65536;
