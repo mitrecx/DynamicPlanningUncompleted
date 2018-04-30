@@ -223,6 +223,7 @@ bool bitsToString(const vector<int> &bits, string &message) {
 
             index[i] *= 2;
 
+            //bits.size()=73, 16+16+10+10+10+10+1=73
             if(ctr < bits.size()) {
                 index[i] += bits[ctr];
                 ctr++;
@@ -252,31 +253,38 @@ bool bitsToData(const vector<int> &bits, double &time, double &ballLastSeenTime,
     }
 
     int ctr = 0;
-
+    
+    //1, double &time
     int cycles = bitsToInt(bits, ctr, ctr + 15);
     time = cycles * 0.02;
     ctr += 16;
-
+    
+    //2, double &ballLastSeenTime, 
     int ballLastSeenCycles = bitsToInt(bits, ctr, ctr + 15);
     ballLastSeenTime = ballLastSeenCycles * 0.02;
     ctr += 16;
-
+    
+    //3, double &ballX, 
     int bx = bitsToInt(bits, ctr, ctr + 9);
     ballX = minBallX + ((maxBallX - minBallX) * (bx / 1023.0));
     ctr += 10;
 
+    //4, double &ballY, 
     int by = bitsToInt(bits, ctr, ctr + 9);
     ballY = minBallY + ((maxBallY - minBallY) * (by / 1023.0));
     ctr += 10;
 
+    //5, double &agentX, 
     int ax = bitsToInt(bits, ctr, ctr + 9);
     agentX = minAgentX + ((maxAgentX - minAgentX) * (ax / 1023.0));
     ctr += 10;
 
+    //6, double &agentY, 
     int ay = bitsToInt(bits, ctr, ctr + 9);
     agentY = minAgentY + ((maxAgentY - minAgentY) * (ay / 1023.0));
     ctr += 10;
 
+    //7, bool &fFallen
     fFallen = (bits[ctr] == 0)? false : true;
     ctr += 1;
 
@@ -290,7 +298,8 @@ bool stringToBits(const string &message, vector<int> &bits) {
         cerr << "bits2String: alphabet size not 64!\n";
         return false;
     }
-
+    
+    //bits.size=78, 13*6=78
     bits.resize(message.length() * 6);
 
     for(size_t i = 0; i < message.length(); i++) {
@@ -309,6 +318,7 @@ bool stringToBits(const string &message, vector<int> &bits) {
             n /= 2;
         }
     }
-
+    //cout<<"stringToBits: "<<bits.size()<<endl;
+    //cout<<message[12]<<endl;
     return true;
 }

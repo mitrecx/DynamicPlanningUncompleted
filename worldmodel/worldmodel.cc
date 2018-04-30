@@ -13,6 +13,7 @@ WorldModel::WorldModel() {
     lastPlayMode = PM_GAME_OVER;
     lastDifferentPlayMode = PM_GAME_OVER;
 
+    turnEasy=false; //cx 2018-5-1
     uNum = 1;//dummy
     uNumSet = false;
 

@@ -392,6 +392,8 @@ bool Parser::parseAccelerometer(const string &str) {
 }
 
 //to handle -- do when needed.
+//     (hear <teamName> <gameTime> self/<direction> <message>)
+//e.g. (hear dynamicPlanning 2.68 -158.25 caah9iaFOS4ra)
 bool Parser::parseHear(const string &str) {
     bool valid = false;
 
@@ -416,8 +418,9 @@ bool Parser::parseHear(const string &str) {
             return true;
         }
     }
-
+    //i=2, game time
     hearTime = atof(tokens[i++].c_str());
+    //i=3, direction
     if(!(tokens[i].compare("self"))) {
         self = true;
         angle = 0;
@@ -426,9 +429,9 @@ bool Parser::parseHear(const string &str) {
         self = false;
         angle = atof(tokens[i].c_str());
     }
-
+    
     i++;
-
+    //i=4, message
     if (i >= tokens.size()) {
         // Make sure we don't get tripped up by an empty message
         return false;
@@ -1277,6 +1280,7 @@ bool Parser::parse(const string &input, bool &fParsedVision) {
 
     return valid;
 }
+//end. Parser::parse(const string &input, bool &fParsedVision)
 
 void Parser::processVision() {
 

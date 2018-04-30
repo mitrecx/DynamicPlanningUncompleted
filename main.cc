@@ -511,8 +511,8 @@ void Run()
     PutMessage(behavior->Init()+"(syn)");
 
     string msg;
-    time_t ttt1;
-    double timePassed=time(&ttt1);
+//     time_t ttt1;
+//     double timePassed=time(&ttt1);
     while (gLoop)
     {
 	
@@ -525,9 +525,9 @@ void Run()
             PutMonMessage(behavior->getMonMessage());
         }
     }
-    time_t ttt;
-    double timeNow=time(&ttt)-timePassed;
-    cout<<"++++++++++"<<timeNow<<endl;
+//     time_t ttt;
+//     double timeNow=time(&ttt)-timePassed;
+//     cout<<"++++++++++"<<timeNow<<endl;
 }
 
 int

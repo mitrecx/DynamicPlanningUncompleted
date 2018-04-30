@@ -31,6 +31,7 @@ private:
     bool uNumSet;
     bool sideSet;
 
+    
     WorldObject worldObjects[NUM_WORLD_OBJS];
     VecPosition myPosition;
     SIM::AngDeg myAngDegrees;
@@ -66,6 +67,11 @@ private:
     bool fLocalized;
     bool fFallen;
 
+    //cx 2018-5-1
+    bool turnEasy;
+    vector<bool> turnEasyTeammate;
+    
+    
     HCTMatrix localToGlobal, globalToLocal;
 
     vector<bool> fallenTeammate;
@@ -447,6 +453,12 @@ public:
     inline void setFallen(bool fFallen) {
         this->fFallen = fFallen;
     }
+    inline bool isTurnEasy() const{
+        return turnEasy;
+    }
+    inline void setTurnEasy(bool turnEasy){
+        this->turnEasy=turnEasy;
+    }
 
     inline VecPosition g2l(const VecPosition &global) const {
         return globalToLocal.transform(global);
@@ -460,6 +472,12 @@ public:
         return fLocalized && getMyPosition().getDistanceTo(getMyLastPosition()) < .2;
     }
 
+    bool getTurnEasyTeammate(int index) const{
+        return turnEasyTeammate[index];
+    }
+    void setTurnEasyTeammate(int index, bool turnEasy){
+        turnEasyTeammate[index]=turnEasy;
+    }
     bool getFallenTeammate(int index) const {
         return fallenTeammate[index];
     }

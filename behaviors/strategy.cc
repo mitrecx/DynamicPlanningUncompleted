@@ -247,10 +247,33 @@ SkillType NaoBehavior::demoDynamicPlanning(){
 // // 	}
 // 	
 // 	cout<<opponentVelocity()<<endl;
-    bodyModel->refresh();
-    if(worldModel->getFallenTeammate(3-1)){
-        cout<<"=====33333333==="<<endl;
+
+//=========DIRECTION=======================start
+
+//     worldModel->getRVSender()->clearStaticDrawings();
+//     VecPosition pos = worldModel->getMyPosition();
+//     VecPosition dir = VecPosition(1,0,0);
+//     dir = dir.rotateAboutZ(-worldModel->getMyAngDeg());
+//     if(worldModel->getMyAngDeg()<45)
+//         worldModel->getRVSender()->drawLine(pos.getX(), pos.getY(), pos.getX()+dir.getX(), pos.getY()+dir.getY());
+    
+    /*
+    double angle=me.getAngleBetweenPoints(ball,me);
+    if(angle > 30 )
+        worldModel->getRVSender()->drawCircle("c2",me.getX(),me.getY(),0.2,RVSender::MAGENTA);
+    */
+    if(worldModel->getUNum()==10){
+//         double distance, angle;
+//         getTargetDistanceAndAngle(ball, distance, angle);
+//         cout<<"angle ==="<<angle<<endl;
+        
+//         double angle=me.getAngleWithVector(ball);  // BAD Angle !!!
+//         cout<<"angle ==="<<angle<<endl;
+        
     }
+    
+//=========DIRECTION=======================end
+
     //=======================
     // Update orientations of opponents
 //     worldModel->getRVSender()->clearStaticDrawings();
@@ -334,8 +357,9 @@ SkillType NaoBehavior::demoDynamicPlanning(){
     
     if(worldModel->getPlayMode()==PM_PLAY_ON || worldModel->getPlayMode()== PM_FREE_KICK_LEFT || worldModel->getPlayMode()==PM_KICK_IN_LEFT){
         if(worldModel->getUNum()==mynum ){
-            if(worldModel->getPlayMode()==PM_PLAY_ON)
-                return kickBall(KICK_IK,center);
+            if(worldModel->getPlayMode()==PM_PLAY_ON){
+                worldModel->getRVSender()->drawCircle("2",me.getX(),me.getY(),0.2,RVSender::PINK);
+                return kickBall(KICK_IK,center);}
             if(worldModel->getPlayMode()==PM_PLAY_ON)
                 return kickBall(KICK_FORWARD,target_FreeKickLeft());
             if(worldModel->getPlayMode()==PM_KICK_IN_LEFT)
@@ -606,6 +630,7 @@ SkillType NaoBehavior::demoDynamicPlanning(){
 //     }
 //     cout<<"=================="<<endl;
     return SKILL_STAND;
+    //return getWalk(0,0); //the fastest possible speed walk
 }
 void NaoBehavior::printD(map<vector<int>, map<int,VecPosition> > roleMap){
     map<int, VecPosition> rolePlanning;
@@ -623,17 +648,11 @@ void NaoBehavior::printD(map<vector<int>, map<int,VecPosition> > roleMap){
     }
 }
 
-bool NaoBehavior::ifFall(int num){
-    if(worldModel->getUNum()==num){
-        if(worldModel->isFallen())
-            return true;
-    }
-    return false;
-}
-double NaoBehavior::closestDistanceTeammateToBall(int &pNum /*,bool relative*/){
+double NaoBehavior::closestDistanceTeammateToBall(int &pNum ,bool relative){
     // Find closest player to ball
     int playerClosestToBall = -1;
     double closestDistanceToBall = 10000;
+    
     for(int i = WO_TEAMMATE1; i < WO_TEAMMATE1+NUM_AGENTS; ++i) {
         VecPosition temp;
         int playerNum = i - WO_TEAMMATE1 + 1;
@@ -649,9 +668,12 @@ double NaoBehavior::closestDistanceTeammateToBall(int &pNum /*,bool relative*/){
             }
         }
         temp.setZ(0);
-
         double distanceToBall = temp.getDistanceTo(ball);
-        
+//         double angle=temp.getAngleWithVector(ball);
+//         if(angle > 30 || angle<-30)
+//             distanceToBall+=1;
+        if(relative && worldModel->getFallenTeammate(i-1))
+            distanceToBall+=2;
         if (distanceToBall < closestDistanceToBall) {
             playerClosestToBall = playerNum;
             closestDistanceToBall = distanceToBall;

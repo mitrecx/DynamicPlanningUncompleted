@@ -123,6 +123,7 @@ protected:
     bool fParsedVision;
     string composeAction();
 
+    
     virtual void resetSkills();
     void resetScales();
     void refresh();
@@ -223,8 +224,7 @@ protected:
     SkillType demoKickingCircle();
     SkillType demoDynamicPlanning();
 
-    bool ifFall(int num);
-    double closestDistanceTeammateToBall(int &pNum /*,bool relative=true*/);
+    double closestDistanceTeammateToBall(int &pNum ,bool relative=true);
     double closestDistanceOpponentToBall(int *pNum);
     VecPosition closestDistanceOpponentToMyGoal();
     VecPosition closestDistanceOpponentToMyGoal_InDefenceArea1();
