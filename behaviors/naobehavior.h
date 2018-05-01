@@ -223,6 +223,7 @@ protected:
 
     SkillType demoKickingCircle();
     SkillType demoDynamicPlanning();
+    SkillType testSkill();
 
     double closestDistanceTeammateToBall(int &pNum ,bool relative=true);
     double closestDistanceOpponentToBall(int *pNum);

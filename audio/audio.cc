@@ -63,7 +63,26 @@ bool makeSayMessage(const int &uNum, const double &currentServerTime, const doub
 
     return true;
 }
+bool makeSayMessage_CX(const int &uNum, const double &currentServerTime, const double &ballLastSeenServerTime, const double &ballX, const double &ballY, const double &myX, const double &myY, const bool &fFallen,const bool &turnEasy, string &message) {
+    int cycles = int((currentServerTime * 50) + 0.1);
+    if (cycles % (NUM_AGENTS*2) != (uNum-1)*2) {
+        // Not our time slice turn to say a message
+        return false;
+    }
 
+    vector<int> bits;
+    if(!(dataToBits_CX(currentServerTime, ballLastSeenServerTime, ballX, ballY, myX, myY, fFallen, turnEasy, bits))) {
+        return false;
+    }
+
+    if(!(bitsToString_CX(bits, message))) {
+        return false;
+    }
+
+    message = "(say " + message + ")";
+
+    return true;
+}
 /**
  * Parses message body of hear perceptor (need to first strip off hear header, time, and self/direction).
  * message - message to process
@@ -112,7 +131,41 @@ bool processHearMessage(const string &message, const double &heardServerTime, in
 
     return true;
 }
+bool processHearMessage_CX(const string &message, const double &heardServerTime, int &uNum, double &ballLastSeenServerTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen, bool &turnEasy, double &time) {
 
+    // Initialize values
+    uNum = 0;
+    ballLastSeenServerTime = 0;
+    ballX = 0;
+    ballY = 0;
+    agentX = 0;
+    agentY = 0;
+    fFallen = false;
+    turnEasy=false;
+    time = 0;
+
+
+    vector<int> bits;
+    if(!(stringToBits(message, bits))) {
+        return false;
+    }
+
+    if(!(bitsToData_CX(bits, time, ballLastSeenServerTime, ballX, ballY, agentX, agentY, fFallen,turnEasy))) {
+        return false;
+    }
+
+    time += double(int((heardServerTime-time)/1310.72))*1310.72;
+    ballLastSeenServerTime +=  double(int((heardServerTime-ballLastSeenServerTime)/1310.72))*1310.72;
+
+    if (heardServerTime-time >= .07 || heardServerTime-time < -.001) {
+        return false;
+    }
+
+    int cycles = int((time * 50) + 0.1);
+    uNum = (cycles%(NUM_AGENTS*2))/2+1;
+
+    return true;
+}
 
 //------ Implentation Methods (called by inteface methods) ------
 
@@ -167,10 +220,12 @@ int bitsToInt(const vector<int> &bits, const int &start, const int &end) {
 
 bool dataToBits(const double &time, const double &ballLastSeenTime, const double &ballX, const double &ballY, const double &myX, const double &myY, const bool &fFallen, vector<int> &bits) {
 
+    //time is serverTime
     int cycles = (time * 50) + 0.1;
     cycles = cycles%(1<<16);
     vector<int> timeBits = intToBits(cycles, 16);
 
+    //ballLastSeenTime is serverTime
     int ballLastSeenCycle = (ballLastSeenTime * 50) + 0.1;
     ballLastSeenCycle = ballLastSeenCycle%(1<<16);
     vector<int> ballLastSeenTimeBits = intToBits(ballLastSeenCycle, 16);
@@ -200,6 +255,47 @@ bool dataToBits(const double &time, const double &ballLastSeenTime, const double
     bits.insert(bits.end(), myXBits.begin(), myXBits.end());//10
     bits.insert(bits.end(), myYBits.begin(), myYBits.end());//10
     bits.push_back(fallenBit);//1
+
+    return true;
+
+}
+bool dataToBits_CX(const double &time, const double &ballLastSeenTime, const double &ballX, const double &ballY, const double &myX, const double &myY, const bool &fFallen, const bool &turnEasy, vector<int> &bits) {
+
+    int cycles = (time * 50) + 0.1;
+    cycles = cycles%(1<<16);
+    vector<int> timeBits = intToBits(cycles, 16);
+
+    int ballLastSeenCycle = (ballLastSeenTime * 50) + 0.1;
+    ballLastSeenCycle = ballLastSeenCycle%(1<<16);
+    vector<int> ballLastSeenTimeBits = intToBits(ballLastSeenCycle, 16);
+
+    double clippedBallX = (ballX < minBallX)? minBallX : ((ballX > maxBallX)? maxBallX : ballX);
+    int bx = (((clippedBallX - minBallX) * 1023) / (maxBallX - minBallX)) + 0.5;
+    vector<int> ballXBits = intToBits(bx, 10);
+
+    double clippedBallY = (ballY < minBallY)? minBallY : ((ballY > maxBallY)? maxBallY : ballY);
+    int by = (((clippedBallY - minBallY) * 1023) / (maxBallY - minBallY)) + 0.5;
+    vector<int> ballYBits = intToBits(by, 10);
+
+    double clippedMyX = (myX < minAgentX)? minAgentX : ((myX > maxAgentX)? maxAgentX : myX);
+    int mx = (((clippedMyX - minAgentX) * 1023) / (maxAgentX - minAgentX)) + 0.5;
+    vector<int> myXBits = intToBits(mx, 10);
+
+    double clippedMyY = (myY < minAgentY)? minAgentY : ((myY > maxAgentY)? maxAgentY : myY);
+    int my = (((clippedMyY - minAgentY) * 1023) / (maxAgentY - minAgentY)) + 0.5;
+    vector<int> myYBits = intToBits(my, 10);
+
+    int fallenBit = (fFallen)? 1 : 0;
+    int turnEasyBit=(turnEasy)?1:0;
+
+    bits.insert(bits.end(), timeBits.begin(), timeBits.end());//16
+    bits.insert(bits.end(), ballLastSeenTimeBits.begin(), ballLastSeenTimeBits.end());//16
+    bits.insert(bits.end(), ballXBits.begin(), ballXBits.end());//10
+    bits.insert(bits.end(), ballYBits.begin(), ballYBits.end());//10
+    bits.insert(bits.end(), myXBits.begin(), myXBits.end());//10
+    bits.insert(bits.end(), myYBits.begin(), myYBits.end());//10
+    bits.push_back(fallenBit);//1
+    bits.push_back(turnEasyBit);//1 cx
 
     return true;
 
@@ -238,7 +334,39 @@ bool bitsToString(const vector<int> &bits, string &message) {
 
     return true;
 }
+bool bitsToString_CX(const std::vector<int>& bits, std::string& message){
 
+    message = "";
+    if(commAlphabet.size() != 64) {
+        cerr << "bitsToString: alphabet size not 64!\n";
+        return false;
+    }
+
+    vector<int> index;
+    index.resize((bits.size() + 5) / 6);
+    size_t ctr = 0;
+    for(size_t i = 0; i < index.size(); i++) {
+
+        index[i] = 0;
+        for(int j = 0; j < 6; j++) {
+
+            index[i] *= 2;
+
+            //bits.size()=73, 16+16+10+10+10+10+1+1=74
+            if(ctr < bits.size()) {
+                index[i] += bits[ctr];
+                ctr++;
+            }
+
+        }
+    }
+
+    for(size_t i = 0; i < index.size(); i++) {
+        message += commAlphabet.at(index[i]);
+    }
+
+    return true;
+}
 
 bool bitsToData(const vector<int> &bits, double &time, double &ballLastSeenTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen) {
     if(bits.size() < (16 + 16 + 10 + 10 + 10 + 10 + 1)) {
@@ -288,6 +416,59 @@ bool bitsToData(const vector<int> &bits, double &time, double &ballLastSeenTime,
     fFallen = (bits[ctr] == 0)? false : true;
     ctr += 1;
 
+    return true;
+}
+bool bitsToData_CX(const vector<int> &bits, double &time, double &ballLastSeenTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen, bool &turnEasy) {
+    if(bits.size() < (16 + 16 + 10 + 10 + 10 + 10 + 1 + 1)) {
+        time = 0;
+        ballLastSeenTime = 0,
+        ballX = 0;
+        ballY = 0;
+        agentX = 0;
+        agentY = 0;
+        fFallen = false;
+        turnEasy=false;
+        return false;
+    }
+
+    int ctr = 0;
+    
+    //1, double &time
+    int cycles = bitsToInt(bits, ctr, ctr + 15);
+    time = cycles * 0.02;
+    ctr += 16;
+    
+    //2, double &ballLastSeenTime, 
+    int ballLastSeenCycles = bitsToInt(bits, ctr, ctr + 15);
+    ballLastSeenTime = ballLastSeenCycles * 0.02;
+    ctr += 16;
+    
+    //3, double &ballX, 
+    int bx = bitsToInt(bits, ctr, ctr + 9);
+    ballX = minBallX + ((maxBallX - minBallX) * (bx / 1023.0));
+    ctr += 10;
+
+    //4, double &ballY, 
+    int by = bitsToInt(bits, ctr, ctr + 9);
+    ballY = minBallY + ((maxBallY - minBallY) * (by / 1023.0));
+    ctr += 10;
+
+    //5, double &agentX, 
+    int ax = bitsToInt(bits, ctr, ctr + 9);
+    agentX = minAgentX + ((maxAgentX - minAgentX) * (ax / 1023.0));
+    ctr += 10;
+
+    //6, double &agentY, 
+    int ay = bitsToInt(bits, ctr, ctr + 9);
+    agentY = minAgentY + ((maxAgentY - minAgentY) * (ay / 1023.0));
+    ctr += 10;
+
+    //7, bool &fFallen
+    fFallen = (bits[ctr] == 0)? false : true;
+    ctr += 1;
+
+    turnEasy = (bits[ctr] == 0)? false:true;
+    ctr+=1;
     return true;
 }
 

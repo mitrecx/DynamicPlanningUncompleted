@@ -287,7 +287,7 @@ string NaoBehavior::Think(const std::string& message) {
 
     action = action + composeAction();
 
-    //std::cout << "Sending action: " << action << "\n";
+    //std::cout << "Sending action: "<<"( "<<worldModel->getTime()<<" ) "<< action << "\n";
     return action;
 }
 //end. NaoBehavior::Think(const std::string& message)
@@ -310,8 +310,14 @@ void NaoBehavior::act() {
     int pm = worldModel->getPlayMode();
     bool resetForKickoff = pm == PM_BEFORE_KICK_OFF || pm == PM_GOAL_LEFT || pm == PM_GOAL_RIGHT;
 
-
-
+    //cx
+    double distance, angle;
+    getTargetDistanceAndAngle(ball, distance, angle);
+    if(angle>-45 && angle<45){
+        worldModel->setTurnEasy(true);
+    }else{
+        worldModel->setTurnEasy(false);
+    }
     if(checkingFall()) {
         resetSkills();
         bodyModel->setUseOmniWalk(false);

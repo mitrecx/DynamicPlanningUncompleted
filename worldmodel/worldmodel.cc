@@ -33,6 +33,9 @@ WorldModel::WorldModel() {
 
     fLocalized = false;
     fFallen = false;
+    
+    //cx
+    turnEasy=false;
 
 
     // TODO: this is not correct, but anyway localization should update it
@@ -59,9 +62,11 @@ WorldModel::WorldModel() {
 
     fallenTeammate = vector<bool>(NUM_AGENTS);
     fallenOpponent = vector<bool>(NUM_AGENTS);
+    turnEasyTeammate=vector<bool>(NUM_AGENTS); //cx
     for (int i = 0; i < NUM_AGENTS; i++) {
         fallenTeammate[i] = false;
         fallenOpponent[i] = false;
+        turnEasyTeammate[i]=false;
     }
 
     rvsend = new RVSender();

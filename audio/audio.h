@@ -24,6 +24,12 @@ bool dataToBits(const double &time, const double &ballLastSeenTime, const double
 
 bool bitsToString(const std::vector<int> &bits, std::string &message);
 
+//cx 2018-5-1
+bool makeSayMessage_CX(const int &uNum, const double &currentServerTime, const double &ballLastSeenServerTime, const double &ballX, const double &ballY, const double &myX, const double &myY, const bool &fFallen, const bool &turnEasy, std::string &message);
+
+bool dataToBits_CX(const double &time, const double &ballLastSeenTime, const double &ballX, const double &ballY, const double &myX, const double &myY, const bool &fFallen, const bool &turnEasy, std::vector<int> &bits);
+bool bitsToString_CX(const std::vector<int> &bits, std::string &message);
+
 /*-------------------------------Decoding---------------------------------------------*/
 bool processHearMessage(const std::string &message, const double &heardServerTime, int &uNum, double &ballLastSeenServerTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen, double &time);
 
@@ -31,4 +37,9 @@ bool bitsToData(const std::vector<int> &bits, double &time, double &ballLastSeen
 
 bool stringToBits(const std::string &message, std::vector<int> &bits);
 
+bool processHearMessage_CX(const std::string &message, const double &heardServerTime, int &uNum, double &ballLastSeenServerTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen, bool &turnEasy, double &time);
+
+bool bitsToData_CX(const std::vector<int> &bits, double &time, double &ballLastSeenTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen, bool &turnEasy);
+
+bool stringToBits_CX(const std::string &message, std::vector<int> &bits);
 #endif

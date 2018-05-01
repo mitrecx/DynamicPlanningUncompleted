@@ -441,6 +441,7 @@ bool Parser::parseHear(const string &str) {
 
     double timeBallLastSeen;
     bool fallen;
+    bool turneasy; //cx
     double ballX;
     double ballY;
     double playerX;
@@ -450,9 +451,12 @@ bool Parser::parseHear(const string &str) {
 
     double deltaServerToGameTime = worldModel->getTime()-worldModel->getGameTime();
 
-    if (processHearMessage(message, hearTime+deltaServerToGameTime, playerNum, timeBallLastSeen, ballX, ballY, playerX, playerY, fallen, time)) {
+    //if (processHearMessage(message, hearTime+deltaServerToGameTime, playerNum, timeBallLastSeen, ballX, ballY, playerX, playerY, fallen, time)) 
+    if (processHearMessage_CX(message, hearTime+deltaServerToGameTime, playerNum, timeBallLastSeen, ballX, ballY, playerX, playerY, fallen,turneasy, time)) 
+    {
         worldModel->setFallenTeammate(playerNum-1, fallen);
-
+        worldModel->setTurnEasyTeammate(playerNum-1,turneasy); //cx
+        //cout<<"====processHearMessage_CX successful====="<<endl;
         if (!self && !fallen) {
             static VecPosition lastHeardBallPos = VecPosition(0,0,0);
             VecPosition ballPos = VecPosition(ballX, ballY, 0);

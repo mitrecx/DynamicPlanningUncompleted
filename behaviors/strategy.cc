@@ -129,6 +129,30 @@ SkillType NaoBehavior::selectSkill() {
     // back and forth
     //return demoKickingCircle();
     return demoDynamicPlanning();
+    //return testSkill();
+}
+SkillType NaoBehavior::testSkill(){
+     //test getTurnEasyTeammate,
+    for(int i = WO_TEAMMATE1; i < WO_TEAMMATE1+NUM_AGENTS; ++i) {
+        VecPosition temp;
+        int playerNum = i - WO_TEAMMATE1 + 1;
+        if (worldModel->getUNum() == playerNum &&worldModel->getTurnEasyTeammate(playerNum-1)) {
+            // This is us
+            temp = worldModel->getMyPosition();
+            worldModel->getRVSender()->drawCircle("c",temp.getX(),temp.getY(),0.2,RVSender::YELLOW);
+        } else if(worldModel->getTurnEasyTeammate(playerNum-1)) {
+            WorldObject* teammate = worldModel->getWorldObject( i );
+            if (teammate->validPosition) {
+                temp = teammate->pos;
+            } else {
+                continue;
+            }
+            worldModel->getRVSender()->drawCircle("c",temp.getX(),temp.getY(),0.2,RVSender::YELLOW);
+        }
+        temp.setZ(0);
+        
+    }
+    return SKILL_STAND;
 }
 
 
@@ -262,16 +286,14 @@ SkillType NaoBehavior::demoDynamicPlanning(){
     if(angle > 30 )
         worldModel->getRVSender()->drawCircle("c2",me.getX(),me.getY(),0.2,RVSender::MAGENTA);
     */
-    if(worldModel->getUNum()==10){
+//     if(worldModel->getUNum()==1){
 //         double distance, angle;
 //         getTargetDistanceAndAngle(ball, distance, angle);
 //         cout<<"angle ==="<<angle<<endl;
         
 //         double angle=me.getAngleWithVector(ball);  // BAD Angle !!!
 //         cout<<"angle ==="<<angle<<endl;
-        
-    }
-    
+//    }
 //=========DIRECTION=======================end
 
     //=======================
@@ -674,6 +696,8 @@ double NaoBehavior::closestDistanceTeammateToBall(int &pNum ,bool relative){
 //             distanceToBall+=1;
         if(relative && worldModel->getFallenTeammate(i-1))
             distanceToBall+=2;
+        if(relative && worldModel->getTurnEasyTeammate(i-1))
+            distanceToBall+=0.5;
         if (distanceToBall < closestDistanceToBall) {
             playerClosestToBall = playerNum;
             closestDistanceToBall = distanceToBall;
