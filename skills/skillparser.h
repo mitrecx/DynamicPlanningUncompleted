@@ -83,7 +83,7 @@ struct calc_closure : BOOST_SPIRIT_CLASSIC_NS::closure<calc_closure, double>
 
 struct SkillParser : public grammar<SkillParser>
 {
-    SkillParser(map< SkillType, shared_ptr<Skill> >& skills_, BodyModel* bodyModel_)
+    SkillParser(map< SkillType, boost::shared_ptr<Skill> >& skills_, BodyModel* bodyModel_)
         : skills( skills_ ), bodyModel( bodyModel_ )
     {}
 
@@ -336,7 +336,7 @@ struct SkillParser : public grammar<SkillParser>
         VecPosition footToSetXyz, footToSetRpy;
         vector<string> effectorsToScale;
         vector<double> effectorsToScaleValues;
-        shared_ptr< KeyFrame > keyFrame;
+        boost::shared_ptr< KeyFrame > keyFrame;
         double tmp;
         vector<double> pos;
 
@@ -395,7 +395,7 @@ struct SkillParser : public grammar<SkillParser>
 
         struct resetCB {
 
-            resetCB( vector<string>& joints_, shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
+            resetCB( vector<string>& joints_, boost::shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
                 : joints( joints_ ), keyFrame( keyFrame_ ), parser(parser_) {
             }
 
@@ -417,13 +417,13 @@ struct SkillParser : public grammar<SkillParser>
                     jointIndices.push_back( EnumParser<BodyParts>::getEnumFromString( *begin ) );
                 }
 
-                shared_ptr< Macro > resetMacro( new Reset( jointIndices ) );
+                boost::shared_ptr< Macro > resetMacro( new Reset( jointIndices ) );
                 keyFrame->appendMacro( resetMacro );
             }
 
             // functor variables, recommended to be references
             vector<string>& joints;
-            shared_ptr< KeyFrame >& keyFrame;
+            boost::shared_ptr< KeyFrame >& keyFrame;
             SkillParser const &parser;
 //          EnumParser<BodyParts> &enumParser;
         };
@@ -435,7 +435,7 @@ struct SkillParser : public grammar<SkillParser>
 
         struct inctarCB {
 
-            inctarCB( vector<string>& effectors_, vector<double>& effValues_, shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
+            inctarCB( vector<string>& effectors_, vector<double>& effValues_, boost::shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
                 : effectors(effectors_),
                   effValues(effValues_),
                   keyFrame( keyFrame_ ),
@@ -460,14 +460,14 @@ struct SkillParser : public grammar<SkillParser>
                     effIndices.push_back( EnumParser<Effectors>::getEnumFromString( effectors[i] ) );
                 }
 
-                shared_ptr< Macro > inctarMacro( new IncTar( effIndices, effValues ) );
+                boost::shared_ptr< Macro > inctarMacro( new IncTar( effIndices, effValues ) );
                 keyFrame->appendMacro( inctarMacro );
             }
 
             // functor variables, recommended to be references
             vector<string>& effectors;
             vector<double>& effValues;
-            shared_ptr< KeyFrame >& keyFrame;
+            boost::shared_ptr< KeyFrame >& keyFrame;
             SkillParser const &parser;
 //          EnumParser<Effectors> enumParser;
         };
@@ -478,7 +478,7 @@ struct SkillParser : public grammar<SkillParser>
 
         struct setscaleCB {
 
-            setscaleCB( vector<string>& effectors_, vector<double>& effValues_, shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
+            setscaleCB( vector<string>& effectors_, vector<double>& effValues_, boost::shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
                 : effectors(effectors_),
                   effValues(effValues_),
                   keyFrame( keyFrame_ ),
@@ -503,14 +503,14 @@ struct SkillParser : public grammar<SkillParser>
                     effIndices.push_back( EnumParser<Effectors>::getEnumFromString( effectors[i] ) );
                 }
 
-                shared_ptr< Macro > setscaleMacro( new SetScale( effIndices, effValues ) );
+                boost::shared_ptr< Macro > setscaleMacro( new SetScale( effIndices, effValues ) );
                 keyFrame->appendMacro( setscaleMacro );
             }
 
             // functor variables, recommended to be references
             vector<string>& effectors;
             vector<double>& effValues;
-            shared_ptr< KeyFrame >& keyFrame;
+            boost::shared_ptr< KeyFrame >& keyFrame;
             SkillParser const &parser;
 //          EnumParser<Effectors> enumParser;
         };
@@ -521,7 +521,7 @@ struct SkillParser : public grammar<SkillParser>
 
         struct settarCB {
 
-            settarCB( vector<string>& effectors_, vector<double>& effValues_, shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
+            settarCB( vector<string>& effectors_, vector<double>& effValues_, boost::shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
                 : effectors(effectors_),
                   effValues(effValues_),
                   keyFrame( keyFrame_ ),
@@ -546,14 +546,14 @@ struct SkillParser : public grammar<SkillParser>
                     effIndices.push_back( EnumParser<Effectors>::getEnumFromString( effectors[i] ) );
                 }
 
-                shared_ptr< Macro > settarMacro( new SetTar( effIndices, effValues ) );
+                boost::shared_ptr< Macro > settarMacro( new SetTar( effIndices, effValues ) );
                 keyFrame->appendMacro( settarMacro );
             }
 
             // functor variables, recommended to be references
             vector<string>& effectors;
             vector<double>& effValues;
-            shared_ptr< KeyFrame >& keyFrame;
+            boost::shared_ptr< KeyFrame >& keyFrame;
             SkillParser const &parser;
 //          EnumParser<Effectors> enumParser;
         };
@@ -564,7 +564,7 @@ struct SkillParser : public grammar<SkillParser>
 
         struct setfootCB {
 
-            setfootCB( string& foot_, vector<double> &pos_, shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
+            setfootCB( string& foot_, vector<double> &pos_, boost::shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
                 : foot(foot_),
                   pos(pos_),
                   keyFrame( keyFrame_ ),
@@ -592,21 +592,21 @@ struct SkillParser : public grammar<SkillParser>
 //              LOG(rpy);
 //              LOG(pos6dof);
 
-                shared_ptr< Macro > setfootMacro( new SetFoot( footIDX, pos6dof ) );
+                boost::shared_ptr< Macro > setfootMacro( new SetFoot( footIDX, pos6dof ) );
                 keyFrame->appendMacro( setfootMacro );
             }
 
             // functor variables, recommended to be references
             string &foot;
             vector<double> &pos;
-            shared_ptr< KeyFrame > &keyFrame;
+            boost::shared_ptr< KeyFrame > &keyFrame;
             SkillParser const &parser;
 //          EnumParser<BodyParts> enumParser;
         };
 
 
         struct stabilizeCB {
-            stabilizeCB( string& foot_, vector<double> &pos_, shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
+            stabilizeCB( string& foot_, vector<double> &pos_, boost::shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
                 : foot(foot_),
                   pos(pos_),
                   keyFrame( keyFrame_ ),
@@ -620,14 +620,14 @@ struct SkillParser : public grammar<SkillParser>
                 // Translate effector string names to enums
                 int footIndex = EnumParser<BodyParts>::getEnumFromString( foot );
                 VecPosition zmp(pos[0], pos[1], 0);
-                shared_ptr< Macro > stabilizeMacro(new Stabilize(footIndex, zmp));
+                boost::shared_ptr< Macro > stabilizeMacro(new Stabilize(footIndex, zmp));
                 keyFrame->appendMacro(stabilizeMacro);
             }
 
             // functor variables, recommended to be references
             string &foot;
             vector<double> &pos;
-            shared_ptr< KeyFrame > &keyFrame;
+            boost::shared_ptr< KeyFrame > &keyFrame;
             SkillParser const &parser;
         };
 
@@ -636,7 +636,7 @@ struct SkillParser : public grammar<SkillParser>
 
         struct waitCB {
 
-            waitCB( double& waitTime_, shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
+            waitCB( double& waitTime_, boost::shared_ptr< KeyFrame >& keyFrame_, SkillParser const& parser_ )
                 : waitTime( waitTime_ ), keyFrame( keyFrame_ ), parser(parser_) {
             }
 
@@ -657,7 +657,7 @@ struct SkillParser : public grammar<SkillParser>
 
             // functor variables, recommended to be references
             double& waitTime;
-            shared_ptr< KeyFrame >& keyFrame;
+            boost::shared_ptr< KeyFrame >& keyFrame;
             SkillParser const &parser;
         };
 
@@ -668,7 +668,7 @@ struct SkillParser : public grammar<SkillParser>
         struct curveCB {
 
             curveCB( const string &foot_, const vector<double> &pos_,
-                     shared_ptr< KeyFrame > &keyFrame_, SkillParser const &parser_ )
+                     boost::shared_ptr< KeyFrame > &keyFrame_, SkillParser const &parser_ )
                 : foot(foot_), pos(pos_),
                   keyFrame(keyFrame_), parser(parser_) {
             }
@@ -690,14 +690,14 @@ struct SkillParser : public grammar<SkillParser>
                     controlPoints[i/6].rpy = rpy;
                 }
 
-                shared_ptr< Macro > curveMacro( new Curve( footIDX, controlPoints ) );
+                boost::shared_ptr< Macro > curveMacro( new Curve( footIDX, controlPoints ) );
                 keyFrame->appendMacro( curveMacro );
             }
 
             // functor variables, recommended to be references
             const string &foot;
             const vector<double> &pos;
-            shared_ptr< KeyFrame > &keyFrame;
+            boost::shared_ptr< KeyFrame > &keyFrame;
             SkillParser const &parser;
 //          EnumParser<BodyParts> enumParser;
         };
@@ -725,7 +725,7 @@ struct SkillParser : public grammar<SkillParser>
             void
             operator() ( iterator_t, iterator_t ) const {
                 currentSkillType = EnumParser<SkillType>::getEnumFromString( skillname );
-                parser.skills[currentSkillType] =  shared_ptr<Skill>( new Skill() );
+                parser.skills[currentSkillType] =  boost::shared_ptr<Skill>( new Skill() );
             }
 
             std::string& skillname;
@@ -775,7 +775,7 @@ struct SkillParser : public grammar<SkillParser>
         struct startKeyFrameCB {
 
             startKeyFrameCB( SkillType& currentSkillType_,
-                             shared_ptr< KeyFrame >& keyFrame_,
+                             boost::shared_ptr< KeyFrame >& keyFrame_,
                              SkillParser const& parser_ )
                 : currentSkillType(currentSkillType_), keyFrame(keyFrame_), parser(parser_)
             {}
@@ -788,13 +788,13 @@ struct SkillParser : public grammar<SkillParser>
             void
             operator() ( iterator_t, iterator_t ) const {
                 keyFrame.reset( new KeyFrame() );
-                shared_ptr<Skill> currentSkill = parser.skills[currentSkillType];
+                boost::shared_ptr<Skill> currentSkill = parser.skills[currentSkillType];
                 currentSkill->appendKeyFrame( keyFrame );
             }
 
             // functor variables, recommended to be references
             SkillType& currentSkillType;
-            shared_ptr< KeyFrame >& keyFrame;
+            boost::shared_ptr< KeyFrame >& keyFrame;
             SkillParser const &parser;
         };
 
@@ -802,7 +802,7 @@ struct SkillParser : public grammar<SkillParser>
     };
 
     // Data members of the grammar - sent in the constructor and used during parsing
-    map< SkillType, shared_ptr<Skill> >& skills;
+    map< SkillType, boost::shared_ptr<Skill> >& skills;
     BodyModel* bodyModel;
 };
 

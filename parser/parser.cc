@@ -10,6 +10,7 @@
 #include "../particlefilter/PFLocalization.h"
 #include "../kalman/BallKF.h"
 #include "../kalman/PlayerKF.h"
+#include "../behaviors/naobehavior.h" //cx
 
 // For UT Walk
 #include <memory/Memory.h>
@@ -442,6 +443,7 @@ bool Parser::parseHear(const string &str) {
     double timeBallLastSeen;
     bool fallen;
     bool turneasy; //cx
+    int choosecf;
     double ballX;
     double ballY;
     double playerX;
@@ -452,10 +454,11 @@ bool Parser::parseHear(const string &str) {
     double deltaServerToGameTime = worldModel->getTime()-worldModel->getGameTime();
 
     //if (processHearMessage(message, hearTime+deltaServerToGameTime, playerNum, timeBallLastSeen, ballX, ballY, playerX, playerY, fallen, time)) 
-    if (processHearMessage_CX(message, hearTime+deltaServerToGameTime, playerNum, timeBallLastSeen, ballX, ballY, playerX, playerY, fallen,turneasy, time)) 
+    if (processHearMessage_CX(message, hearTime+deltaServerToGameTime, playerNum, timeBallLastSeen, ballX, ballY, playerX, playerY, fallen,turneasy,choosecf, time)) 
     {
         worldModel->setFallenTeammate(playerNum-1, fallen);
         worldModel->setTurnEasyTeammate(playerNum-1,turneasy); //cx
+        worldModel->setCFVoteResult(playerNum-1,choosecf);
         //cout<<"====processHearMessage_CX successful====="<<endl;
         if (!self && !fallen) {
             static VecPosition lastHeardBallPos = VecPosition(0,0,0);
@@ -761,7 +764,7 @@ bool Parser::parseLine(const string &str, vector< boost::shared_ptr<VisionObject
     }
 
     if(valid) {
-        shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, r2, theta2, phi2, lineIndex ) );
+        boost::shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, r2, theta2, phi2, lineIndex ) );
         visionObjs.push_back( obj );
     }
     return valid;
@@ -805,7 +808,7 @@ bool Parser::parseGoalPost(const string &str, vector< boost::shared_ptr<VisionOb
     }
 
     if(valid) {
-        shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, goalPostIndex ) );
+        boost::shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, goalPostIndex ) );
         visionObjs.push_back( obj );
     }
     return valid;
@@ -848,7 +851,7 @@ bool Parser::parseFlag(const string &str, vector< boost::shared_ptr<VisionObject
     }
 
     if(valid) {
-        shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, flagIndex) );
+        boost::shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, flagIndex) );
         visionObjs.push_back( obj );
     }
     return valid;
@@ -872,7 +875,7 @@ bool Parser::parseBall(const string &str, vector< boost::shared_ptr<VisionObject
     }
 
     if(valid) {
-        shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, WO_BALL) );
+        boost::shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, WO_BALL) );
         visionObjs.push_back( obj );
     }
 
@@ -989,7 +992,7 @@ bool Parser::parsePlayer(const string &str, vector< boost::shared_ptr<VisionObje
                     valid = false;
                 }
                 if (objectIndex != -1) {
-                    shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, objectIndex ) );
+                    boost::shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, objectIndex ) );
                     visionObjs.push_back( obj );
                 }
             }
@@ -1026,12 +1029,12 @@ bool Parser::parsePlayer(const string &str, vector< boost::shared_ptr<VisionObje
 
         if(!playerTeamName.compare(teamName)) {
             int playerIndex = ( WO_TEAMMATE1 - 1 ) + uNum;
-            shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, playerIndex ) );
+            boost::shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, playerIndex ) );
             visionObjs.push_back( obj );
         }
         else {
             int playerIndex = ( WO_OPPONENT1 - 1 ) + uNum;
-            shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, playerIndex ) );
+            boost::shared_ptr<VisionObject> obj( new VisionObject(r, theta, phi, playerIndex ) );
             visionObjs.push_back( obj );
         }
     }
@@ -1292,8 +1295,8 @@ void Parser::processVision() {
         return;
     }
     // Print vision info
-    vector< shared_ptr<VisionObject> >::iterator begin( visionObjs.begin() );
-    vector< shared_ptr<VisionObject> >::iterator end( visionObjs.end() );
+    vector< boost::shared_ptr<VisionObject> >::iterator begin( visionObjs.begin() );
+    vector< boost::shared_ptr<VisionObject> >::iterator end( visionObjs.end() );
 
     // Fix vision objects w.r.t. head pan and tilt
     //////////////////  double headAnglePan = bodyModel->getJointAngle(EFF_H1);

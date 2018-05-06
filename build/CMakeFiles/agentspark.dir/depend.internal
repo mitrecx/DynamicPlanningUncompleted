@@ -451,6 +451,8 @@ CMakeFiles/agentspark.dir/parser/parser.cc.o
  ../utwalk/memory/SimEffectorBlock.h
  ../utwalk/memory/WalkRequestBlock.h
  /home/mitre/qt-ut/audio/audio.h
+ /home/mitre/qt-ut/behaviors/behavior.h
+ /home/mitre/qt-ut/behaviors/naobehavior.h
  /home/mitre/qt-ut/bodymodel/bodymodel.h
  /home/mitre/qt-ut/headers/Field.h
  /home/mitre/qt-ut/headers/headers.h
@@ -467,6 +469,8 @@ CMakeFiles/agentspark.dir/parser/parser.cc.o
  /home/mitre/qt-ut/particlefilter/PFLocalization.h
  /home/mitre/qt-ut/particlefilter/Particle.h
  /home/mitre/qt-ut/rvdraw/rvdraw.h
+ /home/mitre/qt-ut/skills/curve3d.h
+ /home/mitre/qt-ut/skills/skill.h
  /home/mitre/qt-ut/worldmodel/WorldObject.h
  /home/mitre/qt-ut/worldmodel/worldmodel.h
 CMakeFiles/agentspark.dir/particlefilter/PFLocalization.cc.o

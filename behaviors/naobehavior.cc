@@ -38,6 +38,7 @@ NaoBehavior(const std::string teamName, int uNum, const map<string, string>& nam
 
     agentTeamName = teamName;
     agentUNum = uNum;
+    
 
     scoreMe = 0;
     scoreOpp = 0;
@@ -140,6 +141,7 @@ string NaoBehavior::Think(const std::string& message) {
     //cout << "(NaoBehavior) received message " << message << endl;
 
     fParsedVision = false;
+    //parsing message cx
     bool parseSuccess = parser->parse(message, fParsedVision);
     if(!parseSuccess && (worldModel->getPlayMode() != PM_BEFORE_KICK_OFF)) {
 //    cout << "****************************************\n";

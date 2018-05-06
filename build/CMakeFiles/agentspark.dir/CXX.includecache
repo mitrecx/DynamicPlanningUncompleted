@@ -749,6 +749,8 @@ VisionObject.h
 /home/mitre/qt-ut/kalman/BallKF.h
 ../kalman/PlayerKF.h
 /home/mitre/qt-ut/kalman/PlayerKF.h
+../behaviors/naobehavior.h
+/home/mitre/qt-ut/behaviors/naobehavior.h
 memory/Memory.h
 -
 memory/FrameInfoBlock.h

@@ -54,13 +54,15 @@ protected:
     // TODO: eliminate these and use a better solution
     string classname;
 
-    map< SkillType, shared_ptr<Skill> > skills;
+    map< SkillType, boost::shared_ptr<Skill> > skills;
     const map<string, string>& namedParams;
     string rsg;
 
     std::string agentTeamName;
     int agentUNum;
 
+
+    
     Parser *parser;
     WorldModel *worldModel;
     BodyModel *bodyModel;
@@ -268,6 +270,8 @@ protected:
 
 public:
 
+
+    
     NaoBehavior(const std::string teamName, int uNum, const map<string, string>& namedParams_, const string& rsg_);
     virtual ~NaoBehavior();
 

@@ -13,7 +13,7 @@ WorldModel::WorldModel() {
     lastPlayMode = PM_GAME_OVER;
     lastDifferentPlayMode = PM_GAME_OVER;
 
-    turnEasy=false; //cx 2018-5-1
+    
     uNum = 1;//dummy
     uNumSet = false;
 
@@ -33,9 +33,9 @@ WorldModel::WorldModel() {
 
     fLocalized = false;
     fFallen = false;
-    
-    //cx
-    turnEasy=false;
+    turnEasy=false; //cx 2018-5-1
+    chooseCF=0;
+
 
 
     // TODO: this is not correct, but anyway localization should update it
@@ -63,10 +63,13 @@ WorldModel::WorldModel() {
     fallenTeammate = vector<bool>(NUM_AGENTS);
     fallenOpponent = vector<bool>(NUM_AGENTS);
     turnEasyTeammate=vector<bool>(NUM_AGENTS); //cx
+    CFVoteResult=vector<int>(NUM_AGENTS);
+
     for (int i = 0; i < NUM_AGENTS; i++) {
         fallenTeammate[i] = false;
         fallenOpponent[i] = false;
         turnEasyTeammate[i]=false;
+        CFVoteResult[i]=0;
     }
 
     rvsend = new RVSender();

@@ -70,6 +70,9 @@ private:
     //cx 2018-5-1
     bool turnEasy;
     vector<bool> turnEasyTeammate;
+    //cx 2018-5-6
+    int chooseCF;
+    vector<int> CFVoteResult;
     
     
     HCTMatrix localToGlobal, globalToLocal;
@@ -453,13 +456,20 @@ public:
     inline void setFallen(bool fFallen) {
         this->fFallen = fFallen;
     }
+    
     inline bool isTurnEasy() const{
         return turnEasy;
     }
     inline void setTurnEasy(bool turnEasy){
         this->turnEasy=turnEasy;
     }
-
+    inline int getChooseCF() const{
+        return chooseCF;
+    }
+    inline void setChooseCF(int chooseCF){
+        this->chooseCF=chooseCF;
+    }
+    
     inline VecPosition g2l(const VecPosition &global) const {
         return globalToLocal.transform(global);
     }
@@ -478,6 +488,13 @@ public:
     void setTurnEasyTeammate(int index, bool turnEasy){
         turnEasyTeammate[index]=turnEasy;
     }
+    int getCFVoteResult(int index) const{
+        return CFVoteResult[index];
+    }
+    void setCFVoteResult(int index, int chooseCF){
+        CFVoteResult[index]=chooseCF;
+    }
+    
     bool getFallenTeammate(int index) const {
         return fallenTeammate[index];
     }

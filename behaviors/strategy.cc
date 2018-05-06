@@ -128,11 +128,12 @@ SkillType NaoBehavior::selectSkill() {
     // Demo behavior where players form a rotating circle and kick the ball
     // back and forth
     //return demoKickingCircle();
-    return demoDynamicPlanning();
-    //return testSkill();
+    //return demoDynamicPlanning();
+    return testSkill();
 }
 SkillType NaoBehavior::testSkill(){
      //test getTurnEasyTeammate,
+    /*
     for(int i = WO_TEAMMATE1; i < WO_TEAMMATE1+NUM_AGENTS; ++i) {
         VecPosition temp;
         int playerNum = i - WO_TEAMMATE1 + 1;
@@ -151,6 +152,47 @@ SkillType NaoBehavior::testSkill(){
         }
         temp.setZ(0);
         
+    }
+    */
+    int tmNum;
+    closestDistanceTeammateToBall(tmNum);
+    VecPosition temp;
+    WorldObject* opponent = worldModel->getWorldObject( tmNum );
+    if (opponent->validPosition) {
+        temp = opponent->pos;
+        worldModel->getRVSender()->drawCircle("c",temp.getX(),temp.getY(),0.2,RVSender::RED);
+    } else {
+        //continue;
+    }
+    temp.setZ(0);
+    vector<int> maxCount(11);
+//     for(int i=0;i<11;i++)
+//         cout<<"mx="<<maxCount[i]<<' ';
+//     cout<<endl;
+    for(int i=0;i<11;i++){
+        if(worldModel->getCFVoteResult(i)>0)
+            ++maxCount[worldModel->getCFVoteResult(i)-1];
+        //cout<<worldModel->getCFVoteResult(i)<<' ';
+    }
+    //cout<<endl;
+    int tempMaxCount=0;
+    int cf;
+    for(int i=0;i<11;i++){
+        if(tempMaxCount<maxCount[i]){
+            tempMaxCount=maxCount[i];
+            cf=i+1;
+        }
+    }
+    //cout<<"cf = "<<cf<<endl;
+    if(cf>0 && cf<=11){
+        WorldObject* opponentCF = worldModel->getWorldObject( cf );
+        if (opponentCF->validPosition) {
+            temp = opponentCF->pos;
+            worldModel->getRVSender()->drawCircle("cf",temp.getX(),temp.getY(),0.4,RVSender::YELLOW);
+        } else {
+            //continue;
+        }
+        temp.setZ(0);
     }
     return SKILL_STAND;
 }
@@ -704,6 +746,7 @@ double NaoBehavior::closestDistanceTeammateToBall(int &pNum ,bool relative){
         }
     }
     pNum=playerClosestToBall;
+    worldModel->setChooseCF(pNum);
     return closestDistanceToBall;
 }
 
@@ -1400,15 +1443,6 @@ vector<vector<int> >  NaoBehavior::comb_result(int i, int j,vector<int> &r,  int
 }
 double NaoBehavior::sumDistance(map<int,VecPosition> miv){
     double result=0;
-    //
-//     for(pair<int,VecPosition> i:miv){
-// 	int playerNum=i.first;
-// 	WorldObject *playerObj=worldModel->getWorldObject(playerNum);
-// 	//need process??? 2018-4-10
-// 	VecPosition playerPos=playerObj->pos;
-// 	double d=playerPos.getDistanceTo(i.second);
-// 	result+=d;
-//     }
     map<int,VecPosition>::iterator mit=miv.begin();
     while(mit!=miv.end()){
         int playerNum=mit->first;
