@@ -430,6 +430,8 @@ CMakeFiles/agentspark.dir/optimization/optimizationbehaviors.cc.o: utwalk/memory
 CMakeFiles/agentspark.dir/optimization/optimizationbehaviors.cc.o: utwalk/memory/WalkRequestBlock.h
 
 CMakeFiles/agentspark.dir/parser/parser.cc.o: audio/audio.h
+CMakeFiles/agentspark.dir/parser/parser.cc.o: behaviors/behavior.h
+CMakeFiles/agentspark.dir/parser/parser.cc.o: behaviors/naobehavior.h
 CMakeFiles/agentspark.dir/parser/parser.cc.o: bodymodel/bodymodel.h
 CMakeFiles/agentspark.dir/parser/parser.cc.o: headers/Field.h
 CMakeFiles/agentspark.dir/parser/parser.cc.o: headers/headers.h
@@ -446,6 +448,8 @@ CMakeFiles/agentspark.dir/parser/parser.cc.o: parser/parser.h
 CMakeFiles/agentspark.dir/parser/parser.cc.o: particlefilter/PFLocalization.h
 CMakeFiles/agentspark.dir/parser/parser.cc.o: particlefilter/Particle.h
 CMakeFiles/agentspark.dir/parser/parser.cc.o: rvdraw/rvdraw.h
+CMakeFiles/agentspark.dir/parser/parser.cc.o: skills/curve3d.h
+CMakeFiles/agentspark.dir/parser/parser.cc.o: skills/skill.h
 CMakeFiles/agentspark.dir/parser/parser.cc.o: worldmodel/WorldObject.h
 CMakeFiles/agentspark.dir/parser/parser.cc.o: worldmodel/worldmodel.h
 CMakeFiles/agentspark.dir/parser/parser.cc.o: utwalk/MotionCore.h

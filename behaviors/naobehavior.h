@@ -105,6 +105,8 @@ protected:
     VecPosition kickDirection;
     int kickType;
     VecPosition kickTarget;
+    
+    VecPosition lastTarget;//cx
 
     double lastGetupRecoveryTime;
 
@@ -244,6 +246,7 @@ protected:
     SkillType goToTargetAllPlayer(std::map<std::vector<int>, std::map<int,VecPosition> > roleMap,unsigned int num, bool collisionAvoid=false);
     void print_goToTargetAllPlayer(map<vector<int>, map<int,VecPosition> > roleMap, unsigned int num);
     void printD(map<vector<int>, map<int,VecPosition> > roleMap);
+    VecPosition targetPoint();
     
     map<vector<int>, map<int,VecPosition> > dynamicPlanningFunction(vector<int> agents, vector<VecPosition> positions);
     map<vector<int>, map<int,VecPosition> > dPF3(vector<int> agents, vector<VecPosition> positions);

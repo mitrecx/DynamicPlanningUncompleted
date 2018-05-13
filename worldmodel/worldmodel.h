@@ -27,6 +27,7 @@ private:
     int lastDifferentPlayMode;
     int uNum;
     int side;
+    
 
     bool uNumSet;
     bool sideSet;
@@ -73,7 +74,7 @@ private:
     //cx 2018-5-6
     int chooseCF;
     vector<int> CFVoteResult;
-    
+    vector<VecPosition> ballPosTeammate;
     
     HCTMatrix localToGlobal, globalToLocal;
 
@@ -494,6 +495,18 @@ public:
     void setCFVoteResult(int index, int chooseCF){
         CFVoteResult[index]=chooseCF;
     }
+    VecPosition getBallPosTeammate(int index) const{
+        return ballPosTeammate[index];
+    }
+    void setBallPosTeammate(int index, VecPosition ballpos){
+        ballPosTeammate[index]=ballpos;
+    }
+    void setBallPosTeammate_X(int index, double bPosX){
+        ballPosTeammate[index].setX(bPosX);
+    }
+    void setBallPosTeammate_Y(int index, double bPosY){
+        ballPosTeammate[index].setY(bPosY);
+    }
     
     bool getFallenTeammate(int index) const {
         return fallenTeammate[index];
@@ -522,6 +535,7 @@ public:
         return opponentKalmanFilters;
     }
 
+    int lastCF; //cx
     void display();
 };
 

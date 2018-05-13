@@ -29,18 +29,18 @@ void NaoBehavior::beam( double& beamX, double& beamY, double& beamAngle ) {
         beamAngle=0;
         break;
     case 4:
-        beamX=-HALF_FIELD_X+5;
-        beamY=0;
+        beamX=-HALF_FIELD_X+4;
+        beamY=-3;
         beamAngle=0;
         break;
     case 5:
-        beamX=-HALF_FIELD_X+7;
-        beamY=1.5;
+        beamX=-HALF_FIELD_X+4;
+        beamY=3;
         beamAngle=0;
         break;
     case 6:
-        beamX=-HALF_FIELD_X+7;
-        beamY=-3;
+        beamX=-HALF_FIELD_X+11;
+        beamY=-4.5;
         beamAngle=0;
         break;
     case 7:
@@ -49,8 +49,8 @@ void NaoBehavior::beam( double& beamX, double& beamY, double& beamAngle ) {
         beamAngle=0;
         break;
     case 8:
-        beamX=-HALF_FIELD_X+11;
-        beamY=-7.5;
+        beamX=-HALF_FIELD_X+14;
+        beamY=-6.3;
         beamAngle=0;
 	break;
     case 9:
@@ -128,8 +128,8 @@ SkillType NaoBehavior::selectSkill() {
     // Demo behavior where players form a rotating circle and kick the ball
     // back and forth
     //return demoKickingCircle();
-    //return demoDynamicPlanning();
-    return testSkill();
+    return demoDynamicPlanning();
+    //return testSkill();
 }
 SkillType NaoBehavior::testSkill(){
      //test getTurnEasyTeammate,
@@ -151,9 +151,11 @@ SkillType NaoBehavior::testSkill(){
             worldModel->getRVSender()->drawCircle("c",temp.getX(),temp.getY(),0.2,RVSender::YELLOW);
         }
         temp.setZ(0);
-        
     }
     */
+    
+    //test vote CFs
+    /*
     int tmNum;
     closestDistanceTeammateToBall(tmNum);
     VecPosition temp;
@@ -165,22 +167,26 @@ SkillType NaoBehavior::testSkill(){
         //continue;
     }
     temp.setZ(0);
-    vector<int> maxCount(11);
+    vector<int> count(11);
 //     for(int i=0;i<11;i++)
 //         cout<<"mx="<<maxCount[i]<<' ';
 //     cout<<endl;
     for(int i=0;i<11;i++){
         if(worldModel->getCFVoteResult(i)>0)
-            ++maxCount[worldModel->getCFVoteResult(i)-1];
+            ++count[worldModel->getCFVoteResult(i)-1];
         //cout<<worldModel->getCFVoteResult(i)<<' ';
     }
     //cout<<endl;
-    int tempMaxCount=0;
+    int maxCount=0;
     int cf;
     for(int i=0;i<11;i++){
-        if(tempMaxCount<maxCount[i]){
-            tempMaxCount=maxCount[i];
+        if(maxCount<count[i]){
+            maxCount=count[i];
             cf=i+1;
+        }
+        if(maxCount==count[i]){
+            if(i+1==worldModel->lastCF)
+                cf=i+1;
         }
     }
     //cout<<"cf = "<<cf<<endl;
@@ -194,11 +200,100 @@ SkillType NaoBehavior::testSkill(){
         }
         temp.setZ(0);
     }
+    worldModel->lastCF=cf;
+    */
+    
+    //test dynamicPlanningFunction problem
+    /*
+    if(worldModel->getUNum()!=1){
+        map<vector<int>, map<int,VecPosition> >roleMap=dynamicPlanningFunction(printPlayerNum(),printPoints());
+        print_goToTargetAllPlayer(roleMap,10); //TODO:optimizition
+        return goToTargetAllPlayer(roleMap,10);
+    }/ki    
+    
+    */
+    
+    //test see ball , exception(TODO): delayed position the ball
+    /*
+    map<int,int> possBallX,possBallY;
+    for(int i=0;i<11;i++){
+        double bxi=worldModel->getBallPosTeammate(i).getX();
+        double byi=worldModel->getBallPosTeammate(i).getY();
+        int bxi_int=bxi*10;
+        int byi_int=byi*10;
+        if(possBallX.count(bxi_int)==0)
+            possBallX[bxi_int]=1;
+        else
+            possBallX[bxi_int]++;
+        if(possBallY.count(byi_int)==0)
+            possBallY[byi_int]=1;
+        else
+            possBallY[byi_int]++;
+    }
+    
+    map<int,int>::iterator mapit=possBallX.begin();
+    map<int,int>::iterator mapity=possBallY.begin();
+    int mostTimeX=0;
+    int computedX_int=0;
+    int mostTimeY=0;
+    int computedY_int=0;
+    while(mapit!=possBallX.end()){
+        //cout<<"first: "<<mapit->first<< " --- "<< mapit->second<<endl;
+        if(mostTimeX < mapit->second){
+            mostTimeX=mapit->second;
+            computedX_int=mapit->first;
+        }
+        ++mapit;
+    }
+    while(mapity!=possBallY.end()){
+        if(mostTimeY < mapity->second){
+            mostTimeY=mapity->second;
+            computedY_int=mapity->first;
+        }
+        ++mapity;
+    }
+    int validCountX=0;
+    double validSumX=0;
+    int validCountY=0;
+    double validSumY=0;
+    for(int i=0;i<11;++i){
+        double bxi=worldModel->getBallPosTeammate(i).getX();
+        double byi=worldModel->getBallPosTeammate(i).getY();
+        double compX=computedX_int;
+        double compY=computedY_int;
+        if((bxi>compX/10-0.06) && (bxi<compX/10+0.06)){
+            //cout<<computedX_int/10<<"  ----computed"<<endl;
+            //cout<<bxi<<endl;
+            validCountX++;
+            validSumX+=bxi;
+        }
+        if((byi>compY/10-0.06) && (byi<compY/10+0.06)){
+            //cout<<computedY_int/10<<"  ----computed"<<endl;
+            //cout<<byi<<endl;
+            validCountY++;
+            validSumY+=byi;
+        }
+    }
+    double computedX=0;
+    if(validCountX>0){
+        computedX=validSumX/validCountX;
+        //ball.setX(computedX);
+    }
+    double computedY=0;
+    if(validCountY>0){
+        computedY=validSumY/validCountY;
+        //ball.setY(computedY);
+    }
+    worldModel->getRVSender()->drawPoint("ballme",ball.getX(),ball.getY(),30.0f,RVSender::ORANGE);
+    worldModel->getRVSender()->drawPoint("ballme",computedX,computedY,30.0f,RVSender::RED);
+    */
+    
     return SKILL_STAND;
 }
 
 
-/*
+/*Demo behavior where players form a rotating circle and kick the ball
+ * back and forth
  * Demo behavior where players form a rotating circle and kick the ball
  * back and forth
  */
@@ -267,14 +362,16 @@ SkillType NaoBehavior::demoKickingCircle() {
 
 SkillType NaoBehavior::demoDynamicPlanning(){
     //目标点
-    VecPosition center = VecPosition(HALF_FIELD_X, 0, 0);
+    VecPosition center = targetPoint();
+    
+    
    // worldModel->getRVSender()->drawPoint("target",center.getX(),center.getY(),10.0f, RVSender::VIOLET);
     //worldModel->getRVSender()->drawLine("TtoB",center.getX(),center.getY(),ball.getX(),ball.getY(),RVSender::GREEN);
     //worldModel->getRVSender()->drawCircle("b",ball.getX(),ball.getY(),1,RVSender::BLUE);
     //get the closest opponent to ball 
     int opponentClosestToBall=-1;
-    closestDistanceOpponentToBall(&opponentClosestToBall);
-    worldModel->getRVSender()->drawCircle("1",-HALF_FIELD_X,0,2,RVSender::VIOLET);
+    double oppoClosest=closestDistanceOpponentToBall(&opponentClosestToBall);
+    //worldModel->getRVSender()->drawCircle("1",ball.getX(),ball.getY(),1,RVSender::VIOLET);
 //  worldModel->getRVSender()->drawCircle("my",worldModel->getWorldObject( opponentClosestToBall )->pos.getX(),
 //	worldModel->getWorldObject(opponentClosestToBall)->pos.getY(),0.2f, RVSender::MAGENTA);
     
@@ -419,14 +516,39 @@ SkillType NaoBehavior::demoDynamicPlanning(){
         }
     }
     
-    if(worldModel->getPlayMode()==PM_PLAY_ON || worldModel->getPlayMode()== PM_FREE_KICK_LEFT || worldModel->getPlayMode()==PM_KICK_IN_LEFT){
+    if(worldModel->getPlayMode()==PM_PLAY_ON || worldModel->getPlayMode()== PM_FREE_KICK_LEFT || worldModel->getPlayMode()==PM_KICK_IN_LEFT ){
         if(worldModel->getUNum()==mynum ){
             if(worldModel->getPlayMode()==PM_PLAY_ON){
+                //VecPosition center=targetPoint();
                 worldModel->getRVSender()->drawCircle("2",me.getX(),me.getY(),0.2,RVSender::PINK);
-                return kickBall(KICK_IK,center);}
+                VecPosition pos = worldModel->getMyPosition();
+                VecPosition dir = VecPosition(2,0,0);
+                dir = dir.rotateAboutZ(-worldModel->getMyAngDeg());
+                worldModel->getRVSender()->drawLine("123",pos.getX(), pos.getY(), pos.getX()+dir.getX(), pos.getY()+dir.getY());
+                lastTarget=VecPosition( pos.getX()+dir.getX(), pos.getY()+dir.getY(),0);
+ 
+                //worldModel->getRVSender()->drawPoint("2",lastTarget.getX(),lastTarget.getY(),20,RVSender::GREEN);
+                if(oppoClosest<1 && ball.getX()<12.5){                    
+                    center=lastTarget;
+                    worldModel->getRVSender()->drawPoint("2",center.getX(),center.getY(),20,RVSender::RED);
+                    return kickBall(KICK_DRIBBLE,center);
+                }
+                worldModel->getRVSender()->drawPoint("2",center.getX(),center.getY(),20,RVSender::RED);
+                if(ball.getDistanceTo(center)<5){
+                    if(oppoClosest>3)
+                        return kickBall(KICK_FORWARD,center);
+                    if(oppoClosest>0.6)
+                        return kickBall(KICK_FORWARD,center);
+                    return kickBall(KICK_DRIBBLE,center);
+                }else{
+                       return kickBall(KICK_DRIBBLE,center);
+                }
+            }
             if(worldModel->getPlayMode()==PM_PLAY_ON)
                 return kickBall(KICK_FORWARD,target_FreeKickLeft());
             if(worldModel->getPlayMode()==PM_KICK_IN_LEFT)
+                return kickBall(KICK_FORWARD,target_KickInLeft());
+            if(worldModel->getPlayMode()==PM_FREE_KICK_LEFT)
                 return kickBall(KICK_FORWARD,target_KickInLeft());
         }
         if(worldModel->getUNum() ==11 || worldModel->getUNum()==10 || worldModel->getUNum()==9 ||           worldModel->getUNum()==8 ||worldModel->getUNum()==7 ){
@@ -695,6 +817,27 @@ SkillType NaoBehavior::demoDynamicPlanning(){
 //     cout<<"=================="<<endl;
     return SKILL_STAND;
     //return getWalk(0,0); //the fastest possible speed walk
+}
+VecPosition NaoBehavior::targetPoint(){
+//     VecPosition pos = worldModel->getMyPosition();
+//     VecPosition dir = VecPosition(1,0,0);
+//     dir = dir.rotateAboutZ(-worldModel->getMyAngDeg());
+//     worldModel->getRVSender()->drawLine("q",pos.getX(), pos.getY(), pos.getX()+dir.getX(), pos.getY()+dir.getY());
+//     return VecPosition(pos.getX()+dir.getX(), pos.getY()+dir.getY(),0);
+    if(ball.getX()>14 ){
+        if(ball.getY()>-1 && ball.getY()<1)
+            return lastTarget;
+        if(ball.getY()>-2 && ball.getY()<=-1)
+            return VecPosition(ball.getX()+1,ball.getY(),0);
+        if(ball.getY()<2 && ball.getY()>=1)
+            return VecPosition(ball.getX()+1,ball.getY(),0);
+        return VecPosition(HALF_FIELD_X,0,0);
+    }else{
+        if(ball.getY()<=0)
+            return VecPosition(HALF_FIELD_X,-0.5,0);
+        else
+            return VecPosition(HALF_FIELD_X,0.5,0);
+    }
 }
 void NaoBehavior::printD(map<vector<int>, map<int,VecPosition> > roleMap){
     map<int, VecPosition> rolePlanning;

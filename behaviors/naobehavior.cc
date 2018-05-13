@@ -28,6 +28,7 @@ NaoBehavior(const std::string teamName, int uNum, const map<string, string>& nam
 
     //cout << "Constructing of Nao Behavior" << endl;
 
+    lastTarget=VecPosition(15,0,0);
     srand ((unsigned)time(NULL) );
     srand48((unsigned)time(NULL));
 

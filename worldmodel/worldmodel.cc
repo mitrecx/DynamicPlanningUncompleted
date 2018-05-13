@@ -13,6 +13,7 @@ WorldModel::WorldModel() {
     lastPlayMode = PM_GAME_OVER;
     lastDifferentPlayMode = PM_GAME_OVER;
 
+    lastCF=0; //cx
     
     uNum = 1;//dummy
     uNumSet = false;
@@ -64,12 +65,14 @@ WorldModel::WorldModel() {
     fallenOpponent = vector<bool>(NUM_AGENTS);
     turnEasyTeammate=vector<bool>(NUM_AGENTS); //cx
     CFVoteResult=vector<int>(NUM_AGENTS);
+    ballPosTeammate=vector<VecPosition>(NUM_AGENTS);
 
     for (int i = 0; i < NUM_AGENTS; i++) {
         fallenTeammate[i] = false;
         fallenOpponent[i] = false;
         turnEasyTeammate[i]=false;
         CFVoteResult[i]=0;
+        ballPosTeammate[i]=VecPosition(0,0,0);
     }
 
     rvsend = new RVSender();

@@ -459,6 +459,8 @@ bool Parser::parseHear(const string &str) {
         worldModel->setFallenTeammate(playerNum-1, fallen);
         worldModel->setTurnEasyTeammate(playerNum-1,turneasy); //cx
         worldModel->setCFVoteResult(playerNum-1,choosecf);
+        worldModel->setBallPosTeammate_X(playerNum-1,ballX);
+        worldModel->setBallPosTeammate_Y(playerNum-1,ballY);
         //cout<<"====processHearMessage_CX successful====="<<endl;
         if (!self && !fallen) {
             static VecPosition lastHeardBallPos = VecPosition(0,0,0);

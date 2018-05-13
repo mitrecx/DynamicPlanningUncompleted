@@ -6,5 +6,5 @@ CXX_FLAGS = -Wall -Wextra -Wno-unused -O3 -DNDEBUG
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/mitre/qt-ut/utwalk -I/usr/local/include/simspark 
+CXX_INCLUDES = -I/home/miracle/DynamicPlanningUncompleted/utwalk -I/usr/local/include/simspark 
 

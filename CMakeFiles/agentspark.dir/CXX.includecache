@@ -6,55 +6,55 @@
 
 #IncludeRegexTransform: 
 
-/home/mitre/qt-ut/audio/audio.cc
+/home/miracle/DynamicPlanningUncompleted/audio/audio.cc
 iostream
 -
 audio.h
-/home/mitre/qt-ut/audio/audio.h
+/home/miracle/DynamicPlanningUncompleted/audio/audio.h
 ../headers/Field.h
-/home/mitre/qt-ut/headers/Field.h
+/home/miracle/DynamicPlanningUncompleted/headers/Field.h
 
-/home/mitre/qt-ut/audio/audio.h
+/home/miracle/DynamicPlanningUncompleted/audio/audio.h
 string
 -
 vector
 -
 
-/home/mitre/qt-ut/behaviors/behavior.cc
+/home/miracle/DynamicPlanningUncompleted/behaviors/behavior.cc
 behavior.h
-/home/mitre/qt-ut/behaviors/behavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/behavior.h
 
-/home/mitre/qt-ut/behaviors/behavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/behavior.h
 string
 -
 
-/home/mitre/qt-ut/behaviors/checkfall.cc
+/home/miracle/DynamicPlanningUncompleted/behaviors/checkfall.cc
 naobehavior.h
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 
-/home/mitre/qt-ut/behaviors/gazebobehavior.cc
+/home/miracle/DynamicPlanningUncompleted/behaviors/gazebobehavior.cc
 gazebobehavior.h
-/home/mitre/qt-ut/behaviors/gazebobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/gazebobehavior.h
 
-/home/mitre/qt-ut/behaviors/gazebobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/gazebobehavior.h
 naobehavior.h
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 
-/home/mitre/qt-ut/behaviors/kicking.cc
+/home/miracle/DynamicPlanningUncompleted/behaviors/kicking.cc
 naobehavior.h
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 list
 -
 algorithm
 -
 ../rvdraw/rvdraw.h
-/home/mitre/qt-ut/rvdraw/rvdraw.h
+/home/miracle/DynamicPlanningUncompleted/rvdraw/rvdraw.h
 sys/time.h
 -
 
-/home/mitre/qt-ut/behaviors/naobehavior.cc
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.cc
 naobehavior.h
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 iostream
 -
 sstream
@@ -68,9 +68,9 @@ cctype
 exception
 -
 ../skills/skillparser.h
-/home/mitre/qt-ut/skills/skillparser.h
+/home/miracle/DynamicPlanningUncompleted/skills/skillparser.h
 ../rvdraw/rvdraw.h
-/home/mitre/qt-ut/rvdraw/rvdraw.h
+/home/miracle/DynamicPlanningUncompleted/rvdraw/rvdraw.h
 assert.h
 -
 common/InterfaceInfo.h
@@ -78,21 +78,21 @@ common/InterfaceInfo.h
 motion/MotionModule.h
 -
 
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 behavior.h
-/home/mitre/qt-ut/behaviors/behavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/behavior.h
 ../headers/headers.h
-/home/mitre/qt-ut/headers/headers.h
+/home/miracle/DynamicPlanningUncompleted/headers/headers.h
 ../parser/parser.h
-/home/mitre/qt-ut/parser/parser.h
+/home/miracle/DynamicPlanningUncompleted/parser/parser.h
 ../worldmodel/worldmodel.h
-/home/mitre/qt-ut/worldmodel/worldmodel.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.h
 ../bodymodel/bodymodel.h
-/home/mitre/qt-ut/bodymodel/bodymodel.h
+/home/miracle/DynamicPlanningUncompleted/bodymodel/bodymodel.h
 ../particlefilter/PFLocalization.h
-/home/mitre/qt-ut/particlefilter/PFLocalization.h
+/home/miracle/DynamicPlanningUncompleted/particlefilter/PFLocalization.h
 ../skills/skill.h
-/home/mitre/qt-ut/skills/skill.h
+/home/miracle/DynamicPlanningUncompleted/skills/skill.h
 MotionCore.h
 -
 memory/Memory.h
@@ -110,23 +110,23 @@ memory/SimEffectorBlock.h
 memory/WalkRequestBlock.h
 -
 
-/home/mitre/qt-ut/behaviors/pkbehaviors.cc
+/home/miracle/DynamicPlanningUncompleted/behaviors/pkbehaviors.cc
 pkbehaviors.h
-/home/mitre/qt-ut/behaviors/pkbehaviors.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/pkbehaviors.h
 
-/home/mitre/qt-ut/behaviors/pkbehaviors.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/pkbehaviors.h
 naobehavior.h
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 
-/home/mitre/qt-ut/behaviors/strategy.cc
+/home/miracle/DynamicPlanningUncompleted/behaviors/strategy.cc
 naobehavior.h
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 ../rvdraw/rvdraw.h
-/home/mitre/qt-ut/rvdraw/rvdraw.h
+/home/miracle/DynamicPlanningUncompleted/rvdraw/rvdraw.h
 
-/home/mitre/qt-ut/bodymodel/bodymodel.cc
+/home/miracle/DynamicPlanningUncompleted/bodymodel/bodymodel.cc
 bodymodel.h
-/home/mitre/qt-ut/bodymodel/bodymodel.h
+/home/miracle/DynamicPlanningUncompleted/bodymodel/bodymodel.h
 common/RobotInfo.h
 -
 algorithm
@@ -140,33 +140,33 @@ memory/JointBlock.h
 memory/JointCommandBlock.h
 -
 
-/home/mitre/qt-ut/bodymodel/bodymodel.h
+/home/miracle/DynamicPlanningUncompleted/bodymodel/bodymodel.h
 ../headers/headers.h
-/home/mitre/qt-ut/headers/headers.h
+/home/miracle/DynamicPlanningUncompleted/headers/headers.h
 ../math/vecposition.h
-/home/mitre/qt-ut/math/vecposition.h
+/home/miracle/DynamicPlanningUncompleted/math/vecposition.h
 ../math/hctmatrix.h
-/home/mitre/qt-ut/math/hctmatrix.h
+/home/miracle/DynamicPlanningUncompleted/math/hctmatrix.h
 ../worldmodel/worldmodel.h
-/home/mitre/qt-ut/worldmodel/worldmodel.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.h
 ../ikfast/ikfast.h
-/home/mitre/qt-ut/ikfast/ikfast.h
+/home/miracle/DynamicPlanningUncompleted/ikfast/ikfast.h
 sstream
 -
 
-/home/mitre/qt-ut/headers/Field.h
+/home/miracle/DynamicPlanningUncompleted/headers/Field.h
 ../worldmodel/WorldObject.h
-/home/mitre/qt-ut/worldmodel/WorldObject.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/WorldObject.h
 ../math/Geometry.h
-/home/mitre/qt-ut/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/math/Geometry.h
 stdio.h
 -
 
-/home/mitre/qt-ut/headers/headers.cc
+/home/miracle/DynamicPlanningUncompleted/headers/headers.cc
 headers.h
-/home/mitre/qt-ut/headers/headers.h
+/home/miracle/DynamicPlanningUncompleted/headers/headers.h
 
-/home/mitre/qt-ut/headers/headers.h
+/home/miracle/DynamicPlanningUncompleted/headers/headers.h
 map
 -
 string
@@ -178,21 +178,21 @@ ostream
 sstream
 -
 
-/home/mitre/qt-ut/ikfast/ikfast.cpp
+/home/miracle/DynamicPlanningUncompleted/ikfast/ikfast.cpp
 cassert
 -
 ikfast.h
-/home/mitre/qt-ut/ikfast/ikfast.h
+/home/miracle/DynamicPlanningUncompleted/ikfast/ikfast.h
 ikfast_left_foot.cpp
-/home/mitre/qt-ut/ikfast/ikfast_left_foot.cpp
+/home/miracle/DynamicPlanningUncompleted/ikfast/ikfast_left_foot.cpp
 ikfast_right_foot.cpp
-/home/mitre/qt-ut/ikfast/ikfast_right_foot.cpp
+/home/miracle/DynamicPlanningUncompleted/ikfast/ikfast_right_foot.cpp
 
-/home/mitre/qt-ut/ikfast/ikfast.h
+/home/miracle/DynamicPlanningUncompleted/ikfast/ikfast.h
 vector
 -
 
-/home/mitre/qt-ut/ikfast/ikfast_left_foot.cpp
+/home/miracle/DynamicPlanningUncompleted/ikfast/ikfast_left_foot.cpp
 cmath
 -
 vector
@@ -212,7 +212,7 @@ stdio.h
 stdlib.h
 -
 
-/home/mitre/qt-ut/ikfast/ikfast_right_foot.cpp
+/home/miracle/DynamicPlanningUncompleted/ikfast/ikfast_right_foot.cpp
 cmath
 -
 vector
@@ -232,69 +232,69 @@ stdio.h
 stdlib.h
 -
 
-/home/mitre/qt-ut/kalman/BallKF.cpp
+/home/miracle/DynamicPlanningUncompleted/kalman/BallKF.cpp
 BallKF.h
-/home/mitre/qt-ut/kalman/BallKF.h
+/home/miracle/DynamicPlanningUncompleted/kalman/BallKF.h
 iostream
 -
 cstdlib
 -
 
-/home/mitre/qt-ut/kalman/BallKF.h
+/home/miracle/DynamicPlanningUncompleted/kalman/BallKF.h
 OrigKalmanFilter.h
-/home/mitre/qt-ut/kalman/OrigKalmanFilter.h
+/home/miracle/DynamicPlanningUncompleted/kalman/OrigKalmanFilter.h
 common/NMatrix.h
 -
 ../math/Geometry.h
-/home/mitre/qt-ut/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/math/Geometry.h
 ../headers/Field.h
-/home/mitre/qt-ut/headers/Field.h
+/home/miracle/DynamicPlanningUncompleted/headers/Field.h
 ../worldmodel/WorldObject.h
-/home/mitre/qt-ut/worldmodel/WorldObject.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/WorldObject.h
 ../worldmodel/worldmodel.h
-/home/mitre/qt-ut/worldmodel/worldmodel.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.h
 stdarg.h
 -
 
-/home/mitre/qt-ut/kalman/OrigKalmanFilter.cpp
+/home/miracle/DynamicPlanningUncompleted/kalman/OrigKalmanFilter.cpp
 OrigKalmanFilter.h
-/home/mitre/qt-ut/kalman/OrigKalmanFilter.h
+/home/miracle/DynamicPlanningUncompleted/kalman/OrigKalmanFilter.h
 math/Geometry.h
 -
 iostream
 -
 
-/home/mitre/qt-ut/kalman/OrigKalmanFilter.h
+/home/miracle/DynamicPlanningUncompleted/kalman/OrigKalmanFilter.h
 math.h
 -
 common/NMatrix.h
 -
 
-/home/mitre/qt-ut/kalman/PlayerKF.cpp
+/home/miracle/DynamicPlanningUncompleted/kalman/PlayerKF.cpp
 PlayerKF.h
-/home/mitre/qt-ut/kalman/PlayerKF.h
+/home/miracle/DynamicPlanningUncompleted/kalman/PlayerKF.h
 iostream
 -
 cstdlib
 -
 
-/home/mitre/qt-ut/kalman/PlayerKF.h
+/home/miracle/DynamicPlanningUncompleted/kalman/PlayerKF.h
 OrigKalmanFilter.h
-/home/mitre/qt-ut/kalman/OrigKalmanFilter.h
+/home/miracle/DynamicPlanningUncompleted/kalman/OrigKalmanFilter.h
 common/NMatrix.h
 -
 ../math/Geometry.h
-/home/mitre/qt-ut/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/math/Geometry.h
 ../headers/Field.h
-/home/mitre/qt-ut/headers/Field.h
+/home/miracle/DynamicPlanningUncompleted/headers/Field.h
 ../worldmodel/WorldObject.h
-/home/mitre/qt-ut/worldmodel/WorldObject.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/WorldObject.h
 ../worldmodel/worldmodel.h
-/home/mitre/qt-ut/worldmodel/worldmodel.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.h
 stdarg.h
 -
 
-/home/mitre/qt-ut/main.cc
+/home/miracle/DynamicPlanningUncompleted/main.cc
 errno.h
 -
 signal.h
@@ -312,95 +312,97 @@ rcssnet/exception.hpp
 netinet/in.h
 -
 behaviors/behavior.h
-/home/mitre/qt-ut/behaviors/behavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/behavior.h
 behaviors/naobehavior.h
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 optimization/optimizationbehaviors.h
-/home/mitre/qt-ut/optimization/optimizationbehaviors.h
+/home/miracle/DynamicPlanningUncompleted/optimization/optimizationbehaviors.h
 behaviors/pkbehaviors.h
-/home/mitre/qt-ut/behaviors/pkbehaviors.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/pkbehaviors.h
 behaviors/gazebobehavior.h
-/home/mitre/qt-ut/behaviors/gazebobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/gazebobehavior.h
 
-/home/mitre/qt-ut/math/Geometry.cc
+/home/miracle/DynamicPlanningUncompleted/math/Geometry.cc
 assert.h
 -
 stdio.h
 -
 Geometry.h
-/home/mitre/qt-ut/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/math/Geometry.h
 
-/home/mitre/qt-ut/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/math/Geometry.h
 cmath
 -
 iostream
 -
 vecposition.h
-/home/mitre/qt-ut/math/vecposition.h
+/home/miracle/DynamicPlanningUncompleted/math/vecposition.h
 
-/home/mitre/qt-ut/math/hctmatrix.cc
+/home/miracle/DynamicPlanningUncompleted/math/hctmatrix.cc
 hctmatrix.h
-/home/mitre/qt-ut/math/hctmatrix.h
+/home/miracle/DynamicPlanningUncompleted/math/hctmatrix.h
 
-/home/mitre/qt-ut/math/hctmatrix.h
+/home/miracle/DynamicPlanningUncompleted/math/hctmatrix.h
 ../headers/headers.h
-/home/mitre/qt-ut/headers/headers.h
+/home/miracle/DynamicPlanningUncompleted/headers/headers.h
 vecposition.h
-/home/mitre/qt-ut/math/vecposition.h
+/home/miracle/DynamicPlanningUncompleted/math/vecposition.h
 iostream
 -
 
-/home/mitre/qt-ut/math/vecposition.cc
+/home/miracle/DynamicPlanningUncompleted/math/vecposition.cc
 vecposition.h
-/home/mitre/qt-ut/math/vecposition.h
+/home/miracle/DynamicPlanningUncompleted/math/vecposition.h
 
-/home/mitre/qt-ut/math/vecposition.h
+/home/miracle/DynamicPlanningUncompleted/math/vecposition.h
 math.h
-/home/mitre/qt-ut/math/math.h
+/home/miracle/DynamicPlanningUncompleted/math/math.h
 string.h
 -
 iostream
 -
 ../headers/headers.h
-/home/mitre/qt-ut/headers/headers.h
+/home/miracle/DynamicPlanningUncompleted/headers/headers.h
 
-/home/mitre/qt-ut/optimization/optimizationbehaviors.cc
+/home/miracle/DynamicPlanningUncompleted/optimization/optimizationbehaviors.cc
 optimizationbehaviors.h
-/home/mitre/qt-ut/optimization/optimizationbehaviors.h
+/home/miracle/DynamicPlanningUncompleted/optimization/optimizationbehaviors.h
 fstream
 -
 
-/home/mitre/qt-ut/optimization/optimizationbehaviors.h
+/home/miracle/DynamicPlanningUncompleted/optimization/optimizationbehaviors.h
 ../behaviors/naobehavior.h
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 
-/home/mitre/qt-ut/parser/VisionObject.h
+/home/miracle/DynamicPlanningUncompleted/parser/VisionObject.h
 ../math/vecposition.h
-/home/mitre/qt-ut/math/vecposition.h
+/home/miracle/DynamicPlanningUncompleted/math/vecposition.h
 
-/home/mitre/qt-ut/parser/parser.cc
+/home/miracle/DynamicPlanningUncompleted/parser/parser.cc
 cmath
 -
 parser.h
-/home/mitre/qt-ut/parser/parser.h
+/home/miracle/DynamicPlanningUncompleted/parser/parser.h
 ../worldmodel/WorldObject.h
-/home/mitre/qt-ut/worldmodel/WorldObject.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/WorldObject.h
 ../audio/audio.h
-/home/mitre/qt-ut/audio/audio.h
+/home/miracle/DynamicPlanningUncompleted/audio/audio.h
 ../headers/headers.h
-/home/mitre/qt-ut/headers/headers.h
+/home/miracle/DynamicPlanningUncompleted/headers/headers.h
 ../worldmodel/worldmodel.h
-/home/mitre/qt-ut/worldmodel/worldmodel.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.h
 ../bodymodel/bodymodel.h
-/home/mitre/qt-ut/bodymodel/bodymodel.h
+/home/miracle/DynamicPlanningUncompleted/bodymodel/bodymodel.h
 VisionObject.h
-/home/mitre/qt-ut/parser/VisionObject.h
+/home/miracle/DynamicPlanningUncompleted/parser/VisionObject.h
 ../particlefilter/PFLocalization.h
-/home/mitre/qt-ut/particlefilter/PFLocalization.h
+/home/miracle/DynamicPlanningUncompleted/particlefilter/PFLocalization.h
 ../kalman/BallKF.h
-/home/mitre/qt-ut/kalman/BallKF.h
+/home/miracle/DynamicPlanningUncompleted/kalman/BallKF.h
 ../kalman/PlayerKF.h
-/home/mitre/qt-ut/kalman/PlayerKF.h
+/home/miracle/DynamicPlanningUncompleted/kalman/PlayerKF.h
+../behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 memory/Memory.h
 -
 memory/FrameInfoBlock.h
@@ -416,7 +418,7 @@ memory/SimEffectorBlock.h
 sys/time.h
 -
 
-/home/mitre/qt-ut/parser/parser.h
+/home/miracle/DynamicPlanningUncompleted/parser/parser.h
 iostream
 -
 string
@@ -428,57 +430,57 @@ vector
 boost/shared_ptr.hpp
 -
 ../headers/headers.h
-/home/mitre/qt-ut/headers/headers.h
+/home/miracle/DynamicPlanningUncompleted/headers/headers.h
 
-/home/mitre/qt-ut/particlefilter/MyRandom.h
+/home/miracle/DynamicPlanningUncompleted/particlefilter/MyRandom.h
 iostream
 -
 sys/time.h
 -
 
-/home/mitre/qt-ut/particlefilter/PFLocalization.cc
+/home/miracle/DynamicPlanningUncompleted/particlefilter/PFLocalization.cc
 PFLocalization.h
-/home/mitre/qt-ut/particlefilter/PFLocalization.h
+/home/miracle/DynamicPlanningUncompleted/particlefilter/PFLocalization.h
 iostream
 -
 iomanip
 -
 MyRandom.h
-/home/mitre/qt-ut/particlefilter/MyRandom.h
+/home/miracle/DynamicPlanningUncompleted/particlefilter/MyRandom.h
 motion/MotionModule.h
 -
 
-/home/mitre/qt-ut/particlefilter/PFLocalization.h
+/home/miracle/DynamicPlanningUncompleted/particlefilter/PFLocalization.h
 Particle.h
-/home/mitre/qt-ut/particlefilter/Particle.h
+/home/miracle/DynamicPlanningUncompleted/particlefilter/Particle.h
 ../worldmodel/worldmodel.h
-/home/mitre/qt-ut/worldmodel/worldmodel.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.h
 ../bodymodel/bodymodel.h
-/home/mitre/qt-ut/bodymodel/bodymodel.h
+/home/miracle/DynamicPlanningUncompleted/bodymodel/bodymodel.h
 ../headers/Field.h
-/home/mitre/qt-ut/headers/Field.h
+/home/miracle/DynamicPlanningUncompleted/headers/Field.h
 MotionCore.h
 -
 
-/home/mitre/qt-ut/particlefilter/Particle.cc
+/home/miracle/DynamicPlanningUncompleted/particlefilter/Particle.cc
 stdlib.h
 -
 Particle.h
-/home/mitre/qt-ut/particlefilter/Particle.h
+/home/miracle/DynamicPlanningUncompleted/particlefilter/Particle.h
 
-/home/mitre/qt-ut/particlefilter/Particle.h
+/home/miracle/DynamicPlanningUncompleted/particlefilter/Particle.h
 ../math/Geometry.h
-/home/mitre/qt-ut/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/math/Geometry.h
 ../worldmodel/WorldObject.h
-/home/mitre/qt-ut/worldmodel/WorldObject.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/WorldObject.h
 
-/home/mitre/qt-ut/rvdraw/rvdraw.cc
+/home/miracle/DynamicPlanningUncompleted/rvdraw/rvdraw.cc
 rvdraw.h
-/home/mitre/qt-ut/rvdraw/rvdraw.h
+/home/miracle/DynamicPlanningUncompleted/rvdraw/rvdraw.h
 ../worldmodel/worldmodel.h
-/home/mitre/qt-ut/worldmodel/worldmodel.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.h
 
-/home/mitre/qt-ut/rvdraw/rvdraw.h
+/home/miracle/DynamicPlanningUncompleted/rvdraw/rvdraw.h
 cstdio
 -
 cstring
@@ -516,17 +518,17 @@ sstream
 iomanip
 -
 
-/home/mitre/qt-ut/servercomm/primitives.cc
+/home/miracle/DynamicPlanningUncompleted/servercomm/primitives.cc
 ../behaviors/naobehavior.h
-/home/mitre/qt-ut/behaviors/naobehavior.h
+/home/miracle/DynamicPlanningUncompleted/behaviors/naobehavior.h
 ../audio/audio.h
-/home/mitre/qt-ut/audio/audio.h
+/home/miracle/DynamicPlanningUncompleted/audio/audio.h
 common/RobotInfo.h
 -
 
-/home/mitre/qt-ut/skills/curve3d.cc
+/home/miracle/DynamicPlanningUncompleted/skills/curve3d.cc
 curve3d.h
-/home/mitre/qt-ut/skills/curve3d.h
+/home/miracle/DynamicPlanningUncompleted/skills/curve3d.h
 cmath
 -
 cassert
@@ -534,29 +536,29 @@ cassert
 stdexcept
 -
 
-/home/mitre/qt-ut/skills/curve3d.h
+/home/miracle/DynamicPlanningUncompleted/skills/curve3d.h
 vector
 -
 ../math/vecposition.h
-/home/mitre/qt-ut/math/vecposition.h
+/home/miracle/DynamicPlanningUncompleted/math/vecposition.h
 
-/home/mitre/qt-ut/skills/skill.cc
+/home/miracle/DynamicPlanningUncompleted/skills/skill.cc
 boost/foreach.hpp
 -
 skill.h
-/home/mitre/qt-ut/skills/skill.h
+/home/miracle/DynamicPlanningUncompleted/skills/skill.h
 ../ikfast/ikfast.h
-/home/mitre/qt-ut/ikfast/ikfast.h
+/home/miracle/DynamicPlanningUncompleted/ikfast/ikfast.h
 
-/home/mitre/qt-ut/skills/skill.h
+/home/miracle/DynamicPlanningUncompleted/skills/skill.h
 boost/shared_ptr.hpp
 -
 ../bodymodel/bodymodel.h
-/home/mitre/qt-ut/bodymodel/bodymodel.h
+/home/miracle/DynamicPlanningUncompleted/bodymodel/bodymodel.h
 curve3d.h
-/home/mitre/qt-ut/skills/curve3d.h
+/home/miracle/DynamicPlanningUncompleted/skills/curve3d.h
 
-/home/mitre/qt-ut/skills/skillparser.h
+/home/miracle/DynamicPlanningUncompleted/skills/skillparser.h
 boost/spirit/include/classic_core.hpp
 -
 boost/spirit/include/classic_file_iterator.hpp
@@ -578,13 +580,13 @@ string
 vector
 -
 skill.h
-/home/mitre/qt-ut/skills/skill.h
+/home/miracle/DynamicPlanningUncompleted/skills/skill.h
 
-/home/mitre/qt-ut/utwalk/Module.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/Module.cpp
 Module.h
-/home/mitre/qt-ut/utwalk/Module.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/Module.h
 
-/home/mitre/qt-ut/utwalk/Module.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/Module.h
 string
 -
 vector
@@ -596,9 +598,9 @@ memory/MemoryBlock.h
 memory/Memory.h
 -
 
-/home/mitre/qt-ut/utwalk/MotionCore.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/MotionCore.cpp
 MotionCore.h
-/home/mitre/qt-ut/utwalk/MotionCore.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/MotionCore.h
 memory/FrameInfoBlock.h
 -
 memory/GraphableBlock.h
@@ -616,7 +618,7 @@ motion/MotionModule.h
 sensor/SensorModule.h
 -
 
-/home/mitre/qt-ut/utwalk/MotionCore.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/MotionCore.h
 memory/Memory.h
 -
 memory/FrameInfoBlock.h
@@ -626,13 +628,13 @@ memory/WalkRequestBlock.h
 memory/Logger.h
 -
 
-/home/mitre/qt-ut/utwalk/common/NMatrix.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/common/NMatrix.cpp
 NMatrix.h
-/home/mitre/qt-ut/utwalk/common/NMatrix.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/common/NMatrix.h
 string.h
 -
 
-/home/mitre/qt-ut/utwalk/common/NMatrix.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/common/NMatrix.h
 iostream
 -
 math.h
@@ -640,19 +642,19 @@ math.h
 vector
 -
 
-/home/mitre/qt-ut/utwalk/common/PIDController.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/common/PIDController.cpp
 PIDController.h
-/home/mitre/qt-ut/utwalk/common/PIDController.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/common/PIDController.h
 
-/home/mitre/qt-ut/utwalk/common/PIDController.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/common/PIDController.h
 math/Vector3.h
 -
 
-/home/mitre/qt-ut/utwalk/kinematics/ForwardKinematics.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/ForwardKinematics.cpp
 ForwardKinematics.h
-/home/mitre/qt-ut/utwalk/kinematics/ForwardKinematics.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/ForwardKinematics.h
 
-/home/mitre/qt-ut/utwalk/kinematics/ForwardKinematics.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/ForwardKinematics.h
 math/Pose3D.h
 -
 math/Vector3.h
@@ -662,29 +664,29 @@ common/MassCalibration.h
 common/RobotDimensions.h
 -
 
-/home/mitre/qt-ut/utwalk/kinematics/InverseKinematics.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/InverseKinematics.cpp
 InverseKinematics.h
-/home/mitre/qt-ut/utwalk/kinematics/InverseKinematics.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/InverseKinematics.h
 
-/home/mitre/qt-ut/utwalk/kinematics/InverseKinematics.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/InverseKinematics.h
 math/Vector2.h
-/home/mitre/qt-ut/utwalk/kinematics/math/Vector2.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/math/Vector2.h
 math/Range.h
-/home/mitre/qt-ut/utwalk/kinematics/math/Range.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/math/Range.h
 math/Pose3D.h
-/home/mitre/qt-ut/utwalk/kinematics/math/Pose3D.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/math/Pose3D.h
 math/Common.h
-/home/mitre/qt-ut/utwalk/kinematics/math/Common.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/math/Common.h
 common/RobotDimensions.h
-/home/mitre/qt-ut/utwalk/kinematics/common/RobotDimensions.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/common/RobotDimensions.h
 common/RobotInfo.h
-/home/mitre/qt-ut/utwalk/kinematics/common/RobotInfo.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/common/RobotInfo.h
 cassert
 -
 
-/home/mitre/qt-ut/utwalk/kinematics/KinematicsModule.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/KinematicsModule.cpp
 KinematicsModule.h
-/home/mitre/qt-ut/utwalk/kinematics/KinematicsModule.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/KinematicsModule.h
 kinematics/ForwardKinematics.h
 -
 common/RobotInfo.h
@@ -696,7 +698,7 @@ memory/JointBlock.h
 memory/SensorBlock.h
 -
 
-/home/mitre/qt-ut/utwalk/kinematics/KinematicsModule.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/kinematics/KinematicsModule.h
 Module.h
 -
 common/MassCalibration.h
@@ -704,77 +706,77 @@ common/MassCalibration.h
 common/RobotDimensions.h
 -
 
-/home/mitre/qt-ut/utwalk/math/Geometry.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Geometry.cpp
 assert.h
 -
 Geometry.h
-/home/mitre/qt-ut/utwalk/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Geometry.h
 cstdio
 -
 
-/home/mitre/qt-ut/utwalk/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Geometry.h
 cmath
 -
 iostream
 -
 
-/home/mitre/qt-ut/utwalk/math/MVTools.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/MVTools.cpp
 MVTools.h
-/home/mitre/qt-ut/utwalk/math/MVTools.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/MVTools.h
 limits
 -
 cstring
 -
 
-/home/mitre/qt-ut/utwalk/math/MVTools.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/MVTools.h
 
-/home/mitre/qt-ut/utwalk/math/Matrix2x2.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Matrix2x2.h
 Vector2.h
-/home/mitre/qt-ut/utwalk/math/Vector2.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Vector2.h
 limits
 -
 
-/home/mitre/qt-ut/utwalk/math/Matrix3x3.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Matrix3x3.h
 Vector3.h
-/home/mitre/qt-ut/utwalk/math/Vector3.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Vector3.h
 Matrix2x2.h
-/home/mitre/qt-ut/utwalk/math/Matrix2x2.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Matrix2x2.h
 
-/home/mitre/qt-ut/utwalk/math/Range.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Range.h
 
-/home/mitre/qt-ut/utwalk/math/RotationMatrix.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/RotationMatrix.cpp
 RotationMatrix.h
-/home/mitre/qt-ut/utwalk/math/RotationMatrix.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/RotationMatrix.h
 Range.h
-/home/mitre/qt-ut/utwalk/math/Range.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Range.h
 MVTools.h
-/home/mitre/qt-ut/utwalk/math/MVTools.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/MVTools.h
 
-/home/mitre/qt-ut/utwalk/math/RotationMatrix.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/RotationMatrix.h
 Matrix3x3.h
-/home/mitre/qt-ut/utwalk/math/Matrix3x3.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Matrix3x3.h
 
-/home/mitre/qt-ut/utwalk/math/Vector2.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Vector2.h
 cmath
 -
 iostream
 -
 
-/home/mitre/qt-ut/utwalk/math/Vector3.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/math/Vector3.h
 cmath
 -
 iostream
 -
 
-/home/mitre/qt-ut/utwalk/memory/AbstractMemory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/AbstractMemory.h
 vector
 -
 string
 -
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 
-/home/mitre/qt-ut/utwalk/memory/BodyModelBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/BodyModelBlock.h
 common/RobotInfo.h
 -
 math/Pose3D.h
@@ -782,43 +784,43 @@ math/Pose3D.h
 math/Vector3.h
 -
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 
-/home/mitre/qt-ut/utwalk/memory/FrameInfoBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/FrameInfoBlock.h
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 iostream
 -
 
-/home/mitre/qt-ut/utwalk/memory/GraphableBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/GraphableBlock.h
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 cstring
 -
 
-/home/mitre/qt-ut/utwalk/memory/JointBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/JointBlock.h
 iostream
 -
 common/RobotInfo.h
 -
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 
-/home/mitre/qt-ut/utwalk/memory/JointCommandBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/JointCommandBlock.h
 iostream
 -
 common/RobotInfo.h
 -
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 
-/home/mitre/qt-ut/utwalk/memory/Lock.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Lock.cpp
 Lock.h
-/home/mitre/qt-ut/utwalk/memory/Lock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Lock.h
 iostream
 -
 
-/home/mitre/qt-ut/utwalk/memory/Lock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Lock.h
 string
 -
 boost/interprocess/sync/named_mutex.hpp
@@ -830,85 +832,85 @@ boost/interprocess/sync/scoped_lock.hpp
 boost/thread/thread_time.hpp
 -
 
-/home/mitre/qt-ut/utwalk/memory/Logger.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Logger.cpp
 Logger.h
-/home/mitre/qt-ut/utwalk/memory/Logger.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Logger.h
 iostream
 -
 
-/home/mitre/qt-ut/utwalk/memory/Logger.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Logger.h
 fstream
 -
 Memory.h
-/home/mitre/qt-ut/utwalk/memory/Memory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Memory.h
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 
-/home/mitre/qt-ut/utwalk/memory/Memory.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Memory.cpp
 Memory.h
-/home/mitre/qt-ut/utwalk/memory/Memory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Memory.h
 BodyModelBlock.h
-/home/mitre/qt-ut/utwalk/memory/BodyModelBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/BodyModelBlock.h
 FrameInfoBlock.h
-/home/mitre/qt-ut/utwalk/memory/FrameInfoBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/FrameInfoBlock.h
 GraphableBlock.h
-/home/mitre/qt-ut/utwalk/memory/GraphableBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/GraphableBlock.h
 JointBlock.h
-/home/mitre/qt-ut/utwalk/memory/JointBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/JointBlock.h
 JointCommandBlock.h
-/home/mitre/qt-ut/utwalk/memory/JointCommandBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/JointCommandBlock.h
 SensorBlock.h
-/home/mitre/qt-ut/utwalk/memory/SensorBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/SensorBlock.h
 SimEffectorBlock.h
-/home/mitre/qt-ut/utwalk/memory/SimEffectorBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/SimEffectorBlock.h
 WalkRequestBlock.h
-/home/mitre/qt-ut/utwalk/memory/WalkRequestBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/WalkRequestBlock.h
 WalkEngineBlock.h
-/home/mitre/qt-ut/utwalk/memory/WalkEngineBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/WalkEngineBlock.h
 OdometryBlock.h
-/home/mitre/qt-ut/utwalk/memory/OdometryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/OdometryBlock.h
 boost/thread.hpp
 -
 boost/date_time/posix_time/posix_time.hpp
 -
 
-/home/mitre/qt-ut/utwalk/memory/Memory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Memory.h
 vector
 -
 string
 -
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 SharedMemory.h
-/home/mitre/qt-ut/utwalk/memory/SharedMemory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/SharedMemory.h
 PrivateMemory.h
-/home/mitre/qt-ut/utwalk/memory/PrivateMemory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/PrivateMemory.h
 Lock.h
-/home/mitre/qt-ut/utwalk/memory/Lock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/Lock.h
 
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.cpp
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 iostream
 -
 
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 cstring
 -
 
-/home/mitre/qt-ut/utwalk/memory/OdometryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/OdometryBlock.h
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 math/Geometry.h
 -
 
-/home/mitre/qt-ut/utwalk/memory/PrivateMemory.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/PrivateMemory.cpp
 PrivateMemory.h
-/home/mitre/qt-ut/utwalk/memory/PrivateMemory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/PrivateMemory.h
 iostream
 -
 
-/home/mitre/qt-ut/utwalk/memory/PrivateMemory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/PrivateMemory.h
 vector
 -
 map
@@ -916,21 +918,21 @@ map
 string
 -
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 AbstractMemory.h
-/home/mitre/qt-ut/utwalk/memory/AbstractMemory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/AbstractMemory.h
 
-/home/mitre/qt-ut/utwalk/memory/SensorBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/SensorBlock.h
 iostream
 -
 common/RobotInfo.h
 -
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 
-/home/mitre/qt-ut/utwalk/memory/SharedMemory.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/SharedMemory.cpp
 SharedMemory.h
-/home/mitre/qt-ut/utwalk/memory/SharedMemory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/SharedMemory.h
 memory/FrameInfoBlock.h
 -
 memory/SensorBlock.h
@@ -940,7 +942,7 @@ memory/JointBlock.h
 memory/JointCommandBlock.h
 -
 
-/home/mitre/qt-ut/utwalk/memory/SharedMemory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/SharedMemory.h
 iostream
 -
 cstdarg
@@ -954,35 +956,35 @@ boost/interprocess/containers/map.hpp
 boost/interprocess/containers/string.hpp
 -
 AbstractMemory.h
-/home/mitre/qt-ut/utwalk/memory/AbstractMemory.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/AbstractMemory.h
 
-/home/mitre/qt-ut/utwalk/memory/SimEffectorBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/SimEffectorBlock.h
 common/RobotInfo.h
 -
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 
-/home/mitre/qt-ut/utwalk/memory/WalkEngineBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/WalkEngineBlock.h
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 math/Pose2D.h
 -
 math/Pose3D.h
 -
 
-/home/mitre/qt-ut/utwalk/memory/WalkRequestBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/WalkRequestBlock.h
 math/Pose2D.h
 -
 MemoryBlock.h
-/home/mitre/qt-ut/utwalk/memory/MemoryBlock.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/memory/MemoryBlock.h
 
-/home/mitre/qt-ut/utwalk/motion/MotionModule.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/motion/MotionModule.cpp
 MotionModule.h
-/home/mitre/qt-ut/utwalk/motion/MotionModule.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/motion/MotionModule.h
 common/RobotInfo.h
 -
 
-/home/mitre/qt-ut/utwalk/motion/MotionModule.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/motion/MotionModule.h
 Module.h
 -
 memory/BodyModelBlock.h
@@ -998,15 +1000,15 @@ memory/WalkRequestBlock.h
 motion/UTWalkEngine.h
 -
 
-/home/mitre/qt-ut/utwalk/motion/UTWalkEngine.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/motion/UTWalkEngine.cpp
 UTWalkEngine.h
-/home/mitre/qt-ut/utwalk/motion/UTWalkEngine.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/motion/UTWalkEngine.h
 kinematics/ForwardKinematics.h
 -
 math/Geometry.h
 -
 
-/home/mitre/qt-ut/utwalk/motion/UTWalkEngine.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/motion/UTWalkEngine.h
 kinematics/InverseKinematics.h
 -
 common/RobotDimensions.h
@@ -1038,9 +1040,9 @@ memory/WalkRequestBlock.h
 map
 -
 
-/home/mitre/qt-ut/utwalk/motion/WalkEngineParameters.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/motion/WalkEngineParameters.cpp
 WalkEngineParameters.h
-/home/mitre/qt-ut/utwalk/motion/WalkEngineParameters.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/motion/WalkEngineParameters.h
 math/Geometry.h
 -
 map
@@ -1048,7 +1050,7 @@ map
 stdio.h
 -
 
-/home/mitre/qt-ut/utwalk/motion/WalkEngineParameters.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/motion/WalkEngineParameters.h
 math/Pose2D.h
 -
 math/Vector3.h
@@ -1056,21 +1058,21 @@ math/Vector3.h
 string
 -
 
-/home/mitre/qt-ut/utwalk/sensor/InertialFilter.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/sensor/InertialFilter.cpp
 InertialFilter.h
-/home/mitre/qt-ut/utwalk/sensor/InertialFilter.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/sensor/InertialFilter.h
 math.h
 -
 iostream
 -
 
-/home/mitre/qt-ut/utwalk/sensor/InertialFilter.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/sensor/InertialFilter.h
 common/NMatrix.h
 -
 
-/home/mitre/qt-ut/utwalk/sensor/SensorModule.cpp
+/home/miracle/DynamicPlanningUncompleted/utwalk/sensor/SensorModule.cpp
 SensorModule.h
-/home/mitre/qt-ut/utwalk/sensor/SensorModule.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/sensor/SensorModule.h
 common/RobotInfo.h
 -
 memory/SensorBlock.h
@@ -1078,47 +1080,47 @@ memory/SensorBlock.h
 memory/FrameInfoBlock.h
 -
 
-/home/mitre/qt-ut/utwalk/sensor/SensorModule.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/sensor/SensorModule.h
 Module.h
 -
 InertialFilter.h
-/home/mitre/qt-ut/utwalk/sensor/InertialFilter.h
+/home/miracle/DynamicPlanningUncompleted/utwalk/sensor/InertialFilter.h
 
-/home/mitre/qt-ut/worldmodel/WorldObject.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/WorldObject.h
 boost/assign/list_of.hpp
 -
 map
 -
 ../math/vecposition.h
-/home/mitre/qt-ut/math/vecposition.h
+/home/miracle/DynamicPlanningUncompleted/math/vecposition.h
 vector
 -
 ../math/Geometry.h
-/home/mitre/qt-ut/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/math/Geometry.h
 ../parser/VisionObject.h
-/home/mitre/qt-ut/parser/VisionObject.h
+/home/miracle/DynamicPlanningUncompleted/parser/VisionObject.h
 
-/home/mitre/qt-ut/worldmodel/worldmodel.cc
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.cc
 worldmodel.h
-/home/mitre/qt-ut/worldmodel/worldmodel.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.h
 ../kalman/BallKF.h
-/home/mitre/qt-ut/kalman/BallKF.h
+/home/miracle/DynamicPlanningUncompleted/kalman/BallKF.h
 ../kalman/PlayerKF.h
-/home/mitre/qt-ut/kalman/PlayerKF.h
+/home/miracle/DynamicPlanningUncompleted/kalman/PlayerKF.h
 
-/home/mitre/qt-ut/worldmodel/worldmodel.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/worldmodel.h
 ../headers/headers.h
-/home/mitre/qt-ut/headers/headers.h
+/home/miracle/DynamicPlanningUncompleted/headers/headers.h
 ../math/Geometry.h
-/home/mitre/qt-ut/math/Geometry.h
+/home/miracle/DynamicPlanningUncompleted/math/Geometry.h
 ../math/hctmatrix.h
-/home/mitre/qt-ut/math/hctmatrix.h
+/home/miracle/DynamicPlanningUncompleted/math/hctmatrix.h
 WorldObject.h
-/home/mitre/qt-ut/worldmodel/WorldObject.h
+/home/miracle/DynamicPlanningUncompleted/worldmodel/WorldObject.h
 ../headers/Field.h
-/home/mitre/qt-ut/headers/Field.h
+/home/miracle/DynamicPlanningUncompleted/headers/Field.h
 ../rvdraw/rvdraw.h
-/home/mitre/qt-ut/rvdraw/rvdraw.h
+/home/miracle/DynamicPlanningUncompleted/rvdraw/rvdraw.h
 
 /usr/local/include/simspark/rcssnet/addr.hpp
 string

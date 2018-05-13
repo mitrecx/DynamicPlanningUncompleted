@@ -25,12 +25,14 @@ const string& BOUNDING_BOX_BOTTOM = "max_displacement_bottom";
 SkillType NaoBehavior::kickBall(const int kickTypeToUse, const VecPosition &target) {
     kickTarget = target;
     kickDirection = (kickTarget - ball).normalize();
+    
 
     kickType = kickTypeToUse;
 
     if (me.getDistanceTo(ball) >= 1) {
         // Far away from the ball so walk toward target offset from the ball
         VecPosition approachBallTarget = ball - kickDirection*atof(namedParams.find("drib_target")->second.c_str());
+        //worldModel->getRVSender()->drawPoint("1",approachBallTarget.getX(),approachBallTarget.getY(),20,RVSender::GREEN);
         return goToTarget(approachBallTarget);
     }
 
