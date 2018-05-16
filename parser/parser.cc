@@ -444,6 +444,12 @@ bool Parser::parseHear(const string &str) {
     bool fallen;
     bool turneasy; //cx
     int choosecf;
+    int chooseFF;
+    int chooseCF_noBall;
+    int chooseStopper;
+    int chooseWL;
+    int chooseWR;
+    
     double ballX;
     double ballY;
     double playerX;
@@ -454,13 +460,19 @@ bool Parser::parseHear(const string &str) {
     double deltaServerToGameTime = worldModel->getTime()-worldModel->getGameTime();
 
     //if (processHearMessage(message, hearTime+deltaServerToGameTime, playerNum, timeBallLastSeen, ballX, ballY, playerX, playerY, fallen, time)) 
-    if (processHearMessage_CX(message, hearTime+deltaServerToGameTime, playerNum, timeBallLastSeen, ballX, ballY, playerX, playerY, fallen,turneasy,choosecf, time)) 
+    if (processHearMessage_CX(message, hearTime+deltaServerToGameTime, playerNum, timeBallLastSeen, ballX, ballY, playerX, playerY, fallen,turneasy,choosecf,chooseFF,chooseCF_noBall,chooseStopper,chooseWL,chooseWR, time)) 
     {
         worldModel->setFallenTeammate(playerNum-1, fallen);
         worldModel->setTurnEasyTeammate(playerNum-1,turneasy); //cx
         worldModel->setCFVoteResult(playerNum-1,choosecf);
         worldModel->setBallPosTeammate_X(playerNum-1,ballX);
         worldModel->setBallPosTeammate_Y(playerNum-1,ballY);
+  
+        worldModel->setFFVoteResult(playerNum-1,chooseFF);
+        worldModel->setCF_noBallVoteResult(playerNum-1,chooseCF_noBall);
+        worldModel->setStopperVoteResult(playerNum-1,chooseStopper);
+        worldModel->setWLVoteResult(playerNum-1,chooseWL);
+        worldModel->setWRVoteResult(playerNum-1,chooseWR);
         //cout<<"====processHearMessage_CX successful====="<<endl;
         if (!self && !fallen) {
             static VecPosition lastHeardBallPos = VecPosition(0,0,0);

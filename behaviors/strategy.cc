@@ -203,13 +203,84 @@ SkillType NaoBehavior::testSkill(){
     worldModel->lastCF=cf;
     */
     
+    // test vote five player
+    
+    vector<int> agents_5;
+    agents_5.push_back(11);
+    agents_5.push_back(10);
+    agents_5.push_back(9);
+    agents_5.push_back(8);
+    agents_5.push_back(7);
+    vector<PlayerRole> prv_5;
+    prv_5.push_back(FF);
+    prv_5.push_back(CF);
+    prv_5.push_back(Stopper);
+    prv_5.push_back(WL);
+    prv_5.push_back(WR);
+    map<vector<int>,map<int,PlayerRole> >roleMap;
+    roleMap=dynamicPlanningFunction_role(agents_5,prv_5);
+    voteForFivePlayers(roleMap,5);
+    vector<int> count_cf(11),count_ff(11),count_stopper(11),count_wl(11),count_wr(11);
+    for(int i=0;i<11;++i){
+        if(worldModel->getFFVoteResult(i)>0){
+            count_ff[worldModel->getFFVoteResult(i)-1]++;
+        }
+        if(worldModel->getCF_noBall_VoteResult(i)>0){
+            count_cf[worldModel->getCF_noBall_VoteResult(i)-1]++;
+        }
+        if(worldModel->getStopperVoteResult(i)>0){
+            count_stopper[worldModel->getStopperVoteResult(i)-1]++;
+        }
+        if(worldModel->getWLVoteResult(i)>0){
+            count_wl[worldModel->getWLVoteResult(i)-1]++;
+        }
+        if(worldModel->getWRVoteResult(i)>0){
+            count_wr[worldModel->getWRVoteResult(i)-1]++;
+        }
+    }
+    int maxCount_cf_noBall=0,maxCount_ff=0,maxCount_stopper=0,maxCount_wl=0,maxCount_wr=0;
+    int cf_noBall=0,ff=0,stopper=0,wl=0,wr=0;
+    for(int i=0;i<11;i++){
+        if(maxCount_ff<count_ff[i]){
+            maxCount_ff=count_ff[i];
+            ff=i+1;
+        }
+        if(maxCount_cf_noBall<count_cf[i]){
+            maxCount_cf_noBall=count_cf[i];
+            cf_noBall=i+1;
+        }
+        if(maxCount_stopper<count_stopper[i]){
+            maxCount_stopper=count_stopper[i];
+            stopper=i+1;
+        }
+        if(maxCount_wl<count_wl[i]){
+            maxCount_wl=count_wl[i];
+            wl=i+1;
+        }
+        if(maxCount_wr<count_wr[i]){
+            maxCount_wr=count_wr[i];
+            wr=i+1;
+        }
+    }
+    if(worldModel->getUNum()==cf_noBall)
+        return goToTarget(CFPosition());
+    if(worldModel->getUNum()==ff)
+        return goToTarget(FFPosition());
+    if(worldModel->getUNum()==stopper)
+        return goToTarget(StopperPosition());
+    if(worldModel->getUNum()==wl)
+        return goToTarget(WLPosition());
+    if(worldModel->getUNum()==wr)
+        return goToTarget(WRPosition());
+    rolePositionLine(ff,cf_noBall,stopper,wl,wr);
+    //print_goToTargetAllPlayer_role(roleMap,5);
     //test dynamicPlanningFunction problem
     /*
     if(worldModel->getUNum()!=1){
         map<vector<int>, map<int,VecPosition> >roleMap=dynamicPlanningFunction(printPlayerNum(),printPoints());
         print_goToTargetAllPlayer(roleMap,10); //TODO:optimizition
         return goToTargetAllPlayer(roleMap,10);
-    }/ki    
+    }    
     
     */
     
@@ -288,6 +359,61 @@ SkillType NaoBehavior::testSkill(){
     worldModel->getRVSender()->drawPoint("ballme",computedX,computedY,30.0f,RVSender::RED);
     */
     
+    // test dynamicPlanningFunction 10 and 9 
+    /*
+    vector<VecPosition> vecPostions;
+    VecPosition vp1=VecPosition(ball.getX()+2,ball.getY(),0);
+    VecPosition vp2up=VecPosition(ball.getX()-2,ball.getY(),0);
+    VecPosition vp3down=VecPosition(ball.getX(),ball.getY()+2,0);
+    VecPosition vp4center=VecPosition(ball.getX(),ball.getY()-2,0);
+    VecPosition vp5=VecPosition(ball.getX()+4,ball.getY(),0);
+    VecPosition vp6=VecPosition(ball.getX()-4,ball.getY(),0);
+    VecPosition vp7=VecPosition(ball.getX(),ball.getY()-4,0);
+    VecPosition vp8=VecPosition(ball.getX(),ball.getY()+4,0);
+    VecPosition vp9=VecPosition(ball.getX()+5,ball.getY()+5,0);
+    VecPosition vp10=VecPosition(ball.getX()+5,ball.getY()-5,0);
+    
+    worldModel->getRVSender()->drawCircle("my",vp1.getX(),vp1.getY(),0.2f, RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("my",vp2up.getX(),vp2up.getY(),0.2f, RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("my",vp3down.getX(),vp3down.getY(),0.2f, RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("my",vp4center.getX(),vp4center.getY(),0.2f, RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("my",vp8.getX(),vp8.getY(),0.2f, RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("my",vp5.getX(),vp5.getY(),0.2f, RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("my",vp6.getX(),vp6.getY(),0.2f, RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("my",vp7.getX(),vp7.getY(),0.2f, RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("my",vp9.getX(),vp9.getY(),0.2f, RVSender::MAGENTA);
+    worldModel->getRVSender()->drawCircle("my",vp10.getX(),vp10.getY(),0.2f, RVSender::MAGENTA);
+    vecPostions.push_back(vp1);
+    vecPostions.push_back(vp2up);
+    vecPostions.push_back(vp3down);
+    vecPostions.push_back(vp4center);
+    vecPostions.push_back(vp5);
+    vecPostions.push_back(vp6);
+    vecPostions.push_back(vp7);
+    vecPostions.push_back(vp8);
+    vecPostions.push_back(vp9);
+    vecPostions.push_back(vp10);
+    
+    vector<int> vecAgents;
+    vecAgents.push_back(11);
+    vecAgents.push_back(10);
+    vecAgents.push_back(9);
+    vecAgents.push_back(8);
+    vecAgents.push_back(7);
+    vecAgents.push_back(6);
+    vecAgents.push_back(5);
+    vecAgents.push_back(4);
+    vecAgents.push_back(3);
+    vecAgents.push_back(2);
+
+    map<vector<int>, map<int,VecPosition> >roleMap;
+    roleMap=dynamicPlanningFunction(vecAgents,vecPostions); 
+    if(worldModel->getUNum() !=1 ){ //||worldModel->getUNum()!=2
+        //printD(roleMap);
+        print_goToTargetAllPlayer(roleMap,10); //TODO:optimizition
+        //return goToTargetAllPlayer(roleMap,9);
+    }
+    */
     return SKILL_STAND;
 }
 
@@ -756,51 +882,7 @@ SkillType NaoBehavior::demoDynamicPlanning(){
     
     
     
-    //     three agents dPF3---------------------------
-//     vector<VecPosition> vecPostions;
-//     VecPosition vp1=VecPosition(ball.getX()+2,ball.getY(),0);
-//     VecPosition vp2up=VecPosition(ball.getX()-2,ball.getY(),0);
-//     VecPosition vp3down=VecPosition(ball.getX(),ball.getY()+2,0);
-//     VecPosition vp4center=VecPosition(ball.getX(),ball.getY()-2,0);
-//     VecPosition vp5=VecPosition(ball.getX()+4,ball.getY(),0);
-//     VecPosition vp6=VecPosition(ball.getX()-4,ball.getY(),0);
-//     VecPosition vp7=VecPosition(ball.getX(),ball.getY()-4,0);
-//     VecPosition vp8=VecPosition(ball.getX(),ball.getY()+4,0);
-//     
-//     worldModel->getRVSender()->drawCircle("my",vp1.getX(),vp1.getY(),0.2f, RVSender::MAGENTA);
-//     worldModel->getRVSender()->drawCircle("my",vp2up.getX(),vp2up.getY(),0.2f, RVSender::MAGENTA);
-//     worldModel->getRVSender()->drawCircle("my",vp3down.getX(),vp3down.getY(),0.2f, RVSender::MAGENTA);
-//     worldModel->getRVSender()->drawCircle("my",vp4center.getX(),vp4center.getY(),0.2f, RVSender::MAGENTA);
-//     worldModel->getRVSender()->drawCircle("my",vp8.getX(),vp8.getY(),0.2f, RVSender::MAGENTA);
-//     worldModel->getRVSender()->drawCircle("my",vp5.getX(),vp5.getY(),0.2f, RVSender::MAGENTA);
-//     worldModel->getRVSender()->drawCircle("my",vp6.getX(),vp6.getY(),0.2f, RVSender::MAGENTA);
-//     worldModel->getRVSender()->drawCircle("my",vp7.getX(),vp7.getY(),0.2f, RVSender::MAGENTA);
-//     vecPostions.push_back(vp1);
-//     vecPostions.push_back(vp2up);
-//     vecPostions.push_back(vp3down);
-//     vecPostions.push_back(vp4center);
-//     vecPostions.push_back(vp5);
-//     vecPostions.push_back(vp6);
-//     vecPostions.push_back(vp7);
-//     //vecPostions.push_back(vp8);
-//     
-//     vector<int> vecAgents;
-//     vecAgents.push_back(9);
-//     //vecAgents.push_back(2);
-//     vecAgents.push_back(8);
-//     vecAgents.push_back(7);
-//     vecAgents.push_back(6);
-//     vecAgents.push_back(5);
-//     vecAgents.push_back(4);
-//     vecAgents.push_back(3);
-// 
-//     map<vector<int>, map<int,VecPosition> >roleMap;
-//     roleMap=dynamicPlanningFunction(vecAgents,vecPostions); 
-//     if(worldModel->getUNum() !=1 || worldModel->getUNum()!=2 || worldModel->getUNum()!=10 || worldModel->getUNum()!=11  ){
-//         //printD(roleMap);
-//         print_goToTargetAllPlayer(roleMap,7); //TODO:optimizition
-//         return goToTargetAllPlayer(roleMap,7);
-//     }
+
     //three agents dPF3---------------------------
     
 //     //like die Circle ---stiff
@@ -817,6 +899,70 @@ SkillType NaoBehavior::demoDynamicPlanning(){
 //     cout<<"=================="<<endl;
     return SKILL_STAND;
     //return getWalk(0,0); //the fastest possible speed walk
+}
+
+void NaoBehavior::rolePositionLine(int ff,int cf,int stopper,int wl,int wr){
+    if(cf>0 && cf<=11){
+        //cout<<"cf --> "<<cf<<endl;
+        VecPosition temp;
+        WorldObject* opponentCF = worldModel->getWorldObject( cf );
+        if (opponentCF->validPosition) {
+            temp = opponentCF->pos;
+            worldModel->getRVSender()->drawLine("cf",temp.getX(),temp.getY(),CFPosition().getX(),CFPosition().getY());
+        } else {
+            //continue;
+        }
+        temp.setZ(0);
+    }
+    if(ff>0 && ff<=11){
+        //cout<<"ff --> "<<ff<<endl;
+        VecPosition temp;
+        WorldObject* opponentCF = worldModel->getWorldObject( ff );
+        if (opponentCF->validPosition) {
+            temp = opponentCF->pos;
+            worldModel->getRVSender()->drawLine("cf",temp.getX(),temp.getY(),FFPosition().getX(),FFPosition().getY());
+        } else {
+            //continue;
+        }
+        temp.setZ(0);
+    }
+    if(stopper>0 && stopper<=11){
+        //cout<<"stopper --> "<<stopper<<endl;
+        VecPosition temp;
+        WorldObject* opponentCF = worldModel->getWorldObject( stopper );
+        if (opponentCF->validPosition) {
+            temp = opponentCF->pos;
+            worldModel->getRVSender()->drawLine("cf",temp.getX(),temp.getY(),StopperPosition().getX(),StopperPosition().getY());
+        } else {
+            //continue;
+        }
+        temp.setZ(0);
+    }
+    if(wl>0 && wl<=11){
+        //cout<<"wl --> "<<wl<<endl;
+        VecPosition temp;
+        WorldObject* opponentCF = worldModel->getWorldObject( wl );
+        if (opponentCF->validPosition) {
+            temp = opponentCF->pos;
+            worldModel->getRVSender()->drawLine("cf",temp.getX(),temp.getY(),WLPosition().getX(),WLPosition().getY());
+        } else {
+            //continue;
+        }
+        temp.setZ(0);
+    }
+    if(wr>0 && wr<=11){
+        //cout<<"wr --> "<<wr<<endl;
+        VecPosition temp;
+        WorldObject* opponentCF = worldModel->getWorldObject( wr );
+        if (opponentCF->validPosition) {
+            temp = opponentCF->pos;
+            worldModel->getRVSender()->drawLine("cf",temp.getX(),temp.getY(),WRPosition().getX(),WRPosition().getY());
+        } else {
+            //continue;
+        }
+        temp.setZ(0);
+    }
+    //cout<<"=========+++============"<<endl;
 }
 VecPosition NaoBehavior::targetPoint(){
 //     VecPosition pos = worldModel->getMyPosition();
@@ -880,7 +1026,7 @@ double NaoBehavior::closestDistanceTeammateToBall(int &pNum ,bool relative){
 //         if(angle > 30 || angle<-30)
 //             distanceToBall+=1;
         if(relative && worldModel->getFallenTeammate(i-1))
-            distanceToBall+=2;
+            distanceToBall+=1.5;
         if(relative && worldModel->getTurnEasyTeammate(i-1))
             distanceToBall+=0.5;
         if (distanceToBall < closestDistanceToBall) {
@@ -891,6 +1037,31 @@ double NaoBehavior::closestDistanceTeammateToBall(int &pNum ,bool relative){
     pNum=playerClosestToBall;
     worldModel->setChooseCF(pNum);
     return closestDistanceToBall;
+}
+void NaoBehavior::voteForFivePlayers(map<vector<int>, map<int,PlayerRole> > iRole,unsigned int num){
+    map<int, PlayerRole> rolePlanning;
+    map<vector<int>, map<int,PlayerRole> >::iterator i=iRole.begin();
+    while(i!=iRole.end()){
+        if((i->first).size()==num){ ///10
+            rolePlanning=iRole[i->first];
+        }
+        i++;
+    }
+    map<int,PlayerRole>::iterator roleIt=rolePlanning.begin();
+    while(roleIt!=rolePlanning.end()){
+        if(roleIt->second==FF)
+            worldModel->setChooseFF(roleIt->first);
+        if(roleIt->second==CF)
+            worldModel->setChooseCF_noBall(roleIt->first);
+        if(roleIt->second==Stopper)
+            worldModel->setChooseStopper(roleIt->first);
+        if(roleIt->second==WL)
+            worldModel->setChooseWL(roleIt->first);
+        if(roleIt->second==WR)
+            worldModel->setChooseWR(roleIt->first);
+        //cout<<roleIt->first<<" ===== "<<endl;
+        roleIt++;
+    }
 }
 
 double NaoBehavior::closestDistanceOpponentToBall(int *pNum){
@@ -971,6 +1142,71 @@ vector<VecPosition> NaoBehavior::printPoints_4(){
   
   return positions;
 }
+VecPosition NaoBehavior::FFPosition(){
+    //1 Front Forward
+    VecPosition FF=VecPosition(ball.getX()+5,ball.getY()+0.1,0);
+    if(ball.getX()>10){
+        if(ball.getY()>0){
+            double x=(sqrt(3)*(ball.getX()+HALF_FIELD_X*3))/(4*sqrt(3));
+            double y=sqrt(3)*x-sqrt(3)*HALF_FIELD_X+ball.getY();
+            FF.setX(x);
+            FF.setY(y);
+            //worldModel->getRVSender()->
+            //drawLine("TtoB",FF.getX(),FF.getY(),ball.getX(),ball.getY(),RVSender::GREEN);
+            //worldModel->getRVSender()->
+            //drawLine("TtoB",FF.getX(),FF.getY(),HALF_FIELD_X,ball.getY(),RVSender::GREEN);
+            }else{
+                double x=(sqrt(3)*(ball.getX()+HALF_FIELD_X*3))/(4*sqrt(3));
+                double y=sqrt(3)*x-sqrt(3)*HALF_FIELD_X+ball.getY();
+                y=2*ball.getY()-y;
+                FF.setX(x);
+                FF.setY(y);
+            }
+  }
+  worldModel->getRVSender()->drawPoint("1",FF.getX(),FF.getY(),10.0f,RVSender::ORANGE);
+  return FF;
+}
+VecPosition NaoBehavior::CFPosition(){
+     //4 Center Forward Back
+    VecPosition CFB=VecPosition(ball.getX()-1,ball.getY()-0.1,0);
+    worldModel->getRVSender()->drawPoint("1",CFB.getX(),CFB.getY(),10.0f,RVSender::ORANGE);
+    return CFB;
+}
+VecPosition NaoBehavior::WRPosition()
+{
+    //3 Wing Forward Right
+    VecPosition WFR=VecPosition(ball.getX()-0.5,ball.getY()-3,0);
+    if(ball.getY()<-6.5){
+        WFR.setY(-9.6);
+    }
+    worldModel->getRVSender()->drawPoint("1",WFR.getX(),WFR.getY(),10.0f,RVSender::ORANGE);
+    return WFR;
+}
+VecPosition NaoBehavior::WLPosition()
+{
+    //2 Wing Forward Left
+    VecPosition WFL=VecPosition(ball.getX()-0.5,ball.getY()+3,0);
+    if(ball.getY()>6.5){
+        double y;
+        y=9.6;
+        WFL.setY(y);
+    }
+    worldModel->getRVSender()->drawPoint("1",WFL.getX(),WFL.getY(),10.0f,RVSender::ORANGE);
+    return WFL;
+}
+VecPosition NaoBehavior::StopperPosition()
+{
+    //5 Feild Center Offence
+    VecPosition FCO=VecPosition(ball.getX()-2,ball.getY()+0.3,0);
+    if(ball.getX()<-6 && ball.getY()>=-1 && ball.getY()<=1){
+        FCO.setY(3);
+        FCO.setX(ball.getX());
+    }
+    worldModel->getRVSender()->drawPoint("1",FCO.getX(),FCO.getY(),10.0f,RVSender::ORANGE);
+    return FCO;
+}
+
+
 vector<VecPosition> NaoBehavior::printPoints_5(){
     vector<VecPosition> positions;
     //1 Front Forward
@@ -1615,6 +1851,45 @@ double NaoBehavior::sumDistance(map<int,VecPosition> miv){
     return result;
     
 }
+double NaoBehavior::sumDistance_role(map<int,PlayerRole> miv){
+    double result=0;
+    map<int,PlayerRole>::iterator mit=miv.begin();
+    while(mit!=miv.end()){
+        int playerNum=mit->first;
+        VecPosition temp;
+        if (worldModel->getUNum() == playerNum) {
+            // This is us
+            temp = worldModel->getMyPosition();
+        } else {
+            WorldObject* teammate = worldModel->getWorldObject( playerNum );
+            if (teammate->validPosition) {
+                temp = teammate->pos;
+            } else {
+                //cout<<"invalid Position << "<<endl;
+                //continue;
+                temp = teammate->pos;
+            }
+        }
+        temp.setZ(0);
+        //WorldObject *playerObj=worldModel->getWorldObject(playerNum);
+        //VecPosition playerPos=playerObj->pos;
+        VecPosition rolePosition;
+        switch (mit->second){
+            case FF:rolePosition=FFPosition();break;
+            case CF:rolePosition=CFPosition();break;
+            case Stopper:rolePosition=StopperPosition();break;
+            case WL:rolePosition=WLPosition();break;
+            case WR:rolePosition=WRPosition();break;
+        }
+        double d=temp.getDistanceTo(rolePosition);
+        result+=d;
+        
+        ++mit;
+    }
+    //cout<<"distance result: "<<result<<endl;
+    return result;
+    
+}
 
 SkillType NaoBehavior::goToTargetAllPlayer(map<vector<int>, map<int,VecPosition> > roleMap, unsigned int num, bool collisionAvoid){
     map<int, VecPosition> rolePlanning;
@@ -1657,6 +1932,7 @@ void NaoBehavior::print_goToTargetAllPlayer(map<vector<int>, map<int,VecPosition
             temp = worldModel->getMyPosition();
         } else {
                 WorldObject* teammate = worldModel->getWorldObject( it->first );
+                //it->first it->second
                 if (teammate->validPosition) {
                     temp = teammate->pos;
                 } else {
@@ -1671,7 +1947,45 @@ void NaoBehavior::print_goToTargetAllPlayer(map<vector<int>, map<int,VecPosition
     //cout<<"print line over !!!!"<<endl;
 }
 //===================================
-
+void NaoBehavior::print_goToTargetAllPlayer_role(map<vector<int>, map<int,PlayerRole> > roleMap,unsigned int num){
+    map<int, PlayerRole> rolePlanning;
+    map<vector<int>, map<int,PlayerRole> >::iterator i=roleMap.begin();
+    while(i!=roleMap.end()){
+        if((i->first).size()==num){ ///10
+            rolePlanning=roleMap[i->first];
+        }
+        i++;
+    }
+    for(map<int,PlayerRole>::iterator it=rolePlanning.begin();it!=rolePlanning.end();++it){
+        VecPosition temp;
+        if(worldModel->getUNum() ==it->first){
+            //return goToTarget(it->second);
+            // This is us
+            temp = worldModel->getMyPosition();
+        } else {
+                WorldObject* teammate = worldModel->getWorldObject( it->first );
+                //it->first it->second
+                if (teammate->validPosition) {
+                    temp = teammate->pos;
+                } else {
+                    continue;
+                }
+        }
+        temp.setZ(0);
+        VecPosition rolePosition;
+        switch (it->second){
+            case FF:rolePosition=FFPosition();break;
+            case CF:rolePosition=CFPosition();break;
+            case Stopper:rolePosition=StopperPosition();break;
+            case WL:rolePosition=WLPosition();break;
+            case WR:rolePosition=WRPosition();break;
+        }
+        worldModel->getRVSender()->drawLine("pr",temp.getX(),temp.getY(),
+                                            rolePosition.getX(),rolePosition.getY(),RVSender::BLUEGREEN);
+        
+    }
+    //cout<<"print line over !!!!"<<endl;
+}
 
 map<vector<int>, map<int,VecPosition> > NaoBehavior::dynamicPlanningFunction(vector<int> agents, vector<VecPosition> positions){
     map<vector<int>,map<int,VecPosition> > roleMap;
@@ -1722,6 +2036,67 @@ map<vector<int>, map<int,VecPosition> > NaoBehavior::dynamicPlanningFunction(vec
             }
             else{
                 map<int, VecPosition> first;
+                first[*ita]=positions[k-1];
+                vector<int> v;
+                v.push_back(*ita);
+                //sort(v.begin(),v.end());
+                roleMap.insert(make_pair(v,first));
+            }
+            ++ita;
+        }
+	    
+    }
+    return roleMap;
+}
+map<vector<int>, map<int,PlayerRole> > NaoBehavior::dynamicPlanningFunction_role(vector<int> agents, vector<PlayerRole> positions){
+    map<vector<int>,map<int,PlayerRole> > roleMap;
+    int n=agents.size();
+    for(int k=1;k<=n;++k){
+        vector<int>::iterator ita=agents.begin();
+        vector<vector<int> > S;
+        //for each a in agents
+        while(ita !=agents.end()){
+            vector<vector<int> > resultS;
+            vector<int> temp(agents);
+            //delete a from temp, S exclude a;
+            vector<int>::iterator it_temp=temp.begin();
+            while(it_temp != temp.end()){
+                if(*it_temp == *ita){
+                    temp.erase(it_temp);
+                    break;
+                }
+                ++it_temp;
+            }
+            S=comb_result(n-1,k-1,temp,k-1,resultS); //when k==2 , fixed !
+            //S = sets of agents, or null? 
+            if(S.size()!=0){
+                vector<vector<int> >::iterator sit1=S.begin();
+                //for each s in S do...
+                while(sit1 !=S.end()){  // in while
+                    vector<int> s=*sit1;
+                    //sort(s.begin(),s.end());
+                    map<int,PlayerRole> mTemp = roleMap[s];
+                    map<int,PlayerRole> m(mTemp.begin(),mTemp.end()) ;
+                    m.insert(make_pair(*ita,positions[k-1]));
+                    //v = aUs
+                    vector<int> v(s.begin(),s.end());
+                    v.push_back(*ita);
+                    sort(v.begin(),v.end());
+                    if(roleMap.count(v) != 0){ //exist v in roleMap
+                        if(sumDistance_role(roleMap[v])>sumDistance_role(m)){ //sumDistance error: fixed
+                            roleMap[v]=m;
+                        }
+                        //else
+                            //roleMap[v]=roleMap[v];
+                    }
+                    else{
+                        roleMap[v]=m;
+                    }
+                    ++sit1;
+                }
+            }
+            else{
+                map<int, PlayerRole> first;
                 first[*ita]=positions[k-1];
                 vector<int> v;
                 v.push_back(*ita);

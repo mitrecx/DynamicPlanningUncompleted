@@ -63,7 +63,7 @@ bool makeSayMessage(const int &uNum, const double &currentServerTime, const doub
 
     return true;
 }
-bool makeSayMessage_CX(const int &uNum, const double &currentServerTime, const double &ballLastSeenServerTime, const double &ballX, const double &ballY, const double &myX, const double &myY, const bool &fFallen,const bool &turnEasy, const int &chooseCF, string &message) {
+bool makeSayMessage_CX(const int &uNum, const double &currentServerTime, const double &ballLastSeenServerTime, const double &ballX, const double &ballY, const double &myX, const double &myY, const bool &fFallen,const bool &turnEasy, const int &chooseCF,const int &chooseFF,const int &chooseCF_noBall,const int &chooseStopper,const int &chooseWL,const int &chooseWR, string &message) {
     int cycles = int((currentServerTime * 50) + 0.1);
     if (cycles % (NUM_AGENTS*2) != (uNum-1)*2) {
         // Not our time slice turn to say a message
@@ -71,7 +71,7 @@ bool makeSayMessage_CX(const int &uNum, const double &currentServerTime, const d
     }
 
     vector<int> bits;
-    if(!(dataToBits_CX(currentServerTime, ballLastSeenServerTime, ballX, ballY, myX, myY, fFallen, turnEasy,chooseCF, bits))) {
+    if(!(dataToBits_CX(currentServerTime, ballLastSeenServerTime, ballX, ballY, myX, myY, fFallen, turnEasy,chooseCF,chooseFF,chooseCF_noBall,chooseStopper,chooseWL,chooseWR, bits))) {
         return false;
     }
 
@@ -131,7 +131,7 @@ bool processHearMessage(const string &message, const double &heardServerTime, in
 
     return true;
 }
-bool processHearMessage_CX(const string &message, const double &heardServerTime, int &uNum, double &ballLastSeenServerTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen, bool &turnEasy,int &chooseCF, double &time) {
+bool processHearMessage_CX(const string &message, const double &heardServerTime, int &uNum, double &ballLastSeenServerTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen, bool &turnEasy,int &chooseCF,int &chooseFF,int &chooseCF_noBall,int &chooseStopper,int &chooseWL,int &chooseWR, double &time) {
 
     // Initialize values
     uNum = 0;
@@ -143,6 +143,11 @@ bool processHearMessage_CX(const string &message, const double &heardServerTime,
     fFallen = false;
     turnEasy=false;
     chooseCF=0;
+    chooseFF=0;
+    chooseCF_noBall=0;
+    chooseStopper=0;
+    chooseWL=0;
+    chooseWR=0;
     time = 0;
 
 
@@ -151,7 +156,7 @@ bool processHearMessage_CX(const string &message, const double &heardServerTime,
         return false;
     }
 
-    if(!(bitsToData_CX(bits, time, ballLastSeenServerTime, ballX, ballY, agentX, agentY, fFallen,turnEasy,chooseCF))) {
+    if(!(bitsToData_CX(bits, time, ballLastSeenServerTime, ballX, ballY, agentX, agentY, fFallen,turnEasy,chooseCF,chooseFF,chooseCF_noBall,chooseStopper,chooseWL,chooseWR))) {
         return false;
     }
 
@@ -260,7 +265,7 @@ bool dataToBits(const double &time, const double &ballLastSeenTime, const double
     return true;
 
 }
-bool dataToBits_CX(const double &time, const double &ballLastSeenTime, const double &ballX, const double &ballY, const double &myX, const double &myY, const bool &fFallen, const bool &turnEasy,const int &chooseCF, vector<int> &bits) {
+bool dataToBits_CX(const double &time, const double &ballLastSeenTime, const double &ballX, const double &ballY, const double &myX, const double &myY, const bool &fFallen, const bool &turnEasy,const int &chooseCF,const int &chooseFF,const int &chooseCF_noBall,const int &chooseStopper,const int &chooseWL,const int &chooseWR, vector<int> &bits) {
 
     int cycles = (time * 50) + 0.1;
     cycles = cycles%(1<<16);
@@ -290,7 +295,12 @@ bool dataToBits_CX(const double &time, const double &ballLastSeenTime, const dou
     int fallenBit = (fFallen)? 1 : 0;
     int turnEasyBit=(turnEasy)?1:0;    
     vector<int> myChoose=intToBits(chooseCF,4); //chooseCF cx
-
+    vector<int> myChoose_FF=intToBits(chooseFF,4);
+    vector<int> myChoose_CF_noBall=intToBits(chooseCF_noBall,4);
+    vector<int> myChoose_Stopper=intToBits(chooseStopper,4);
+    vector<int> myChoose_WL=intToBits(chooseWL,4);
+    vector<int> myChoose_WR=intToBits(chooseWR,4);
+    
     bits.insert(bits.end(), timeBits.begin(), timeBits.end());//16
     bits.insert(bits.end(), ballLastSeenTimeBits.begin(), ballLastSeenTimeBits.end());//16
     bits.insert(bits.end(), ballXBits.begin(), ballXBits.end());//10
@@ -299,8 +309,12 @@ bool dataToBits_CX(const double &time, const double &ballLastSeenTime, const dou
     bits.insert(bits.end(), myYBits.begin(), myYBits.end());//10
     bits.push_back(fallenBit);//1
     bits.push_back(turnEasyBit);//1 cx
-    bits.insert(bits.end(),myChoose.begin(),myChoose.end());
-
+    bits.insert(bits.end(),myChoose.begin(),myChoose.end());//4
+    bits.insert(bits.end(),myChoose_FF.begin(),myChoose_FF.end());//4
+    bits.insert(bits.end(),myChoose_CF_noBall.begin(),myChoose_CF_noBall.end());//4
+    bits.insert(bits.end(),myChoose_Stopper.begin(),myChoose_Stopper.end());//4
+    bits.insert(bits.end(),myChoose_WL.begin(),myChoose_WL.end());//4
+    bits.insert(bits.end(),myChoose_WR.begin(),myChoose_WR.end());//4
     return true;
 
 }
@@ -323,7 +337,7 @@ bool bitsToString(const vector<int> &bits, string &message) {
 
             index[i] *= 2;
 
-            //bits.size()=73, 16+16+10+10+10+10+1=73
+            //bits.size()=73, 16+16+10+10+10+10+1=73  73+1+4+4*5=98
             if(ctr < bits.size()) {
                 index[i] += bits[ctr];
                 ctr++;
@@ -422,8 +436,8 @@ bool bitsToData(const vector<int> &bits, double &time, double &ballLastSeenTime,
 
     return true;
 }
-bool bitsToData_CX(const vector<int> &bits, double &time, double &ballLastSeenTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen, bool &turnEasy,int &chooseCF) {
-    if(bits.size() < (16 + 16 + 10 + 10 + 10 + 10 + 1 + 1+4)) {
+bool bitsToData_CX(const vector<int> &bits, double &time, double &ballLastSeenTime, double &ballX, double &ballY, double &agentX, double &agentY, bool &fFallen, bool &turnEasy,int &chooseCF,int &chooseFF,int &chooseCF_noBall,int &chooseStopper,int &chooseWL,int &chooseWR) {
+    if(bits.size() < (16 + 16 + 10 + 10 + 10 + 10 + 1 + 1+4 + 4+4+4+4+4)) {
         time = 0;
         ballLastSeenTime = 0,
         ballX = 0;
@@ -433,6 +447,11 @@ bool bitsToData_CX(const vector<int> &bits, double &time, double &ballLastSeenTi
         fFallen = false;
         turnEasy=false;
         chooseCF=0;
+        chooseFF=0;
+        chooseCF_noBall=0;
+        chooseStopper=0;
+        chooseWL=0;
+        chooseWR=0;
         return false;
     }
 
@@ -475,6 +494,18 @@ bool bitsToData_CX(const vector<int> &bits, double &time, double &ballLastSeenTi
     turnEasy = (bits[ctr] == 0)? false:true;
     ctr+=1;
     chooseCF=bitsToInt(bits,ctr,ctr+3);
+    ctr+=4;
+    
+    chooseFF=bitsToInt(bits,ctr,ctr+3);
+    ctr+=4;
+    chooseCF_noBall=bitsToInt(bits,ctr,ctr+3);
+    ctr+=4;
+    chooseStopper=bitsToInt(bits,ctr,ctr+3);
+    ctr+=4;
+    chooseWL=bitsToInt(bits,ctr,ctr+3);
+    ctr+=4;
+    chooseWR=bitsToInt(bits,ctr,ctr+3);
+    ctr+=4;
     return true;
 }
 

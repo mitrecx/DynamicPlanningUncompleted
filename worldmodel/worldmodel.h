@@ -73,7 +73,19 @@ private:
     vector<bool> turnEasyTeammate;
     //cx 2018-5-6
     int chooseCF;
+    //cx 2018-5-16
+    int chooseCF_noBall;
+    int chooseFF;
+    int chooseStopper;
+    int chooseWL;
+    int chooseWR;
     vector<int> CFVoteResult;
+    vector<int> CF_noBallVoteResult;
+    vector<int> FFVoteResult;
+    vector<int> StopperVoteResult;
+    vector<int> WLVoteResult;
+    vector<int> WRVoteResult;
+    
     vector<VecPosition> ballPosTeammate;
     
     HCTMatrix localToGlobal, globalToLocal;
@@ -470,6 +482,38 @@ public:
     inline void setChooseCF(int chooseCF){
         this->chooseCF=chooseCF;
     }
+    inline int getChooseCF_noBall() const{
+        return chooseCF_noBall;
+    }
+    inline void setChooseCF_noBall(int chooseCF_noBall){
+        this->chooseCF_noBall=chooseCF_noBall;
+    }
+    inline int getChooseFF() const{
+        return chooseFF;
+    }
+    inline void setChooseFF(int chooseFF){
+        this->chooseFF=chooseFF;
+    }
+    //------------cx, batch
+    inline int getChooseStopper() const{
+        return chooseStopper;
+    }
+    inline int getChooseWL() const{
+        return chooseWL;
+    }
+    inline int getChooseWR() const{
+        return chooseWR;
+    }
+    inline void setChooseStopper(int chooseStopper){
+        this->chooseStopper=chooseStopper;
+    }
+    inline void setChooseWL(int chooseWL){
+        this->chooseWL=chooseWL;
+    }
+    inline void setChooseWR(int chooseWR){
+        this->chooseWR=chooseWR;
+    }
+    //-----------
     
     inline VecPosition g2l(const VecPosition &global) const {
         return globalToLocal.transform(global);
@@ -495,6 +539,38 @@ public:
     void setCFVoteResult(int index, int chooseCF){
         CFVoteResult[index]=chooseCF;
     }
+    //----cx,batch
+    int getCF_noBall_VoteResult(int index) const{
+        return CF_noBallVoteResult[index];
+    }
+    int getFFVoteResult(int index) const{
+        return FFVoteResult[index];
+    }
+    int getStopperVoteResult(int index) const{
+        return StopperVoteResult[index];
+    }
+    int getWLVoteResult(int index) const{
+        return WLVoteResult[index];
+    }
+    int getWRVoteResult(int index) const{
+        return WRVoteResult[index];
+    }
+    void setCF_noBallVoteResult(int index, int chooseCF_noBall){
+        CF_noBallVoteResult[index]=chooseCF_noBall;
+    }
+    void setFFVoteResult(int index, int chooseFF){
+        FFVoteResult[index]=chooseFF;
+    }
+    void setStopperVoteResult(int index, int chooseStopper){
+        StopperVoteResult[index]=chooseStopper;
+    }
+    void setWLVoteResult(int index, int chooseWL){
+        WLVoteResult[index]=chooseWL;
+    }
+    void setWRVoteResult(int index, int chooseWR){
+        WRVoteResult[index]=chooseWR;
+    }
+    //----
     VecPosition getBallPosTeammate(int index) const{
         return ballPosTeammate[index];
     }
@@ -536,6 +612,8 @@ public:
     }
 
     int lastCF; //cx
+    int myRole;
+    
     void display();
 };
 

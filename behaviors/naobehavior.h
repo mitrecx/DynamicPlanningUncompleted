@@ -21,6 +21,13 @@
 
 using namespace std;
 
+enum PlayerRole{
+    FF,
+    CF,
+    Stopper,
+    WL,
+    WR,
+};
 // TODO: Temporary home. Not sure if this this the best place to put this.
 struct WalkVelocity
 {
@@ -243,12 +250,15 @@ protected:
     vector<vector<int> >  comb_result(int i, int j,vector<int> &r,  int num, vector<vector<int> > &result);
     
     double sumDistance(std::map<int,VecPosition> miv);
+    double sumDistance_role(map<int,PlayerRole> miv);
     SkillType goToTargetAllPlayer(std::map<std::vector<int>, std::map<int,VecPosition> > roleMap,unsigned int num, bool collisionAvoid=false);
     void print_goToTargetAllPlayer(map<vector<int>, map<int,VecPosition> > roleMap, unsigned int num);
+    void print_goToTargetAllPlayer_role(map<vector<int>, map<int,PlayerRole> > roleMap,unsigned int num);
     void printD(map<vector<int>, map<int,VecPosition> > roleMap);
     VecPosition targetPoint();
     
     map<vector<int>, map<int,VecPosition> > dynamicPlanningFunction(vector<int> agents, vector<VecPosition> positions);
+    map<vector<int>, map<int,PlayerRole> > dynamicPlanningFunction_role(vector<int> agents, vector<PlayerRole> positions);
     map<vector<int>, map<int,VecPosition> > dPF3(vector<int> agents, vector<VecPosition> positions);
     vector<VecPosition> printPoints();
     vector<VecPosition> printPoints_4();
@@ -258,6 +268,13 @@ protected:
     vector<VecPosition> printPoints_5_goalKickLeft();
     vector<VecPosition> printPoints_5_cornerKickRight();
     vector<int> printPlayerNum();
+    VecPosition FFPosition();
+    VecPosition CFPosition();
+    VecPosition StopperPosition();
+    VecPosition WLPosition();
+    VecPosition WRPosition();
+    void voteForFivePlayers(map<vector<int>, map<int,PlayerRole> > iRole,unsigned int num);
+    void rolePositionLine(int ff,int cf,int stopper,int wl,int wr);
     //bool startFlag=true;
     //double clo1=0;  
     VecPosition DefenceLeft();

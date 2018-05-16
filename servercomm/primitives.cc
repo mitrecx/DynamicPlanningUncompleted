@@ -150,6 +150,11 @@ string NaoBehavior::composeAction() {
     bool fallen = worldModel->isFallen();
     bool turnEasy=worldModel->isTurnEasy(); //cx 2018-5-1
     int chooseCF_say=worldModel->getChooseCF();
+    int chooseFF=worldModel->getChooseFF();
+    int chooseCF_noBall=worldModel->getChooseCF_noBall();
+    int chooseStopper=worldModel->getChooseStopper();
+    int chooseWL=worldModel->getChooseWL();
+    int chooseWR=worldModel->getChooseWR();
     //cout<<"turnEasy== "<<turnEasy<<endl;
     VecPosition ball = worldModel->getLastBallSeenPosition()[0];
     double ballX = ball.getX();
@@ -164,7 +169,7 @@ string NaoBehavior::composeAction() {
     string message;
     if (canTrust || fallen) {
         //if(makeSayMessage(uNum, time, timeBallLastSeen, ballX, ballY, myX, myY, fallen, message)) 
-        if(makeSayMessage_CX(uNum, time, timeBallLastSeen, ballX, ballY, myX, myY, fallen,turnEasy,chooseCF_say, message))
+        if(makeSayMessage_CX(uNum, time, timeBallLastSeen, ballX, ballY, myX, myY, fallen,turnEasy,chooseCF_say,chooseFF,chooseCF_noBall,chooseStopper,chooseWL,chooseWR, message))
         {
             ss << message;
             /*
