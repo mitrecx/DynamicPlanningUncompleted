@@ -128,8 +128,8 @@ SkillType NaoBehavior::selectSkill() {
     // Demo behavior where players form a rotating circle and kick the ball
     // back and forth
     //return demoKickingCircle();
-    return demoDynamicPlanning();
-    //return testSkill();
+    //return demoDynamicPlanning();
+    return testSkill();
 }
 SkillType NaoBehavior::testSkill(){
      //test getTurnEasyTeammate,
@@ -262,18 +262,37 @@ SkillType NaoBehavior::testSkill(){
             wr=i+1;
         }
     }
-    if(worldModel->getUNum()==cf_noBall)
-        return goToTarget(CFPosition());
-    if(worldModel->getUNum()==ff)
-        return goToTarget(FFPosition());
-    if(worldModel->getUNum()==stopper)
-        return goToTarget(StopperPosition());
-    if(worldModel->getUNum()==wl)
-        return goToTarget(WLPosition());
-    if(worldModel->getUNum()==wr)
-        return goToTarget(WRPosition());
+//     if(worldModel->getUNum()==cf_noBall)
+//         return goToTarget(CFPosition());
+//     if(worldModel->getUNum()==ff)
+//         return goToTarget(FFPosition());
+//     if(worldModel->getUNum()==stopper)
+//         return goToTarget(StopperPosition());
+//     if(worldModel->getUNum()==wl)
+//         return goToTarget(WLPosition());
+//     if(worldModel->getUNum()==wr)
+//         return goToTarget(WRPosition());
     rolePositionLine(ff,cf_noBall,stopper,wl,wr);
     //print_goToTargetAllPlayer_role(roleMap,5);
+    
+    
+    //test no voting
+    /*
+    map<vector<int>, map<int,VecPosition> >roleMap;
+    vector<int> agents_4;
+    agents_4.push_back(11);
+    agents_4.push_back(10);
+    agents_4.push_back(9);
+    agents_4.push_back(8);
+    vector<int> agents_5(agents_4);
+    agents_5.push_back(7);
+    if(worldModel->getUNum() ==11 || worldModel->getUNum()==10 || worldModel->getUNum()==9 ||           worldModel->getUNum()==8 ||worldModel->getUNum()==7 ){
+        //printD(roleMap);
+        roleMap=dynamicPlanningFunction(agents_5,printPoints_5());
+        print_goToTargetAllPlayer(roleMap,5); //TODO:optimizition
+    }
+    */
+    
     //test dynamicPlanningFunction problem
     /*
     if(worldModel->getUNum()!=1){
